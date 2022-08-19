@@ -5,6 +5,7 @@ import create from 'zustand'
 import {setUserToken} from "../Globals/TokenStore";
 import {UserLoginMessage} from "../Messages/UserLoginMessage";
 import {UserRegisterMessage} from "../Messages/UserRegisterMessage";
+import {APIUrl} from "../Globals/GlobalVariables";
 
 const styles = StyleSheet.create({
     container: {
@@ -34,9 +35,9 @@ export function Register({ navigation }: any){
         <Pressable
             onPress={() => {
                 console.log("试图使用用户名"+userName+",密码"+password + ",真实姓名"+realName + "登录！")
-                fetch("http://localhost:6070/api", {
+                fetch(APIUrl, {
                     method: "POST",
-                    headers: {},
+                    headers: {"Content-Type":"text/plain"},
                     body: JSON.stringify(new UserRegisterMessage(userName, password, realName))
                 }).then((response) => response.json()).then((replyJson) => {
                     console.log(replyJson)

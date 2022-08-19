@@ -7,6 +7,7 @@ import {UserLoginMessage} from "../Messages/UserLoginMessage";
 import {UserRegisterMessage} from "../Messages/UserRegisterMessage";
 import {UserUpdateTraceMessage} from "../Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "../Messages/UserGetTraceMessage";
+import {APIUrl} from "../Globals/GlobalVariables";
 
 const styles = StyleSheet.create({
     container: {
@@ -29,12 +30,13 @@ export function Trace({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>
+        <Text>欢迎使用模板</Text>
         <TextInput placeholder={"新轨迹地点名称"} value={newTrace} onChangeText={(newText)=>setNewTrace(newText)}/>
         <Pressable
             onPress={() => {
-                fetch("http://localhost:6070/api", {
+                fetch(APIUrl, {
                     method: "POST",
-                    headers: {},
+                    headers: {"Content-Type":"text/plain"},
                     body: JSON.stringify(new UserUpdateTraceMessage(token, newTrace))
                 }).then((response) => response.json()).then((replyJson) => {
                     console.log(replyJson)
@@ -53,9 +55,9 @@ export function Trace({ navigation }: any){
             <Text> 上传新轨迹 </Text>
         </Pressable>
         <Pressable onPress={() => {
-                    fetch("http://localhost:6070/api", {
+                    fetch(APIUrl, {
                         method: "POST",
-                        headers: {},
+                        headers: {"Content-Type":"text/plain"},
                         body: JSON.stringify(new UserGetTraceMessage(token, new Date().getTime() - 86400000, new Date().getTime()))
                     }).then((response) => response.json()).then((replyJson) => {
                         console.log(replyJson)
@@ -71,7 +73,7 @@ export function Trace({ navigation }: any){
                    })}>
             <Text>获取我的历史轨迹</Text>
         </Pressable>
-        <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>}/>
+        <FlatList data={traceHistory} renderItem={({item}) => <Text>{item}</Text>} keyExtractor={(item : any, index : number) => index.toString()}/>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}
         {/*    style={({ pressed }) => ({*/}

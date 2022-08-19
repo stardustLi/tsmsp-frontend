@@ -4,6 +4,8 @@ import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "../Globals/TokenStore";
 import {UserLoginMessage} from "../Messages/UserLoginMessage";
+import {APIUrl} from "../Globals/GlobalVariables";
+import QRCode from "react-native-qrcode-svg";
 
 const styles = StyleSheet.create({
     container: {
@@ -30,9 +32,9 @@ export function Login({ navigation }: any){
         <Pressable
             onPress={() => {
                     console.log("试图使用用户名"+userName+",密码"+password + "登录！")
-                    fetch("http://localhost:6070/api", {
+                    fetch(APIUrl, {
                         method: "POST",
-                        headers: {},
+                        headers: {"Content-Type":"text/plain"},
                         body: JSON.stringify(new UserLoginMessage(userName, password))
                     }).then((response) => response.json()).then((replyJson) => {
                         console.log(replyJson)
@@ -53,6 +55,12 @@ export function Login({ navigation }: any){
         </Pressable>
         <Pressable onPress={() => navigation.navigate('Register')}>
             <Text>切换至注册界面</Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate('ScanQRCode')}>
+            <Text>切换至扫码示例界面</Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate('QRCode')}>
+            <Text>切换至二维码示例界面</Text>
         </Pressable>
         {/*<Pressable*/}
         {/*    onPress={() => navigation.navigate('NotFound')}*/}

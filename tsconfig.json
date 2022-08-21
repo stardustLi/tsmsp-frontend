@@ -16,21 +16,36 @@
     "strictPropertyInitialization": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "paths": {
-      "Globals/*": ["Globals/*"],
-      "Images/*": ["Images/*"],
-      "Pages/*": ["Pages/*"],
-      "Plugins/*": ["Plugins/*"],
-      "Styles/*": ["Styles/*"],
-      "Utils/*": ["Utils/*"],
-      "Store/*": ["Store/*"],
-      "Types/*": ["Types/*"],
-      "Assets/*": ["Assets/*"],
-      "Messages/*": ["Messages/*"]
+      "Assets/*": [
+        "src/Assets/*"
+      ],
+      "Globals/*": [
+        "src/Globals/*"
+      ],
+      "Messages/*": [
+        "src/Messages/*"
+      ],
+      "Pages/*": [
+        "src/Pages/*"
+      ],
+      "Types/*": [
+        "src/Types/*"
+      ]
     },
-    "types": ["reflect-metadata", "node"],
+    "types": [
+      "reflect-metadata",
+      "node"
+    ],
     "jsx": "react-native"
   },
-  "include": ["src/**/*", "src/declaration.d.ts", "src/Assets/Image.d.ts"]
+  "include": [
+    "src/**/*",
+    "src/declaration.d.ts",
+    "src/Assets/Image.d.ts"
+  ]
 }

@@ -1,3 +1,7 @@
+const setupAbsoluteImports = require('react-native-absolute-imports');
+
+const alias= setupAbsoluteImports({tsEnabled: true, srcDirName: 'src'});
+
 module.exports = function(api) {
   api.cache(true);
   return {
@@ -6,16 +10,7 @@ module.exports = function(api) {
       [
         'module-resolver',
         {
-          alias: {
-            Pages: './src/Pages',
-            Globals: "./src/Globals",
-            Images: "./src/Images",
-            Plugins: "./src/Plugins",
-            Styles: "./src/Styles",
-            Types: "./src/Types",
-            Assets: "./src/Assets",
-            Messages: "./src/Messages",
-          },
+          alias
         },
       ],
     ],

@@ -24,7 +24,7 @@ const loginStore= create(() => ({
 export const setUserName= (userName:string) => loginStore.setState({ userName })
 export const setPassword= (password:string) => loginStore.setState({ password })
 
-export function Login({ navigation }: any){
+export function LoginPage({ navigation }: any){
     const {userName,password}=loginStore()
     return <View style={styles.container}>
         <TextInput placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>

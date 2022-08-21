@@ -1,10 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken, TokenStore} from "../Globals/TokenStore";
-import {UserLoginMessage} from "../Messages/UserLoginMessage";
-import {UserRegisterMessage} from "../Messages/UserRegisterMessage";
+import {TokenStore} from "../Globals/TokenStore";
 import {UserUpdateTraceMessage} from "../Messages/UserUpdateTraceMessage";
 import {UserGetTraceMessage} from "../Messages/UserGetTraceMessage";
 import {APIUrl} from "../Globals/GlobalVariables";
@@ -26,7 +24,7 @@ const registerStore= create(() => ({
 export const setNewTrace= (newTrace:string) => registerStore.setState({ newTrace })
 export const setTraceHistory = (traceHistory:string[]) => registerStore.setState({traceHistory})
 
-export function Trace({ navigation }: any){
+export function TracePage({ navigation }: any){
     const {token} = TokenStore()
     const {newTrace, traceHistory}=registerStore()
     return <View style={styles.container}>

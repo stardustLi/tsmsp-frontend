@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
 import {setUserToken} from "../Globals/TokenStore";
-import {UserLoginMessage} from "../Messages/UserLoginMessage";
 import {UserRegisterMessage} from "../Messages/UserRegisterMessage";
 import {APIUrl} from "../Globals/GlobalVariables";
 
@@ -26,7 +25,7 @@ export const setUserName= (userName:string) => registerStore.setState({ userName
 export const setPassword= (password:string) => registerStore.setState({ password })
 export const setRealName= (realName:string) => registerStore.setState({ realName })
 
-export function Register({ navigation }: any){
+export function RegisterPage({ navigation }: any){
     const {userName,password, realName}=registerStore()
     return <View style={styles.container}>
         <TextInput placeholder={"用户名"} value={userName} onChangeText={(newText)=>setUserName(newText)}/>

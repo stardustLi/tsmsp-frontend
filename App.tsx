@@ -1,14 +1,14 @@
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View} from 'react-native';
-import {Login} from "Pages/Login";
+import {LoginPage} from "Pages/LoginPage";
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
-import {Register} from "./src/Pages/Register";
-import {Trace} from "./src/Pages/Trace";
-import {ScanQRCode} from "./src/Pages/ScanQRCode";
-import {QRCodePage} from "./src/Pages/QRCode";
+import {RegisterPage} from "Pages/RegisterPage";
+import {TracePage} from "Pages/TracePage";
+import {ScanQRCodePage} from "Pages/ScanQRCodePage";
+import {QRCodePage} from "Pages/QRCodePage";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,16 +17,16 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Root" component={Login}
+        <Stack.Screen name="Root" component={LoginPage}
                       options={{ headerShown: false }}
         />
-        <Stack.Screen name="Register" component={Register}
+        <Stack.Screen name="Register" component={RegisterPage}
                       options={{ headerShown: false }}
         />
-        <Stack.Screen name="Trace" component={Trace}
+        <Stack.Screen name="Trace" component={TracePage}
                       options={{ headerShown: false }}
         />
-        <Stack.Screen name="ScanQRCode" component={ScanQRCode}
+        <Stack.Screen name="ScanQRCode" component={ScanQRCodePage}
                       options={{ headerShown: false }}
         />
         <Stack.Screen name="QRCode" component={QRCodePage}

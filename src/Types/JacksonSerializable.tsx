@@ -1,4 +1,3 @@
-
 export abstract class JacksonSerializable {
     public type = this.getName()
     public getName() {

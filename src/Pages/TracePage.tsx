@@ -2,10 +2,10 @@ import React from 'react'
 import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {TokenStore} from "../Globals/TokenStore";
-import {UserUpdateTraceMessage} from "../Messages/UserUpdateTraceMessage";
-import {UserGetTraceMessage} from "../Messages/UserGetTraceMessage";
-import {APIUrl} from "../Globals/GlobalVariables";
+import {TokenStore} from "Globals/TokenStore";
+import {UserUpdateTraceMessage} from "Messages/UserUpdateTraceMessage";
+import {UserGetTraceMessage} from "Messages/UserGetTraceMessage";
+import {APIUrl} from "Globals/GlobalVariables";
 
 const styles = StyleSheet.create({
     container: {

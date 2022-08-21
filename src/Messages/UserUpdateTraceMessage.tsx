@@ -1,4 +1,4 @@
-import {TSMSPMessage} from "./TSMSPMessage";
+import {TSMSPMessage} from "Messages/TSMSPMessage";
 
 export class UserUpdateTraceMessage extends TSMSPMessage {
     userToken : string

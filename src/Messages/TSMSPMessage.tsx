@@ -1,4 +1,4 @@
-import {JacksonSerializable} from "../Types/JacksonSerializable";
+import {JacksonSerializable} from "Types/JacksonSerializable";
 
 
 export abstract class TSMSPMessage extends JacksonSerializable {}

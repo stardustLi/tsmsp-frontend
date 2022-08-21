@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "../Globals/TokenStore";
-import {UserLoginMessage} from "../Messages/UserLoginMessage";
-import {APIUrl} from "../Globals/GlobalVariables";
+import {setUserToken} from "Globals/TokenStore";
+import {UserLoginMessage} from "Messages/UserLoginMessage";
+import {APIUrl} from "Globals/GlobalVariables";
 import QRCode from "react-native-qrcode-svg";
 
 const styles = StyleSheet.create({

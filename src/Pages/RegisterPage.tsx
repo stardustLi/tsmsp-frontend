@@ -2,9 +2,9 @@ import React from 'react'
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
 import {StatusBar} from "expo-status-bar";
 import create from 'zustand'
-import {setUserToken} from "../Globals/TokenStore";
-import {UserRegisterMessage} from "../Messages/UserRegisterMessage";
-import {APIUrl} from "../Globals/GlobalVariables";
+import {setUserToken} from "Globals/TokenStore";
+import {UserRegisterMessage} from "Messages/UserRegisterMessage";
+import {APIUrl} from "Globals/GlobalVariables";
 
 const styles = StyleSheet.create({
     container: {

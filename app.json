@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "medicine-app",
-    "slug": "medicine-app",
+    "name": "jiankangbao",
+    "slug": "jiankangbao",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/Assets/icon.png",

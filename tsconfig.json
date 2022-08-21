@@ -21,21 +21,11 @@
       "esnext"
     ],
     "paths": {
-      "Assets/*": [
-        "src/Assets/*"
-      ],
-      "Globals/*": [
-        "src/Globals/*"
-      ],
-      "Messages/*": [
-        "src/Messages/*"
-      ],
-      "Pages/*": [
-        "src/Pages/*"
-      ],
-      "Types/*": [
-        "src/Types/*"
-      ]
+      "Assets/*": ["Assets/*"],
+      "Globals/*": ["Globals/*"],
+      "Messages/*": ["Messages/*"],
+      "Pages/*": ["Pages/*"],
+      "Types/*": ["Types/*"]
     },
     "types": [
       "reflect-metadata",

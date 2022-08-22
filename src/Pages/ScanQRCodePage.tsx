@@ -3,8 +3,8 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export  function ScanQRCodePage() {
-    const [hasPermission, setHasPermission] = useState(null) as any;
-    const [scanned, setScanned] = useState(false) as any;
+    const [hasPermission, setHasPermission] = useState(null as (boolean |null));
+    const [scanned, setScanned] = useState(false);
 
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
@@ -20,12 +20,10 @@ export  function ScanQRCodePage() {
         alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     };
 
-    if (hasPermission === null) {
+    if (hasPermission === null)
         return <Text>Requesting for camera permission</Text>;
-    }
-    if (hasPermission === false) {
+    else if (!hasPermission)
         return <Text>No access to camera</Text>;
-    }
 
     return (
         <View style={styles.container}>

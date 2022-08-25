@@ -1,41 +1,30 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "allowJs": true,
-    "target": "esnext",
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
+    "alwaysStrict": true,
     "baseUrl": "src",
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "paths": {
-      "Assets/*": ["Assets/*"],
-      "Globals/*": ["Globals/*"],
-      "Messages/*": ["Messages/*"],
-      "Pages/*": ["Pages/*"],
-      "Types/*": ["Types/*"]
-    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-native",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
     "types": [
-      "reflect-metadata",
       "node"
-    ],
-    "jsx": "react-native"
+    ]
   },
   "include": [
-    "src/**/*",
-    "src/declaration.d.ts",
-    "src/Assets/Image.d.ts"
+    "App.tsx",
+    "src"
   ]
 }

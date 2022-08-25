@@ -1,55 +1,68 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
-import {LoginPage} from "Pages/LoginPage";
+import { NavigationContainer } from '@react-navigation/native';
+import {
+  createNativeStackNavigator,
+  type NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from "@react-navigation/native";
-import {RegisterPage} from "Pages/RegisterPage";
-import {TracePage} from "Pages/TracePage";
-import {ScanQRCodePage} from "Pages/ScanQRCodePage";
-import {QRCodePage} from "Pages/QRCodePage";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { LoginPage } from 'pages/LoginPage';
+import { RegisterPage } from 'pages/RegisterPage';
+import { HomePage } from 'pages/HomePage';
+import { TracePage } from 'pages/TracePage';
+import { ScanQRCodePage } from 'pages/ScanQRCodePage';
+import { QRCodePage } from 'pages/QRCodePage';
 
 const Stack = createNativeStackNavigator();
+
+type RootStackParamList = {
+  Login: undefined;
+  Register: undefined;
+  Home: undefined;
+  Trace: undefined;
+  ScanQRCode: undefined;
+  QRCode: undefined;
+};
+
+export type ScreenProps = NativeStackScreenProps<RootStackParamList>;
 
 export default function App() {
   return (
     <SafeAreaProvider>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Root" component={LoginPage}
-                      options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Register" component={RegisterPage}
-                      options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Trace" component={TracePage}
-                      options={{ headerShown: false }}
-        />
-        <Stack.Screen name="ScanQRCode" component={ScanQRCodePage}
-                      options={{ headerShown: false }}
-        />
-        <Stack.Screen name="QRCode" component={QRCodePage}
-                      options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={LoginPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Trace"
+            component={TracePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ScanQRCode"
+            component={ScanQRCodePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="QRCode"
+            component={QRCodePage}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-function PB(){
-  return <View style={styles.container}>
-    <Text>404 Not Found!</Text>
-    <StatusBar style="auto" />
-  </View>
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

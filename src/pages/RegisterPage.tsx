@@ -12,7 +12,7 @@ import type { ScreenProps } from '../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  button: baseStyle.button,
+  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label,
 });
@@ -63,10 +63,7 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
           value={realName}
           onChangeText={(newText) => setRealName(newText)}
         />
-        <Pressable
-          onPress={register}
-          style={baseStyle.button}
-        >
+        <Pressable onPress={register} style={baseStyle.button}>
           <Text>注册</Text>
         </Pressable>
         <Pressable

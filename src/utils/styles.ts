@@ -4,16 +4,17 @@ export const baseBorder = <const>{
     borderStyle: 'solid',
     borderWidth: 1,
   },
-  button = ({ pressed }: { pressed: boolean }) => (<const>{
-    backgroundColor: '#fdf',
-    borderRadius: 4,
-    marginVertical: 5,
-    opacity: pressed ? 0.5 : 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    textAlign: 'center',
-    width: 200,
-  }),
+  button = ({ pressed }: { pressed: boolean }) =>
+    <const>{
+      backgroundColor: '#fdf',
+      borderRadius: 4,
+      marginVertical: 5,
+      opacity: pressed ? 0.5 : 1,
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      textAlign: 'center',
+      width: 200,
+    },
   container = <const>{
     alignItems: 'center',
     backgroundColor: '#fff',

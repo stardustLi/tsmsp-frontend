@@ -12,6 +12,7 @@ import { HomePage } from 'pages/HomePage';
 import { TracePage } from 'pages/TracePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { QRCodePage } from 'pages/QRCodePage';
+import { TestPage } from 'pages/TestPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ type RootStackParamList = {
   Trace: undefined;
   ScanQRCode: undefined;
   QRCode: undefined;
+  Test: undefined;
 };
 
 export type ScreenProps = NativeStackScreenProps<RootStackParamList>;
@@ -59,6 +61,11 @@ export default function App() {
           <Stack.Screen
             name="QRCode"
             component={QRCodePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Test"
+            component={TestPage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

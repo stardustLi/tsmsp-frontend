@@ -10,7 +10,7 @@ import { ScreenProps } from '../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  button: baseStyle.button,
+  //button: baseStyle.button,
 });
 
 export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
@@ -21,7 +21,11 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
       <Header content={`${userName} 的健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <QRCode color="red" size={200} value="https://www.baidu.com" />
+          <QRCode
+            color="red"
+            size={200}
+            value="http://people.iiis.tsinghua.edu.cn/~yuanyang/index.html"
+          />
         </View>
         <Pressable
           onPress={() => navigation.navigate('ScanQRCode')}
@@ -40,6 +44,12 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
           style={baseStyle.button}
         >
           <Text>轨迹查询</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => navigation.navigate('Test')}
+          style={baseStyle.button}
+        >
+          <Text>测试</Text>
         </Pressable>
         <StatusBar style="auto" />
       </View>

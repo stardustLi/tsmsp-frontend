@@ -35,10 +35,7 @@ export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
     setScanned(true);
 
     try {
-      const response = await POST(
-        APIUrl,
-        new UserAddTraceMessage(token, data)
-      );
+      const response = await POST(APIUrl, new UserAddTraceMessage(token, data));
       if (response.status !== 0) throw new Error(response.message);
       alert(response.message);
     } catch (e) {

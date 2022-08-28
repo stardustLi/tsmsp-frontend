@@ -9,6 +9,7 @@ import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
 import type { ScreenProps } from '../../App';
+import { Button, Divider, Heading, VStack, Stack, ScrollView, Center, NativeBaseProvider } from "native-base";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -41,6 +42,23 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
     <>
       <Header content="注册test" />
       <View style={styles.container}>
+      {/* <Stack mb="2.5" mt="1.5" direction={{
+        base: "column",
+        md: "row"
+      }} space={2} mx={{
+        base: "auto",
+        md: "0"
+      }}>
+          {/* <Button size="sm" variant="outline">
+            PRIMARY
+          </Button>
+          <Button size="sm" variant="outline" colorScheme="secondary">
+            SECONDARY
+          </Button>
+          <Button size="sm" variant="outline" isDisabled>
+            DISABLED
+          </Button> 
+        </Stack> */}
         <Text style={styles.label}>用户名</Text>
         <TextInput
           placeholder="用户名"

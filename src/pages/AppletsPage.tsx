@@ -5,10 +5,11 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Header } from 'components/Header';
 import { setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { APIUrl } from 'libs/api/url';
-import { UserTestMessage } from 'models/messages/UserAppletsMessage';
+import { UserAppletsMessage } from 'models/messages/UserAppletsMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
 import type { ScreenProps } from '../../App';
+
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   label: baseStyle.label,
 });
 
-export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
+export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
@@ -26,7 +27,7 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
     try {
       const response = await POST(
         APIUrl,
-        new UserTestMessage(userName, password, realName)
+        new UserAppletsMessage(userName, password, realName)
       );
       if (response.status !== 0) throw new Error(response.message);
       setGlobalUserName(userName);
@@ -39,32 +40,26 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <>
-      <Header content="注册test" />
+      <Header content="小程序列表" />
       <View style={styles.container}>
-        <Text style={styles.label}>用户名</Text>
-        <TextInput
-          placeholder="用户名"
-          style={styles.input}
-          value={userName}
-          onChangeText={(newText) => setUserName(newText)}
-        />
-        <Text style={styles.label}>密码</Text>
-        <TextInput
-          placeholder="密码"
-          style={styles.input}
-          value={password}
-          onChangeText={(newText) => setPassword(newText)}
-          secureTextEntry={true}
-        />
-        <Text style={styles.label}>真实姓名</Text>
-        <TextInput
-          placeholder="真实姓名"
-          style={styles.input}
-          value={realName}
-          onChangeText={(newText) => setRealName(newText)}
-        />
-        <Pressable onPress={Applets} style={baseStyle.button}>
-          <Text>注册</Text>
+        <Pressable 
+          onPress={() => navigation.navigate('TraceWithPeople')}
+          style={baseStyle.button}>
+          <Text>和我贴贴的人</Text>
+        </Pressable>
+        <Pressable 
+          onPress={Applets} style={baseStyle.button}>
+          <Text>第二个小程序</Text>
+        </Pressable>
+        <Pressable 
+          onPress={Applets} style={baseStyle.button}>
+          <Text>第三个小程序</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => navigation.navigate('Home')}
+          style={baseStyle.button}
+        >
+          <Text>切换至主界面</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('Login')}

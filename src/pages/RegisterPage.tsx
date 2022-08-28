@@ -21,17 +21,18 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
+  const [idcard, setIdCard] = useState('');
 
   async function register() {
     try {
       const response = await POST(
         APIUrl,
-        new UserRegisterMessage(userName, password, realName)
+        new UserRegisterMessage(userName, password, realName, idcard)
       );
       if (response.status !== 0) throw new Error(response.message);
       setGlobalUserName(userName);
       setUserToken(response.message);
-      navigation.navigate('Trace');
+      navigation.navigate('Home');
     } catch (e) {
       console.error(e);
     }
@@ -62,6 +63,13 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
           style={styles.input}
           value={realName}
           onChangeText={(newText) => setRealName(newText)}
+        />
+        <Text style={styles.label}>身份证号</Text>
+        <TextInput
+          placeholder="身份证号"
+          style={styles.input}
+          value={idcard}
+          onChangeText={(newText) => setIdCard(newText)}
         />
         <Pressable onPress={register} style={baseStyle.button}>
           <Text>注册</Text>

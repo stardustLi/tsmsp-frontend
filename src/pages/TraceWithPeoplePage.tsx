@@ -6,7 +6,7 @@ import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { APIUrl } from 'libs/api/url';
-import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
+import { UserGetTraceWithPeopleMessage } from 'models/messages/UserGetTraceWithPeopleMessage';
 import type { Trace } from 'models/trace';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   //button: baseStyle.button,
 });
 
-export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
+export const TraceWithPeoplePage: React.FC<ScreenProps> = ({ navigation }) => {
   const [traceHistory, setTraceHistory] = useState<Trace[]>([]);
 
   const { userName, token } = UserStore();
@@ -26,7 +26,7 @@ export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
     try {
       const response = await POST(
         APIUrl,
-        new UserGetTraceMessage(
+        new UserGetTraceWithPeopleMessage(
           token,
           new Date().getTime() - 86400e3,
           new Date().getTime()
@@ -52,7 +52,7 @@ export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <>
-      <Header content={`${userName} 的行程记录`} />
+      <Header content={`和${userName} 贴贴过的人`} />
       <View style={styles.container}>
         <TraceTable data={traceHistory} />
         <Pressable

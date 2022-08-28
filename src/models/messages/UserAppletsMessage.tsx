@@ -1,6 +1,6 @@
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
 
-export class UserTestMessage extends TSMSPMessage {
+export class UserAppletsMessage extends TSMSPMessage {
   userName: string;
   password: string;
   realName: string;

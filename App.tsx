@@ -13,6 +13,8 @@ import { TracePage } from 'pages/TracePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { TestPage } from 'pages/TestPage';
+import { AppletsPage } from 'pages/AppletsPage';
+import { TraceWithPeoplePage } from 'pages/TraceWithPeoplePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +26,8 @@ type RootStackParamList = {
   ScanQRCode: undefined;
   QRCode: undefined;
   Test: undefined;
+  Applets: undefined;
+  TraceWithPeople: undefined;
 };
 
 export type ScreenProps = NativeStackScreenProps<RootStackParamList>;
@@ -66,6 +70,16 @@ export default function App() {
           <Stack.Screen
             name="Test"
             component={TestPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Applets"
+            component={AppletsPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TraceWithPeople"
+            component={TraceWithPeoplePage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

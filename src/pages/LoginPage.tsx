@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [idcard, setIdcard] = useState('');
 
   async function login() {
     try {
@@ -53,6 +54,14 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
           style={styles.input}
           value={password}
           onChangeText={(newText: string) => setPassword(newText)}
+          secureTextEntry={true}
+        />
+        <Text style={styles.label}>身份证号</Text>
+        <TextInput
+          placeholder="身份证号"
+          style={styles.input}
+          value={idcard}
+          onChangeText={(newText: string) => setIdcard(newText)}
           secureTextEntry={true}
         />
         <Pressable onPress={login} style={baseStyle.button}>

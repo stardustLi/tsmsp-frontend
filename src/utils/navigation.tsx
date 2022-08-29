@@ -1,5 +1,7 @@
-import type { NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { UserStore } from 'libs/UserStore';
+import type {
+  NativeStackScreenProps,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import create from 'zustand';
 import { RootStackParamList } from '../../App';
 
@@ -8,5 +10,5 @@ export type NavigationType = NativeStackNavigationProp<RootStackParamList>;
 
 export const globalNavigation = create<NavigationType | null>(() => null);
 
-export const setGlobalNavigation = (navigation: NavigationType) => globalNavigation.setState(navigation);
-
+export const setGlobalNavigation = (navigation: NavigationType) =>
+  globalNavigation.setState(navigation);

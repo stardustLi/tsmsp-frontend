@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { MyBox } from 'components/MyBox';
@@ -10,7 +10,7 @@ import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
 //import "./styles.css";
-import {NativeBaseProvider,} from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { Icon } from 'components/Icon';
 //import theme, { ITheme } from "./theme";
@@ -48,11 +48,20 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
     <NativeBaseProvider>
       <Header content="小程序" />
       <View style={styles.container}>
-        <MyBox text1="box1" text2="box2" text3="返回" colour={300} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={400} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={500} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={600} />
-        <Icon text="返回" navi='Home'/>
+        <Pressable
+          onPress={() => navigation.navigate('TraceWithPeople')}
+          style={baseStyle.button}
+        >
+          <Text>和我贴贴的人</Text>
+        </Pressable>
+        <Pressable onPress={Applets} style={baseStyle.button}>
+          <Text>第二个小程序</Text>
+        </Pressable>
+        <Pressable onPress={Applets} style={baseStyle.button}>
+          <Text>第三个小程序</Text>
+        </Pressable>
+        <Icon text="切换至主界面" navi="Home" />
+        <Icon text="切换至登录界面" navi="Login" />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

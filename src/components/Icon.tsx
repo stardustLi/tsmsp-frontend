@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { Pressable, Text } from 'react-native';
+import React from 'react';
 import * as baseStyle from 'utils/styles';
 import { globalNavigation } from 'utils/navigation';
 import { RootStackParamList } from '../../App';
@@ -17,10 +17,10 @@ export const Icon: React.FC<HeaderProps> = (props) => {
   // }
   return (
     <Pressable
-    onPress={() => navigation.navigate(props.navi)}
-    style={baseStyle.button}
-  >
-    <Text>{props.text}</Text>
+      onPress={() => navigation.navigate(props.navi)}
+      style={baseStyle.button}
+    >
+      <Text>{props.text}</Text>
     </Pressable>
   );
 };

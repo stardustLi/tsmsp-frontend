@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { Header } from 'components/Header';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
-import { alertBox } from 'models/messages/MessageBox';
+import { alertBox } from 'utils/alert';
 import { AddTrace } from 'components/AddTrace';
-import { Icon } from 'components/Icon'
+import { Icon } from 'components/Icon';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 
 const styles = StyleSheet.create({
@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
 export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
   setGlobalNavigation(navigation);
   alertBox('Fish is coming!!!');
-  const { userName, token } = UserStore();
-  const [newTrace, setNewTrace] = useState('');
+  const { userName } = UserStore();
   return (
     <>
       <Header content={`${userName} 的北京健康宝`} />
@@ -32,9 +31,9 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
           />
         </View>
         <AddTrace />
-        <Icon text='轨迹查询' navi='Trace'/>
-        <Icon text='小程序' navi='Applets'/>
-        <Icon text='测试' navi='Test'/>
+        <Icon text="轨迹查询" navi="Trace" />
+        <Icon text="测试" navi="Test" />
+        <Icon text="小程序" navi="Applets" />
         <StatusBar style="auto" />
       </View>
     </>

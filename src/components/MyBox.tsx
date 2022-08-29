@@ -1,18 +1,12 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import {
-  VStack,
-  Center,
-  ScrollView,
-  Stack,
-  Divider,
-} from 'native-base';
+import { Pressable, Text } from 'react-native';
+import React from 'react';
+import { VStack, Center, ScrollView, Stack, Divider } from 'native-base';
 import { globalNavigation } from 'utils/navigation';
+
 interface HeaderProps {
-  //readonly content: string;
-  readonly text1: String;
-  readonly text2: String;
-  readonly text3: String;
+  readonly text1: string;
+  readonly text2: string;
+  readonly text3: string;
   readonly colour: number;
 }
 
@@ -37,7 +31,7 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             <Text>{props.text1}</Text>
           </Center>
           <Center
-            bg={`primary.${props.colour+100}`}
+            bg={`primary.${props.colour + 100}`}
             size="24"
             rounded="sm"
             _text={{
@@ -50,7 +44,7 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
           </Center>
           <Center
             size="24"
-            bg={`primary.${props.colour+200}`}
+            bg={`primary.${props.colour + 200}`}
             rounded="sm"
             _text={{
               color: 'warmGray.50',
@@ -58,14 +52,25 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             }}
             shadow={'3'}
           >
-            <Pressable
-              onPress={() => navigation.navigate('Home')}
-            >
-              <Text>{props.text3}</Text>
+            Box 3
+          </Center>
+          <Center
+            size="16"
+            bg="primary.700"
+            rounded="sm"
+            _text={{
+              color: 'warmGray.50',
+              fontWeight: 'medium',
+            }}
+            shadow={'3'}
+          >
+            Box 4
+            <Pressable onPress={() => navigation.navigate('Login')}>
+              <Text>切换至登录界面</Text>
             </Pressable>
           </Center>
         </Stack>
-        <Divider/>
+        <Divider />
       </VStack>
     </ScrollView>
   );

@@ -8,8 +8,8 @@ import { APIUrl } from 'libs/api/url';
 import { UserAppletsMessage } from 'models/messages/UserAppletsMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
-import type { ScreenProps } from '../../App';
-
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { Icon } from 'components/Icon';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 });
 
 export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
+  setGlobalNavigation(navigation);
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
@@ -42,31 +43,20 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
     <>
       <Header content="小程序列表" />
       <View style={styles.container}>
-        <Pressable 
+        <Pressable
           onPress={() => navigation.navigate('TraceWithPeople')}
-          style={baseStyle.button}>
+          style={baseStyle.button}
+        >
           <Text>和我贴贴的人</Text>
         </Pressable>
-        <Pressable 
-          onPress={Applets} style={baseStyle.button}>
+        <Pressable onPress={Applets} style={baseStyle.button}>
           <Text>第二个小程序</Text>
         </Pressable>
-        <Pressable 
-          onPress={Applets} style={baseStyle.button}>
+        <Pressable onPress={Applets} style={baseStyle.button}>
           <Text>第三个小程序</Text>
         </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('Home')}
-          style={baseStyle.button}
-        >
-          <Text>切换至主界面</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('Login')}
-          style={baseStyle.button}
-        >
-          <Text>切换至登录界面</Text>
-        </Pressable>
+        <Icon text='切换至主界面' navi='Home'/>
+        <Icon text='切换至登录界面' navi='Login'/>
         <StatusBar style="auto" />
       </View>
     </>

@@ -5,7 +5,12 @@ export class UserRegisterMessage extends TSMSPMessage {
   password: string;
   realName: string;
   idcard: String;
-  constructor(userName: string, password: string, realName: string, idcard: String) {
+  constructor(
+    userName: string,
+    password: string,
+    realName: string,
+    idcard: String
+  ) {
     super();
     this.userName = userName;
     this.password = password;

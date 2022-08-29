@@ -3,13 +3,16 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Header } from 'components/Header';
+import { MyBox } from 'components/MyBox';
 import { setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { APIUrl } from 'libs/api/url';
 import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
-import type { ScreenProps } from '../../App';
-import { Button, Divider, Heading, VStack, Stack, ScrollView, Center, NativeBaseProvider } from "native-base";
+//import "./styles.css";
+import {NativeBaseProvider,} from 'native-base';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+//import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -19,6 +22,8 @@ const styles = StyleSheet.create({
 });
 
 export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
+  setGlobalNavigation(navigation);
+
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
@@ -39,26 +44,10 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
   }
 
   return (
-    <>
+    <NativeBaseProvider>
       <Header content="注册test" />
       <View style={styles.container}>
-      {/* <Stack mb="2.5" mt="1.5" direction={{
-        base: "column",
-        md: "row"
-      }} space={2} mx={{
-        base: "auto",
-        md: "0"
-      }}>
-          {/* <Button size="sm" variant="outline">
-            PRIMARY
-          </Button>
-          <Button size="sm" variant="outline" colorScheme="secondary">
-            SECONDARY
-          </Button>
-          <Button size="sm" variant="outline" isDisabled>
-            DISABLED
-          </Button> 
-        </Stack> */}
+        <MyBox content="ttt" text="aaa" />
         <Text style={styles.label}>用户名</Text>
         <TextInput
           placeholder="用户名"
@@ -66,32 +55,12 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
           value={userName}
           onChangeText={(newText) => setUserName(newText)}
         />
-        <Text style={styles.label}>密码</Text>
-        <TextInput
-          placeholder="密码"
-          style={styles.input}
-          value={password}
-          onChangeText={(newText) => setPassword(newText)}
-          secureTextEntry={true}
-        />
-        <Text style={styles.label}>真实姓名</Text>
-        <TextInput
-          placeholder="真实姓名"
-          style={styles.input}
-          value={realName}
-          onChangeText={(newText) => setRealName(newText)}
-        />
         <Pressable onPress={Test} style={baseStyle.button}>
           <Text>注册</Text>
         </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('Login')}
-          style={baseStyle.button}
-        >
-          <Text>切换至登录界面</Text>
-        </Pressable>
+
         <StatusBar style="auto" />
       </View>
-    </>
+    </NativeBaseProvider>
   );
 };

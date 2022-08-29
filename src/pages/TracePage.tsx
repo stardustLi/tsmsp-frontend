@@ -9,7 +9,7 @@ import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
 import type { Trace } from 'models/trace';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { ScreenProps } from '../../App';
+import { ScreenProps } from 'utils/navigation';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -30,12 +30,10 @@ export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
         )
       );
       setTraceHistory(
-        traces.map(
-          ({ trace, time: timestamp }) => ({
-            trace,
-            time: new Date(timestamp),
-          })
-        )
+        traces.map(({ trace, time: timestamp }) => ({
+          trace,
+          time: new Date(timestamp),
+        }))
       );
     } catch (e) {
       console.error(e);

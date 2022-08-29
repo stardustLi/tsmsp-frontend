@@ -1,8 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  type NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -18,7 +15,7 @@ import { TraceWithPeoplePage } from 'pages/TraceWithPeoplePage';
 
 const Stack = createNativeStackNavigator();
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Home: undefined;
@@ -29,8 +26,6 @@ type RootStackParamList = {
   Applets: undefined;
   TraceWithPeople: undefined;
 };
-
-export type ScreenProps = NativeStackScreenProps<RootStackParamList>;
 
 export default function App() {
   return (

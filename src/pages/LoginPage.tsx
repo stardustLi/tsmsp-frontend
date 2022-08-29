@@ -7,7 +7,8 @@ import { setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import type { ScreenProps } from '../../App';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { Icon } from 'components/Icon'
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -16,6 +17,8 @@ const styles = StyleSheet.create({
 });
 
 export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
+  setGlobalNavigation(navigation);
+
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [idcard, setIdcard] = useState('');
@@ -63,18 +66,8 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
         <Pressable onPress={login} style={baseStyle.button}>
           <Text>登录</Text>
         </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('Register')}
-          style={baseStyle.button}
-        >
-          <Text>切换至注册界面</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('Test')}
-          style={baseStyle.button}
-        >
-          <Text>测试</Text>
-        </Pressable>
+        <Icon text='切换至注册界面' navi='Register'/>
+        <Icon text='测试' navi='Test'/>
         <StatusBar style="auto" />
       </View>
     </>

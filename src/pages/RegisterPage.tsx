@@ -64,7 +64,7 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
         <TextInput
           placeholder="身份证号"
           style={styles.input}
-          value={idcard}
+          value={idCard}
           onChangeText={(newText) => setIdCard(newText)}
         />
         <Pressable onPress={register} style={baseStyle.button}>

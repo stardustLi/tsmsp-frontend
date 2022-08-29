@@ -20,5 +20,14 @@
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended"
-	]
+	],
+	"rules": {
+		"no-empty": [
+			"error",
+			{
+				"allowEmptyCatch": true
+			}
+		],
+		"@typescript-eslint/no-non-null-assertion": "off"
+	}
 }

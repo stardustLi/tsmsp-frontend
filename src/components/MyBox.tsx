@@ -35,11 +35,10 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
   const navigation = globalNavigation()!;
   const tone = props.tone ?? 'info';
 
-
   return (
     <ScrollView>
       <VStack space="2.5" mt="4" px="8">
-        <Heading size="md">{props.title}</Heading> 
+        <Heading size="md">{props.title}</Heading>
         <Stack direction="row" mb="2.5" mt="1.5" space={3}>
           <Center
             size="24"
@@ -52,17 +51,13 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             shadow={'3'}
           >
             <Text style={styles.label}>{props.text1}</Text>
-            {
-              props.navi1 ? (
-                <>
-                  <Pressable
-                    onPress={() => navigation.navigate(props.navi1!)}
-                  >
-                  </Pressable>
-                  
-                </>
-              ) : null
-            }
+            {props.navi1 ? (
+              <>
+                <Pressable
+                  onPress={() => navigation.navigate(props.navi1!)}
+                ></Pressable>
+              </>
+            ) : null}
           </Center>
 
           <Center
@@ -76,17 +71,13 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             shadow={'3'}
           >
             <Text style={styles.label}>{props.text2}</Text>
-            {
-              props.navi2 ? (
-                <>
-                  <Pressable
-                    onPress={() => navigation.navigate(props.navi2!)}
-                  >
-                  </Pressable>
-                  
-                </>
-              ) : null
-            }
+            {props.navi2 ? (
+              <>
+                <Pressable
+                  onPress={() => navigation.navigate(props.navi2!)}
+                ></Pressable>
+              </>
+            ) : null}
           </Center>
           <Center
             size="24"
@@ -98,21 +89,15 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             }}
             shadow={'3'}
           >
-            <Pressable
-              onPress={() => navigation.navigate('Home')}
-            >
+            <Pressable onPress={() => navigation.navigate('Home')}>
               <Text style={styles.label}>{props.text3}</Text>
-              {
-              props.navi3 ? (
+              {props.navi3 ? (
                 <>
                   <Pressable
                     onPress={() => navigation.navigate(props.navi3!)}
-                  >
-                  </Pressable>
-                  
+                  ></Pressable>
                 </>
-              ) : null
-            }
+              ) : null}
             </Pressable>
           </Center>
         </Stack>

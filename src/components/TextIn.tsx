@@ -19,26 +19,25 @@ const styles = StyleSheet.create({
   label: baseStyle.label2,
 });
 interface TextInProps {
-    readonly text: string;
-    readonly setText: Dispatch<SetStateAction<string>>;
-    readonly text2: string;
+  readonly text: string;
+  readonly setText: Dispatch<SetStateAction<string>>;
+  readonly text2: string;
 }
 
 export const TextIn: React.FC<TextInProps> = (props) => {
   const navigation = globalNavigation()!;
   //const tone = props.tone ?? 'info';
 
-
   return (
-<>
-    <Text style={styles.label}>密码</Text>
-    <TextInput
+    <>
+      <Text style={styles.label}>密码</Text>
+      <TextInput
         placeholder={props.text2}
         style={styles.input}
         value={props.text}
         onChangeText={(newText: string) => props.setText(newText)}
         secureTextEntry={true}
-    />
-</>
+      />
+    </>
   );
 };

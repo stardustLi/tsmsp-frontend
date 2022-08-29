@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { globalNavigation, setGlobalNavigation } from 'utils/navigation';
 import { APIUrl } from 'libs/api/url';
@@ -7,26 +7,18 @@ import { POST } from 'utils/web';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 
-
-interface HeaderProps {
-  // readonly content: string;
-  // readonly text: String;
-}
-
-export const AddTrace: React.FC<HeaderProps> = (props) => {
+export const AddTrace: React.FC = () => {
   const navigation = globalNavigation()!;
   setGlobalNavigation(navigation);
-  const { userName, token } = UserStore();
+  const { token } = UserStore();
   const [newTrace, setNewTrace] = useState('');
   async function add_Trace() {
-    const trace = newTrace;
     try {
       const response = await POST(
         APIUrl,
         new UserAddTraceMessage(token, newTrace)
       );
       if (response.status !== 0) throw new Error(response.message);
-      //
     } catch (e) {
       console.error(e);
     }

@@ -7,7 +7,9 @@ export function alertBox(message: string) {
 export function confirmBox(message: string, onConfirm: () => void) {
   const cancelButton = {
     text: '取消',
-    onPress: () => {},
+    onPress: () => {
+      /* empty */
+    },
   };
   const okButton = {
     text: '确认',

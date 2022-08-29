@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { MyBox } from 'components/MyBox';
@@ -10,7 +10,7 @@ import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
 //import "./styles.css";
-import {NativeBaseProvider,} from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { Icon } from 'components/Icon';
 //import theme, { ITheme } from "./theme";
@@ -48,11 +48,23 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
     <NativeBaseProvider>
       <Header content="小程序" />
       <View style={styles.container}>
-        <MyBox text1={"政策\n查询"} text2={"在线\n申诉"} text3={"入京\n报备"} title='政府零距离' colour={300} />
-        <MyBox text1={"疫苗\n查询"} text2={"疫苗\n预约"} text3={"记录\n疫苗"} title='疫苗核酸' colour={400} />
-        <MyBox text1={"健康码\n代查"} text2="box2" text3="返回" colour={500} />
+        <MyBox
+          text1={'政策\n查询'}
+          text2={'在线\n申诉'}
+          text3={'入京\n报备'}
+          title="政府零距离"
+          colour={300}
+        />
+        <MyBox
+          text1={'疫苗\n查询'}
+          text2={'疫苗\n预约'}
+          text3={'记录\n疫苗'}
+          title="疫苗核酸"
+          colour={400}
+        />
+        <MyBox text1={'健康码\n代查'} text2="box2" text3="返回" colour={500} />
         <MyBox text1="box1" text2="box2" text3="返回" colour={600} />
-        <Icon text="返回" navi='Home'/>
+        <Icon text="返回" navi="Home" />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

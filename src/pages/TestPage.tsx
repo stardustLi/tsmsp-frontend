@@ -10,7 +10,7 @@ import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
 import { POST } from 'utils/web';
 //import "./styles.css";
-import {NativeBaseProvider,} from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { Icon } from 'components/Icon';
 //import theme, { ITheme } from "./theme";
@@ -52,7 +52,7 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
         <MyBox text1="box1" text2="box2" text3="返回" colour={400} />
         <MyBox text1="box1" text2="box2" text3="返回" colour={500} />
         <MyBox text1="box1" text2="box2" text3="返回" colour={600} />
-        <Icon text="返回" navi='Home'/>
+        <Icon text="返回" navi="Home" />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

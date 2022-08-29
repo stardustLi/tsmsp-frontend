@@ -7,7 +7,7 @@ import { setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import type { ScreenProps } from '../../App';
+import type { ScreenProps } from 'utils/navigation';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

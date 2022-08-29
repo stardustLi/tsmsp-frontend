@@ -9,7 +9,7 @@ import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { Icon } from 'components/Icon'
-
+import { TextIn } from 'components/TextIn'
 const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
@@ -47,6 +47,7 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
           value={userName}
           onChangeText={(newText: string) => setUserName(newText)}
         />
+        <TextIn text={password} setText={setPassword} text2="密码" />
         <Text style={styles.label}>密码</Text>
         <TextInput
           placeholder="密码"
@@ -67,6 +68,7 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
           <Text>登录</Text>
         </Pressable>
         <Icon text='切换至注册界面' navi='Register'/>
+        <Icon text='小程序' navi='Applets'/>
         <Icon text='测试' navi='Test'/>
         <StatusBar style="auto" />
       </View>

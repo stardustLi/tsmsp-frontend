@@ -52,6 +52,13 @@ export const baseBorder = <const>{
     textAlign: 'left',
     width: 200,
   },
+  label2 = <const>{
+    marginTop: 0,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 20,
+    width: 200,
+  },
   tableRow = <const>{
     flexDirection: 'row',
   },

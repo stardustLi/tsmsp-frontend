@@ -1,3 +1,4 @@
+import { APIUrl } from 'libs/api/url';
 import { JacksonSerializable } from 'models/types/JacksonSerializable';
 
 export async function request(url: URL | RequestInfo, options?: RequestInit) {
@@ -24,4 +25,10 @@ export function POST(url: URL | RequestInfo, data: JacksonSerializable) {
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify(data),
   });
+}
+
+export async function send(data: JacksonSerializable) {
+  const response = await POST(APIUrl, data);
+  if (response?.status !== 0) throw new Error(response?.message);
+  return response?.message;
 }

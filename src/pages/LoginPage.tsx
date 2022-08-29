@@ -4,10 +4,9 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { setGlobalUserName, setUserToken } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
 import * as baseStyle from 'utils/styles';
-import { POST } from 'utils/web';
+import { send } from 'utils/web';
 import type { ScreenProps } from '../../App';
 
 const styles = StyleSheet.create({
@@ -23,14 +22,11 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   async function login() {
     try {
-      console.log(APIUrl);
-      const response = await POST(
-        APIUrl,
+      const token = await send(
         new UserLoginMessage(userName, password)
       );
-      if (response.status !== 0) throw new Error(response.message);
       setGlobalUserName(userName);
-      setUserToken(response.message);
+      setUserToken(token);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);

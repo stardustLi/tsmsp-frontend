@@ -16,7 +16,6 @@ import { POST } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label,
 });

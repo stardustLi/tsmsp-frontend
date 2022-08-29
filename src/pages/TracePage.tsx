@@ -5,16 +5,14 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
 import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
 import type { Trace } from 'models/trace';
 import * as baseStyle from 'utils/styles';
-import { POST } from 'utils/web';
+import { send } from 'utils/web';
 import { ScreenProps } from '../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
 });
 
 export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
@@ -24,18 +22,16 @@ export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
 
   async function fetchTrace() {
     try {
-      const response = await POST(
-        APIUrl,
+      const traces: { trace: string; time: number }[] = await send(
         new UserGetTraceMessage(
           token,
           new Date().getTime() - 86400e3,
           new Date().getTime()
         )
       );
-      if (response.status !== 0) throw new Error(response.message);
       setTraceHistory(
-        response.message.map(
-          ({ trace, time: timestamp }: { trace: string; time: number }) => ({
+        traces.map(
+          ({ trace, time: timestamp }) => ({
             trace,
             time: new Date(timestamp),
           })

@@ -4,15 +4,13 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { setGlobalUserName, setUserToken } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
 import * as baseStyle from 'utils/styles';
-import { POST } from 'utils/web';
+import { send } from 'utils/web';
 import type { ScreenProps } from '../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label,
 });
@@ -21,18 +19,16 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
-  const [idcard, setIdCard] = useState('');
+  const [idCard, setIdCard] = useState('');
 
   async function register() {
     try {
-      const response = await POST(
-        APIUrl,
-        new UserRegisterMessage(userName, password, realName, idcard)
+      const token = await send(
+        new UserRegisterMessage(userName, password, realName, idCard)
       );
-      if (response.status !== 0) throw new Error(response.message);
       setGlobalUserName(userName);
-      setUserToken(response.message);
-      navigation.navigate('Home');
+      setUserToken(token);
+      navigation.navigate('Trace');
     } catch (e) {
       console.error(e);
     }

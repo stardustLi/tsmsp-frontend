@@ -12,6 +12,7 @@ import { POST } from 'utils/web';
 //import "./styles.css";
 import {NativeBaseProvider,} from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { Icon } from 'components/Icon';
 //import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
@@ -45,20 +46,13 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <Header content="注册test" />
+      <Header content="小程序" />
       <View style={styles.container}>
-        <MyBox content="ttt" text="aaa" />
-        <Text style={styles.label}>用户名</Text>
-        <TextInput
-          placeholder="用户名"
-          style={styles.input}
-          value={userName}
-          onChangeText={(newText) => setUserName(newText)}
-        />
-        <Pressable onPress={Test} style={baseStyle.button}>
-          <Text>注册</Text>
-        </Pressable>
-
+        <MyBox text1="box1" text2="box2" text3="返回" colour={300} />
+        <MyBox text1="box1" text2="box2" text3="返回" colour={400} />
+        <MyBox text1="box1" text2="box2" text3="返回" colour={500} />
+        <MyBox text1="box1" text2="box2" text3="返回" colour={600} />
+        <Icon text="返回" navi='Home'/>
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

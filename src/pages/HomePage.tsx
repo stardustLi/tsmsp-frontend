@@ -33,8 +33,8 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
         </View>
         <AddTrace />
         <Icon text='轨迹查询' navi='Trace'/>
-        <Icon text='测试' navi='Test'/>
         <Icon text='小程序' navi='Applets'/>
+        <Icon text='测试' navi='Test'/>
         <StatusBar style="auto" />
       </View>
     </>

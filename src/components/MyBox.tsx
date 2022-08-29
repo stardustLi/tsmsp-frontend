@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import {
-  Heading,
   VStack,
   Center,
   ScrollView,
@@ -10,8 +9,11 @@ import {
 } from 'native-base';
 import { globalNavigation } from 'utils/navigation';
 interface HeaderProps {
-  readonly content: string;
-  readonly text: String;
+  //readonly content: string;
+  readonly text1: String;
+  readonly text2: String;
+  readonly text3: String;
+  readonly colour: number;
 }
 
 export const MyBox: React.FC<HeaderProps> = (props) => {
@@ -20,11 +22,11 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
   return (
     <ScrollView>
       <VStack space="2.5" mt="4" px="8">
-        <Heading size="md">header</Heading>
+        {/* <Heading size="md">header</Heading> */}
         <Stack direction="row" mb="2.5" mt="1.5" space={3}>
           <Center
-            size="16"
-            bg="primary.400"
+            size="24"
+            bg={`primary.${props.colour}`}
             rounded="sm"
             _text={{
               color: 'warmGray.50',
@@ -32,11 +34,11 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             }}
             shadow={'3'}
           >
-            <Text>{props.content}</Text>
+            <Text>{props.text1}</Text>
           </Center>
           <Center
-            bg="primary.500"
-            size="16"
+            bg={`primary.${props.colour+100}`}
+            size="24"
             rounded="sm"
             _text={{
               color: 'warmGray.50',
@@ -44,11 +46,11 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             }}
             shadow={'3'}
           >
-            Box 2
+            <Text>{props.text2}</Text>
           </Center>
           <Center
-            size="16"
-            bg="primary.700"
+            size="24"
+            bg={`primary.${props.colour+200}`}
             rounded="sm"
             _text={{
               color: 'warmGray.50',
@@ -56,23 +58,10 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
             }}
             shadow={'3'}
           >
-            Box 3
-          </Center>
-          <Center
-            size="16"
-            bg="primary.700"
-            rounded="sm"
-            _text={{
-              color: 'warmGray.50',
-              fontWeight: 'medium',
-            }}
-            shadow={'3'}
-          >
-            Box 4
             <Pressable
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => navigation.navigate('Home')}
             >
-              <Text>切换至登录界面</Text>
+              <Text>{props.text3}</Text>
             </Pressable>
           </Center>
         </Stack>

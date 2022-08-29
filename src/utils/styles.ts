@@ -6,7 +6,7 @@ export const baseBorder = <const>{
   },
   button = ({ pressed }: { pressed: boolean }) =>
     <const>{
-      backgroundColor: '#fdf',
+      backgroundColor: '#0ea5e9',
       borderRadius: 4,
       marginVertical: 5,
       opacity: pressed ? 0.5 : 1,

@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import type { Trace } from 'models/trace';
+import type { UserTrace } from 'models/UserTrace';
 import { date2str } from 'utils/dateFormat';
 import * as baseStyle from 'utils/styles';
 
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
 });
 
 interface TraceTableProps {
-  readonly data: Trace[];
+  readonly data: UserTrace[];
 }
 
-export const TraceRow: React.FC<ListRenderItemInfo<Trace>> = (props) => {
+export const TraceRow: React.FC<ListRenderItemInfo<UserTrace>> = (props) => {
   return (
     <View style={styles.tableRow}>
       <Text style={styles.tableCellTime}>{date2str(props.item.time)}</Text>

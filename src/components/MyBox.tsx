@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
 });
 interface HeaderProps {
   //readonly content: string;
-  readonly title?: String;
-  readonly text1: String;
-  readonly text2: String;
-  readonly text3: String;
-  readonly navi1?: keyof RootStackParamList;
+  readonly title?: string;
+  readonly text1: string;
+  readonly text2: string;
+  readonly text3: string;
+  readonly navi1: keyof RootStackParamList;
   readonly navi2: keyof RootStackParamList;
-  readonly navi3?: keyof RootStackParamList;
+  readonly navi3: keyof RootStackParamList;
   readonly colour: number;
-  readonly tone?: String;
+  readonly tone?: string;
 }
 
 export const MyBox: React.FC<HeaderProps> = (props) => {
@@ -50,16 +50,10 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
           }}
           shadow={'3'}
         >
-          <Text style={styles.label}>{props.text1}</Text>
-          {props.navi1 ? (
-            <>
-              <Pressable
-                onPress={() => navigation.navigate(props.navi1!)}
-              ></Pressable>
-            </>
-          ) : null}
+          <Pressable onPress={() => navigation.navigate(props.navi1)}>
+            <Text style={styles.label}>{props.text1}</Text>
+          </Pressable>
         </Center>
-
         <Center
           bg={`${tone}.${props.colour + 100}`}
           size="24"
@@ -84,15 +78,8 @@ export const MyBox: React.FC<HeaderProps> = (props) => {
           }}
           shadow={'3'}
         >
-          <Pressable onPress={() => navigation.navigate('Home')}>
+          <Pressable onPress={() => navigation.navigate(props.navi3)}>
             <Text style={styles.label}>{props.text3}</Text>
-            {props.navi3 ? (
-              <>
-                <Pressable
-                  onPress={() => navigation.navigate(props.navi3!)}
-                ></Pressable>
-              </>
-            ) : null}
           </Pressable>
         </Center>
       </Stack>

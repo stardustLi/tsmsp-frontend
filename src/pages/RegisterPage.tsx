@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Header } from 'components/Header';
-import { setGlobalUserName, setUserToken } from 'libs/UserStore';
+import { setGlobalIDCard, setGlobalRealName, setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
+import type { ScreenProps } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import type { ScreenProps } from 'utils/navigation';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -27,6 +27,8 @@ export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
         new UserRegisterMessage(userName, password, realName, idCard)
       );
       setGlobalUserName(userName);
+      setGlobalRealName(realName);
+      setGlobalIDCard(idCard);
       setUserToken(token);
       navigation.navigate('Trace');
     } catch (e) {

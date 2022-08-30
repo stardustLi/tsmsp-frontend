@@ -5,12 +5,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
 import { UserGetTraceWithPeopleMessage } from 'models/messages/UserGetTraceWithPeopleMessage';
-import type { Trace } from 'models/trace';
+import type { UserTrace } from 'models/UserTrace';
 import * as baseStyle from 'utils/styles';
-import { POST } from 'utils/web';
-import { ScreenProps } from '../../App';
+import { send } from 'utils/web';
+import { ScreenProps } from 'utils/navigation';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -18,23 +17,21 @@ const styles = StyleSheet.create({
 });
 
 export const TraceWithPeoplePage: React.FC<ScreenProps> = ({ navigation }) => {
-  const [traceHistory, setTraceHistory] = useState<Trace[]>([]);
+  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
   const { userName, token } = UserStore();
 
   async function fetchTrace() {
     try {
-      const response = await POST(
-        APIUrl,
+      const response = await send(
         new UserGetTraceWithPeopleMessage(
           token,
           new Date().getTime() - 86400e3,
           new Date().getTime()
         )
       );
-      if (response.status !== 0) throw new Error(response.message);
       setTraceHistory(
-        response.message.map(
+        response.map(
           ({ trace, time: timestamp }: { trace: string; time: number }) => ({
             trace,
             time: new Date(timestamp),

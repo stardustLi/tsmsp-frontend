@@ -28,6 +28,7 @@ interface BottomNaviProps extends BottomBarProps {
   readonly navi1: keyof RootStackParamList;
   readonly navi2: keyof RootStackParamList;
   readonly navi3: keyof RootStackParamList;
+  readonly navi4: keyof RootStackParamList;
 }
 
 export enum BottomTab {
@@ -120,7 +121,10 @@ const BottomNavi: React.FC<BottomNaviProps> = (props) => {
             opacity={selected === BottomTab.account ? 1 : 0.5}
             py="2"
             flex={1}
-            onPress={() => setSelected(3)}
+            onPress={() =>
+              navigation.navigate(props.navi4)! &&
+              setSelected(BottomTab.account)
+            }
           >
             <Center>
               <Icon
@@ -148,10 +152,16 @@ const BottomNavi: React.FC<BottomNaviProps> = (props) => {
   );
 };
 
-const BottomBar: React.FC<BottomBarProps> = props => {
+const BottomBar: React.FC<BottomBarProps> = (props) => {
   return (
     <Center flex={1} px="3">
-      <BottomNavi navi1="Home" navi2="Applets" navi3="Login" tab={props.tab} />
+      <BottomNavi
+        navi1="Home"
+        navi2="Applets"
+        navi3="Login"
+        navi4="Account"
+        tab={props.tab}
+      />
     </Center>
   );
 };

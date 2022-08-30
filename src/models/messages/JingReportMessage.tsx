@@ -1,6 +1,6 @@
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
 
-export class UserPolicyInquiryMessage extends TSMSPMessage {
+export class JingReportMessage extends TSMSPMessage {
   idCard: string;
   reason: string;
   userToken: string;

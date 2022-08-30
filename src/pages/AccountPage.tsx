@@ -27,29 +27,21 @@ const styles = StyleSheet.create({
   label: baseStyle.label,
   //press: baseStyle.press,
 });
-export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
+export const AccountPage: React.FC<ScreenProps> = ({ navigation }) => {
   setGlobalNavigation(navigation);
-  alertBox('Fish is coming!!!');
   const { userName } = UserStore();
   const [selected, setSelected] = React.useState(1);
   return (
     <NativeBaseProvider>
-      <Header content={`${userName} 的北京健康宝`} />
+      <Header content={`${userName} 的账号`} />
       <View style={styles.container}>
-        <View style={{ marginBottom: 14 }}>
-          <QRCode
-            color="red"
-            size={200}
-            value="http://people.iiis.tsinghua.edu.cn/~yuanyang/index.html"
-          />
-        </View>
-        <AddTrace />
-        <MyIcon text="个人地点码" navi="PersonalCode" />
-        <MyIcon text="轨迹查询" navi="Trace" />
-        <MyIcon text="测试" navi="PolicyInquiry" />
+        <MyIcon text="注册新账号" navi="Register" />
+        <MyIcon text="重新登录" navi="Login" />
+        <MyIcon text="查看我的信息" navi="MyInfo" />
+        <MyIcon text="进入管理员页面" navi="Admin" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.home} />
+      <BottomNavi tab={BottomTab.account} />
     </NativeBaseProvider>
   );
 };

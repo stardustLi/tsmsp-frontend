@@ -1,18 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { MyBox } from 'components/MyBox';
-import { setGlobalUserName, setUserToken } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
 import { UserTestMessage } from 'models/messages/UserTestMessage';
 import * as baseStyle from 'utils/styles';
-import { POST } from 'utils/web';
-//import "./styles.css";
+import { send } from 'utils/web';
+import { MyIcon as Icon } from 'components/MyIcon';
 import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import { Icon } from 'components/MyIcon';
 //import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
@@ -31,13 +28,9 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   async function Test() {
     try {
-      const response = await POST(
-        APIUrl,
+      const response = await send(
         new UserTestMessage(userName, password, realName)
       );
-      if (response.status !== 0) throw new Error(response.message);
-      setGlobalUserName(userName);
-      setUserToken(response.message);
       navigation.navigate('Trace');
     } catch (e) {
       console.error(e);
@@ -48,7 +41,7 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
     <NativeBaseProvider>
       <Header content="小程序" />
       <View style={styles.container}>
-        <MyBox
+        {/* <MyBox
           text1="box1"
           text2="box2"
           text3="返回"
@@ -75,7 +68,7 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
           text3="返回"
           colour={600}
           navi2={'Trace'}
-        />
+        /> */}
         <Icon text="返回" navi="Home" />
         <StatusBar style="auto" />
       </View>

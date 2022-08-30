@@ -6,7 +6,7 @@ import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
-import type { Trace } from 'models/trace';
+import type { UserTrace } from 'models/UserTrace';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { ScreenProps } from 'utils/navigation';
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
-  const [traceHistory, setTraceHistory] = useState<Trace[]>([]);
+  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
   const { userName, token } = UserStore();
 

@@ -39,7 +39,7 @@ export const baseBorder = <const>{
     paddingVertical: 10,
   },
   headerText = <const>{
-    fontSize: 18,
+    fontSize: 36,
     fontWeight: 'bold',
   },
   input = <const>{

@@ -1,12 +1,14 @@
 import { BarCodeEvent, BarCodeScanner } from 'expo-barcode-scanner';
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
+import { UserAddTraceWithPeopleMessage } from 'models/messages/UserAddTraceWithPeopleMessage';
 import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
-import { POST } from 'utils/web';
-import { ScreenProps } from '../../App';
+import { Trace } from 'models/Trace';
+import { UserInfo } from 'models/UserInfo';
+import { ScreenProps } from 'utils/navigation';
+import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +22,7 @@ export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
 
-  const { token } = UserStore();
+  const { idCard, token } = UserStore();
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -34,12 +36,21 @@ export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
   const handleBarCodeScanned = async ({ data }: BarCodeEvent) => {
     setScanned(true);
 
-    try {
-      const response = await POST(APIUrl, new UserAddTraceMessage(token, data));
-      if (response.status !== 0) throw new Error(response.message);
-      alert(response.message);
-    } catch (e) {
-      console.error(e);
+    const result = JSON.parse(data);
+    if (result.idCard) {
+      const userInfo = result as UserInfo;
+      try {
+        await send(new UserAddTraceWithPeopleMessage(token, idCard, userInfo.idCard));
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      const trace = result as Trace;
+      try {
+        await send(new UserAddTraceMessage(token, idCard, trace));
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     navigation.navigate('Home');

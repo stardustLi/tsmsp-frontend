@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Header } from 'components/Header';
 import { UserStore } from 'libs/UserStore';
-import { UserAppealMessage } from 'models/messages/UserAppealMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 //import "./styles.css";
@@ -11,35 +10,44 @@ import { NativeBaseProvider, VStack, Text } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
+import { JingReportMessage } from 'models/messages/JingReportMessage';
+import { MyCheckBox } from 'components/MyCheckBox';
+import { alertBox } from 'utils/alert';
 //import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
+  header: baseStyle.header,
   input: baseStyle.input,
   label: baseStyle.label,
 });
 
-export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
+export const JingReportPage: React.FC<ScreenProps> = ({ navigation }) => {
   setGlobalNavigation(navigation);
 
   const [idCard, setIdCard] = useState('');
   const [reason, setReason] = useState('');
   const [userName, setUserName] = useState('');
+  const [checkedFirst, setCheckedFirst] = useState(false);
+  const [checkedSecond, setCheckedSecond] = useState(false);
   const { token } = UserStore();
 
-  async function Appeal() {
-    try {
-      const response = await send(new UserAppealMessage(idCard, reason, token));
-      navigation.navigate('Applets');
-    } catch (e) {
-      console.error(e);
+  async function JingReport() {
+    if (checkedFirst && checkedSecond) {
+      try {
+        await send(new JingReportMessage(idCard, reason, token));
+        navigation.navigate('Applets');
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      alertBox('请确认已勾选承诺！');
     }
   }
 
   return (
     <NativeBaseProvider>
-      <Header content="在线申诉" />
+      <Header content="进京报备" />
       <View style={styles.container}>
         <VStack space={1} alignItems="center">
           <Text
@@ -51,18 +59,7 @@ export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
               color: 'coolgray.800',
             }}
           >
-            申诉前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规,在河南村镇银行没有存款,没有上访记录和上访意图。
-          </Text>
-          <Text
-            bold
-            italic
-            underline
-            highlight
-            _dark={{
-              color: 'coolgray.800',
-            }}
-          >
-            请注意,在申诉通过或被拒绝前,无法再次申诉。
+            报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规。
           </Text>
         </VStack>
         <TextIn
@@ -80,11 +77,21 @@ export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
         <TextIn
           text={reason}
           setText={setReason}
-          text2="申请理由简述"
+          text2="进京理由简述"
           type="text"
           width="300"
         />
-        <Pressable onPress={Appeal} style={baseStyle.button}>
+        <MyCheckBox
+          message="我承诺14日内未途径中高风险区所在市"
+          checked={checkedFirst}
+          handleChange={setCheckedFirst}
+        />
+        <MyCheckBox
+          message="我承诺本人和同行者无感冒、头痛、发烧、不想写代码等症状"
+          checked={checkedSecond}
+          handleChange={setCheckedSecond}
+        />
+        <Pressable onPress={JingReport} style={baseStyle.button}>
           <Text>提交</Text>
         </Pressable>
         <MyIcon text="返回" navi="Applets" />

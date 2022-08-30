@@ -12,7 +12,13 @@ import { TestPage } from 'pages/TestPage';
 import { AppletsPage } from 'pages/AppletsPage';
 import { TraceWithPeoplePage } from 'pages/TraceWithPeoplePage';
 import { AppealPage } from 'pages/AppealPage';
-import { PolicyInquiryPage } from 'pages/PolicyInquiry'
+import { PolicyInquiryPage } from 'pages/PolicyInquiryPage';
+import { PolicyShowPage } from 'pages/PolicyShowPage';
+import { JingReportPage } from 'pages/JingReportPage';
+import { AccountPage } from 'pages/AccountPage';
+import { MyInfoPage } from 'pages/MyInfoPage';
+import { AdminPage } from 'pages/AdminPage';
+import { PersonalCodePage } from 'pages/PersonalCodePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +34,12 @@ export type RootStackParamList = {
   TraceWithPeople: undefined;
   Appeal: undefined;
   PolicyInquiry: undefined;
+  PolicyShow: undefined;
+  JingReport: undefined;
+  Account: undefined;
+  MyInfo: undefined;
+  Admin: undefined;
+  PersonalCode: undefined;
 };
 
 export default function App() {
@@ -88,6 +100,36 @@ export default function App() {
           <Stack.Screen
             name="PolicyInquiry"
             component={PolicyInquiryPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PolicyShow"
+            component={PolicyShowPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="JingReport"
+            component={JingReportPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Account"
+            component={AccountPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MyInfo"
+            component={MyInfoPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Admin"
+            component={AdminPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PersonalCode"
+            component={PersonalCodePage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

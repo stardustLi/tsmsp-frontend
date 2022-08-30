@@ -1,4 +1,4 @@
-export interface Trace {
+export interface UserTrace {
   trace: string;
   time: Date;
 }

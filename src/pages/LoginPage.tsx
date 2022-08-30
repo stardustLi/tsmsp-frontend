@@ -1,22 +1,21 @@
+import { Header } from 'components/Header';
+import { MyIcon } from 'components/MyIcon';
+import { TextIn } from 'components/TextIn';
 import { StatusBar } from 'expo-status-bar';
+import { setGlobalIDCard, setGlobalRealName, setGlobalUserName, setUserToken } from 'libs/UserStore';
+import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
+import { UserLoginMessage } from 'models/messages/UserLoginMessage';
+import { NativeBaseProvider, VStack } from 'native-base';
 import React, { useState } from 'react';
 import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
-  View,
+  Text, View
 } from 'react-native';
-import { Header } from 'components/Header';
-import { setGlobalUserName, setUserToken } from 'libs/UserStore';
-import { UserLoginMessage } from 'models/messages/UserLoginMessage';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import { MyIcon } from 'components/MyIcon';
-import { TextIn } from 'components/TextIn';
-import { NativeBaseProvider, VStack } from 'native-base';
 const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
@@ -35,6 +34,10 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
       const token = await send(new UserLoginMessage(userName, password));
       setGlobalUserName(userName);
       setUserToken(token);
+      const userInfo = await send(new UserGetProfileMessage(token));
+      setGlobalRealName(userInfo.realName);
+      setGlobalIDCard(userInfo.idCard);
+      console.log(userInfo);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);
@@ -71,7 +74,7 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
             </Pressable>
             <MyIcon text="切换至注册界面" navi="Register" />
             <MyIcon text="小程序" navi="Applets" />
-            <MyIcon text="测试" navi="Test" />
+            <MyIcon text="测试" navi="PolicyInquiry" />
             <StatusBar style="auto" />
           </View>
         </NativeBaseProvider>

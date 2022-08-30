@@ -9,6 +9,7 @@ import { alertBox } from 'utils/alert';
 import { AddTrace } from 'components/AddTrace';
 import { MyIcon } from 'components/MyIcon';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { UserInfo } from '../models/UserInfo';
 import {
   NativeBaseProvider,
   Box,
@@ -20,33 +21,27 @@ import {
 } from 'native-base';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
-
 const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
   label: baseStyle.label,
   //press: baseStyle.press,
 });
-export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
+export const PersonalCodePage: React.FC<ScreenProps> = ({ navigation }) => {
   setGlobalNavigation(navigation);
-  alertBox('Fish is coming!!!');
   const { userName } = UserStore();
-  const [selected, setSelected] = React.useState(1);
   return (
     <NativeBaseProvider>
-      <Header content={`${userName} 的北京健康宝`} />
+      <Header content={`${userName} 的个人地点码`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
           <QRCode
-            color="red"
-            size={200}
-            value="http://people.iiis.tsinghua.edu.cn/~yuanyang/index.html"
+            color="black"
+            size={300}
+            value={JSON.stringify(UserInfo)}
+            // value={JSON.stringify(trace)}
           />
         </View>
-        <AddTrace />
-        <MyIcon text="个人地点码" navi="PersonalCode" />
-        <MyIcon text="轨迹查询" navi="Trace" />
-        <MyIcon text="测试" navi="PolicyInquiry" />
         <StatusBar style="auto" />
       </View>
       <BottomNavi tab={BottomTab.home} />

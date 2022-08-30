@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   label: baseStyle.label,
   //press: baseStyle.press,
 });
-export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
+export const AdminPage: React.FC<ScreenProps> = ({ navigation }) => {
   setGlobalNavigation(navigation);
   alertBox('Fish is coming!!!');
   const { userName } = UserStore();
@@ -44,7 +44,6 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
           />
         </View>
         <AddTrace />
-        <MyIcon text="个人地点码" navi="PersonalCode" />
         <MyIcon text="轨迹查询" navi="Trace" />
         <MyIcon text="测试" navi="PolicyInquiry" />
         <StatusBar style="auto" />

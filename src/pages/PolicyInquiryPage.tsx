@@ -1,17 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { Header } from 'components/Header';
-import { MyBox } from 'components/MyBox';
-import { UserStore } from 'libs/UserStore';
-import { APIUrl } from 'libs/api/url';
-import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
-import * as baseStyle from 'utils/styles';
-import { send } from 'utils/web';
-import { NativeBaseProvider, VStack, Text, useToken } from 'native-base';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
+import { StatusBar } from 'expo-status-bar';
+import { APIUrl } from 'libs/api/url';
+import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
+import { NativeBaseProvider, Text, VStack } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import * as baseStyle from 'utils/styles';
+import { send } from 'utils/web';
 import { Trace } from '../models/Trace';
 
 const styles = StyleSheet.create({
@@ -21,24 +19,23 @@ const styles = StyleSheet.create({
 });
 
 export const PolicyInquiryPage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
 
-  const [idCard, setIdCard] = useState('');
-  const [reason, setReason] = useState('');
-  const [userName, setUserName] = useState('');
-  const { token } = UserStore();
   const [trace, setTrace] = useState(new Trace('', '', ''));
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
   const [message, setMessage] = useState<string | null>(null);
+
   async function PolicyInquiry() {
     trace.province = province;
     trace.city = city;
     trace.county = county;
     setTrace(trace);
     try {
-      const response = await send(APIUrl, new PolicyQueryMessage(trace));
+      const response = await send(new PolicyQueryMessage(trace));
       if (response.status !== 0) throw new Error(response.message);
       setMessage(response.message);
       //setGlobalUserName(userName);

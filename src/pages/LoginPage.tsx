@@ -11,7 +11,7 @@ import {
 import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
 import { NativeBaseProvider, VStack } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
 });
 
 export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');

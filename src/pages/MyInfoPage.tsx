@@ -5,7 +5,7 @@ import { MyIcon } from 'components/MyIcon';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -14,13 +14,16 @@ const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
   label: baseStyle.label,
-  //press: baseStyle.press,
 });
+
 export const MyInfoPage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
+
   const { userName } = UserStore();
   const [idCard] = useState('');
-  const [selected, setSelected] = React.useState(1);
+
   return (
     <NativeBaseProvider>
       <Header content={`${userName} 的账号信息`} />

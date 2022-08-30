@@ -5,7 +5,12 @@ export class UserGetTraceMessage extends TSMSPMessage {
   idCard: string;
   startTime: number;
   endTime: number;
-  constructor(userToken: string, idCard: string, startTime: number, endTime: number) {
+  constructor(
+    userToken: string,
+    idCard: string,
+    startTime: number,
+    endTime: number
+  ) {
     super();
     this.userToken = userToken;
     this.idCard = idCard;

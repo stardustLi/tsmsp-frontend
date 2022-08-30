@@ -1,18 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
 import { Header } from 'components/Header';
+import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
+import React, { useEffect, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 //import "./styles.css";
-import { NativeBaseProvider, VStack, Text } from 'native-base';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { MyCheckBox } from 'components/MyCheckBox';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
 import { JingReportMessage } from 'models/messages/JingReportMessage';
-import { MyCheckBox } from 'components/MyCheckBox';
+import { NativeBaseProvider, Text, VStack } from 'native-base';
 import { alertBox } from 'utils/alert';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 //import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
 });
 
 export const JingReportPage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
 
   const [idCard, setIdCard] = useState('');
   const [reason, setReason] = useState('');

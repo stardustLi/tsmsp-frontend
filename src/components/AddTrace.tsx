@@ -1,24 +1,23 @@
-import { Pressable, Text, TextInput } from 'react-native';
-import React, { useState } from 'react';
-import { globalNavigation, setGlobalNavigation } from 'utils/navigation';
-import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
-import { send } from 'utils/web';
 import { UserStore } from 'libs/UserStore';
+import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
+import { Trace } from 'models/Trace';
+import React, { useState } from 'react';
+import { Pressable, Text, TextInput } from 'react-native';
+import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
+import { send } from 'utils/web';
 
 export const AddTrace: React.FC = () => {
   const navigation = globalNavigation()!;
   const { idCard, token } = UserStore();
-  const [newTrace, setNewTrace] = useState('');
-  async function add_Trace() {
+  const [newTrace, setNewTrace] = useState<Trace | null>(null);
+
+  async function addTrace() {
     try {
-      const response = await send(
-        new UserAddTraceMessage(token, idCard, newTrace)
-      );
+      await send(new UserAddTraceMessage(token, idCard, newTrace!));
     } catch (e) {
       console.error(e);
     }
-    setNewTrace('');
   }
 
   return (

@@ -1,26 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
 import { MyBox } from 'components/MyBox';
+import { StatusBar } from 'expo-status-bar';
 import { UserTestMessage } from 'models/messages/UserTestMessage';
+import { NativeBaseProvider } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-//import "./styles.css";
-import { NativeBaseProvider } from 'native-base';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
-//import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label,
 });
 
 export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');

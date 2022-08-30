@@ -1,37 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, View, Text as TextNative } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
-import { Header } from 'components/Header';
-import { UserStore } from 'libs/UserStore';
-import * as baseStyle from 'utils/styles';
-import { alertBox } from 'utils/alert';
 import { AddTrace } from 'components/AddTrace';
-import { MyIcon } from 'components/MyIcon';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import {
-  NativeBaseProvider,
-  Box,
-  Center,
-  HStack,
-  Pressable,
-  Icon,
-  Text,
-} from 'native-base';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
+import { Header } from 'components/Header';
+import { MyIcon } from 'components/MyIcon';
+import { StatusBar } from 'expo-status-bar';
+import { UserStore } from 'libs/UserStore';
+import { NativeBaseProvider } from 'native-base';
+import React, { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
+import { alertBox } from 'utils/alert';
+import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
   label: baseStyle.label,
-  //press: baseStyle.press,
 });
+
 export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
-  setGlobalNavigation(navigation);
+  useEffect(() => {
+    setGlobalNavigation(navigation);
+  }, []);
+
   alertBox('Fish is coming!!!');
   const { userName } = UserStore();
-  const [selected, setSelected] = React.useState(1);
+
   return (
     <NativeBaseProvider>
       <Header content={`${userName} 的北京健康宝`} />

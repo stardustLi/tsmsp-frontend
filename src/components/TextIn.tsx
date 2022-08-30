@@ -36,7 +36,6 @@ interface TextInProps {
 }
 
 export const TextIn: React.FC<TextInProps> = (props) => {
-  const navigation = globalNavigation()!;
   const warn: boolean = props.warn ?? true;
   const width = props.width ?? 250;
   //const tone = props.tone ?? 'info';

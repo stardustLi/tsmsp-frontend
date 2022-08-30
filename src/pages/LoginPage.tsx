@@ -1,15 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { Header } from 'components/Header';
 import { setGlobalUserName, setUserToken } from 'libs/UserStore';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import { Icon } from 'components/Icon';
+import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
+import { NativeBaseProvider, VStack } from 'native-base';
 const styles = StyleSheet.create({
   container: baseStyle.container,
   input: baseStyle.input,
@@ -36,40 +43,39 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   return (
     <>
-      <Header content="登录" />
-      <View style={styles.container}>
-        <Text style={styles.label}>用户名</Text>
-        <TextInput
-          placeholder="用户名"
-          style={styles.input}
-          value={userName}
-          onChangeText={(newText: string) => setUserName(newText)}
-        />
-        <TextIn text={password} setText={setPassword} text2="密码" />
-        <Text style={styles.label}>密码</Text>
-        <TextInput
-          placeholder="密码"
-          style={styles.input}
-          value={password}
-          onChangeText={(newText: string) => setPassword(newText)}
-          secureTextEntry={true}
-        />
-        <Text style={styles.label}>身份证号</Text>
-        <TextInput
-          placeholder="身份证号"
-          style={styles.input}
-          value={idcard}
-          onChangeText={(newText: string) => setIdcard(newText)}
-          secureTextEntry={true}
-        />
-        <Pressable onPress={login} style={baseStyle.button}>
-          <Text>登录</Text>
-        </Pressable>
-        <Icon text="切换至注册界面" navi="Register" />
-        <Icon text="小程序" navi="Applets" />
-        <Icon text="测试" navi="Test" />
-        <StatusBar style="auto" />
-      </View>
+      <ScrollView>
+        <NativeBaseProvider>
+          <VStack space="2.5" mt="20" px="8"></VStack>
+          <Header content="登录" />
+          <View style={styles.container}>
+            <TextIn
+              text={idcard}
+              setText={setIdcard}
+              text2="身份证号"
+              type={undefined}
+            />
+            <TextIn
+              text={userName}
+              setText={setUserName}
+              text2="用户名"
+              type={undefined}
+            />
+            <TextIn
+              text={password}
+              setText={setPassword}
+              text2="密码"
+              type="password"
+            />
+            <Pressable onPress={login} style={baseStyle.button}>
+              <Text>登录</Text>
+            </Pressable>
+            <MyIcon text="切换至注册界面" navi="Register" />
+            <MyIcon text="小程序" navi="Applets" />
+            <MyIcon text="测试" navi="Test" />
+            <StatusBar style="auto" />
+          </View>
+        </NativeBaseProvider>
+      </ScrollView>
     </>
   );
 };

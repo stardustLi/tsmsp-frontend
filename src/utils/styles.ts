@@ -23,8 +23,11 @@ export const baseBorder = <const>{
     borderTopWidth: 0,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    flex: 1,
+    flex: 12,
     justifyContent: 'center',
+  },
+  press = <const>{
+    cursor: 'pointer',
   },
   header = <const>{
     backgroundColor: '#eee',
@@ -58,6 +61,7 @@ export const baseBorder = <const>{
     textAlign: 'center',
     fontSize: 20,
     width: 200,
+    color: '#fff',
   },
   tableRow = <const>{
     flexDirection: 'row',

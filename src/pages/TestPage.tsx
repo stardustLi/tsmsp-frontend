@@ -12,7 +12,7 @@ import { POST } from 'utils/web';
 //import "./styles.css";
 import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-import { Icon } from 'components/Icon';
+import { Icon } from 'components/MyIcon';
 //import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
@@ -48,10 +48,34 @@ export const TestPage: React.FC<ScreenProps> = ({ navigation }) => {
     <NativeBaseProvider>
       <Header content="小程序" />
       <View style={styles.container}>
-        <MyBox text1="box1" text2="box2" text3="返回" colour={300} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={400} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={500} />
-        <MyBox text1="box1" text2="box2" text3="返回" colour={600} />
+        <MyBox
+          text1="box1"
+          text2="box2"
+          text3="返回"
+          colour={300}
+          navi2={'Trace'}
+        />
+        <MyBox
+          text1="box1"
+          text2="box2"
+          text3="返回"
+          colour={400}
+          navi2={'Trace'}
+        />
+        <MyBox
+          text1="box1"
+          text2="box2"
+          text3="返回"
+          colour={500}
+          navi2={'Trace'}
+        />
+        <MyBox
+          text1="box1"
+          text2="box2"
+          text3="返回"
+          colour={600}
+          navi2={'Trace'}
+        />
         <Icon text="返回" navi="Home" />
         <StatusBar style="auto" />
       </View>

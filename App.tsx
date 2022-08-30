@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { LoginPage } from 'pages/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage';
 import { HomePage } from 'pages/HomePage';
@@ -12,6 +11,8 @@ import { QRCodePage } from 'pages/QRCodePage';
 import { TestPage } from 'pages/TestPage';
 import { AppletsPage } from 'pages/AppletsPage';
 import { TraceWithPeoplePage } from 'pages/TraceWithPeoplePage';
+import { AppealPage } from 'pages/AppealPage';
+import { PolicyInquiryPage } from 'pages/PolicyInquiry'
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,8 @@ export type RootStackParamList = {
   Test: undefined;
   Applets: undefined;
   TraceWithPeople: undefined;
+  Appeal: undefined;
+  PolicyInquiry: undefined;
 };
 
 export default function App() {
@@ -75,6 +78,16 @@ export default function App() {
           <Stack.Screen
             name="TraceWithPeople"
             component={TraceWithPeoplePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Appeal"
+            component={AppealPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PolicyInquiry"
+            component={PolicyInquiryPage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

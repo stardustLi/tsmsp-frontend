@@ -9,7 +9,6 @@ import * as baseStyle from 'utils/styles';
 
 export const AddTrace: React.FC = () => {
   const navigation = globalNavigation()!;
-  setGlobalNavigation(navigation);
   const { token } = UserStore();
   const [newTrace, setNewTrace] = useState('');
   async function add_Trace() {

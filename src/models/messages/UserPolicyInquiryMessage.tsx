@@ -1,6 +1,6 @@
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
 
-export class UserAppealMessage extends TSMSPMessage {
+export class UserPolicyInquiryMessage extends TSMSPMessage {
   idCard: string;
   reason: string;
   userToken: string;

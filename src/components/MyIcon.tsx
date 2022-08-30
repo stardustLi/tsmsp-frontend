@@ -9,7 +9,7 @@ interface HeaderProps {
   readonly navi: keyof RootStackParamList;
 }
 
-export const Icon: React.FC<HeaderProps> = (props) => {
+export const MyIcon: React.FC<HeaderProps> = (props) => {
   const navigation = globalNavigation()!;
 
   // function maomao(juankuan: number) {

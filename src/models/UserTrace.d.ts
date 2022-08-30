@@ -1,4 +1,6 @@
+import { Trace } from 'models/Trace';
+
 export interface UserTrace {
-  trace: string;
+  trace: Trace;
   time: Date;
 }

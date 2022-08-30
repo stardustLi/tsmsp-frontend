@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 });
 interface TextInProps {
   readonly text: string;
-  readonly setText: Dispatch<SetStateAction<string>>;
+  readonly setText: Dispatch<string>;
   readonly text2: string;
   readonly type: InterfaceInputProps['type'];
   readonly reminder?: string;
@@ -57,9 +57,7 @@ export const TextIn: React.FC<TextInProps> = (props) => {
                 defaultValue=""
                 placeholder={props.text2}
                 value={props.text}
-                onChangeText={(newText: React.SetStateAction<string>) =>
-                  props.setText(newText)
-                }
+                onChangeText={props.setText}
               />
 
               <FormControl.HelperText>

@@ -2,17 +2,17 @@ import { Header } from 'components/Header';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
 import { StatusBar } from 'expo-status-bar';
-import { setGlobalIDCard, setGlobalRealName, setGlobalUserName, setUserToken } from 'libs/UserStore';
+import {
+  setGlobalIDCard,
+  setGlobalRealName,
+  setGlobalUserName,
+  setUserToken,
+} from 'libs/UserStore';
 import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
 import { NativeBaseProvider, VStack } from 'native-base';
 import React, { useState } from 'react';
-import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text, View
-} from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -37,7 +37,6 @@ export const LoginPage: React.FC<ScreenProps> = ({ navigation }) => {
       const userInfo = await send(new UserGetProfileMessage(token));
       setGlobalRealName(userInfo.realName);
       setGlobalIDCard(userInfo.idCard);
-      console.log(userInfo);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);

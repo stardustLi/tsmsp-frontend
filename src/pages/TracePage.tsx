@@ -10,6 +10,7 @@ import type { UserTrace } from 'models/UserTrace';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { ScreenProps } from 'utils/navigation';
+import { Trace } from 'models/Trace';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -18,13 +19,14 @@ const styles = StyleSheet.create({
 export const TracePage: React.FC<ScreenProps> = ({ navigation }) => {
   const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
-  const { userName, token } = UserStore();
+  const { userName, idCard, token } = UserStore();
 
   async function fetchTrace() {
     try {
-      const traces: { trace: string; time: number }[] = await send(
+      const traces: { trace: Trace; time: number }[] = await send(
         new UserGetTraceMessage(
           token,
+          idCard,
           new Date().getTime() - 86400e3,
           new Date().getTime()
         )

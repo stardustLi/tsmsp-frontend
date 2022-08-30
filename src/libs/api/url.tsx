@@ -1,4 +1,4 @@
-export const APIUrl = 'http://183.172.169.181:6070/api';
+export const APIUrl = 'http://183.172.218.41:6070/api';
 //'http://183.172.169.181:6070/api';
 //'http://10.0.2.2:6070/api';
 

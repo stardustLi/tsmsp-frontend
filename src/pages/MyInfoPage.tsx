@@ -4,10 +4,7 @@ import { MyBadge } from 'components/MyBadge';
 import { MyIcon } from 'components/MyIcon';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
-import {
-  NativeBaseProvider, Text,
-  VStack
-} from 'native-base';
+import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';

@@ -9,6 +9,7 @@ import { Trace } from 'models/Trace';
 import { UserInfo } from 'models/UserInfo';
 import { ScreenProps } from 'utils/navigation';
 import { send } from 'utils/web';
+import { alertBox } from 'utils/alert';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,13 +41,16 @@ export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
     if (result.idCard) {
       const userInfo = result as UserInfo;
       try {
-        await send(new UserAddTraceWithPeopleMessage(token, idCard, userInfo.idCard));
+        await send(
+          new UserAddTraceWithPeopleMessage(token, idCard, userInfo.idCard)
+        );
       } catch (e) {
         console.error(e);
       }
     } else {
       const trace = result as Trace;
       try {
+        alert(JSON.stringify(new UserAddTraceMessage(token, idCard, trace)));
         await send(new UserAddTraceMessage(token, idCard, trace));
       } catch (e) {
         console.error(e);

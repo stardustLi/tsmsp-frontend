@@ -12,7 +12,9 @@ export const AddTrace: React.FC = () => {
   const [newTrace, setNewTrace] = useState('');
   async function add_Trace() {
     try {
-      const response = await send(new UserAddTraceMessage(token, idCard, newTrace));
+      const response = await send(
+        new UserAddTraceMessage(token, idCard, newTrace)
+      );
     } catch (e) {
       console.error(e);
     }

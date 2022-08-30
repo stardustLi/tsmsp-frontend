@@ -15,7 +15,7 @@ export const UserStore = create<UserInfo>(() => ({
 }));
 
 export const setGlobalUserName = (userName: string) =>
-  UserStore.setState({ userName }),
+    UserStore.setState({ userName }),
   setGlobalRealName = (realName: string) => UserStore.setState({ realName }),
   setGlobalIDCard = (idCard: string) => UserStore.setState({ idCard }),
   setUserToken = (token: string) => UserStore.setState({ token });

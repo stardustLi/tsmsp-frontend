@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Header } from 'components/Header';
-import { setGlobalIDCard, setGlobalRealName, setGlobalUserName, setUserToken } from 'libs/UserStore';
+import {
+  setGlobalIDCard,
+  setGlobalRealName,
+  setGlobalUserName,
+  setUserToken,
+} from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
 import type { ScreenProps } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';

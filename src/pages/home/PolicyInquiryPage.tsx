@@ -1,27 +1,20 @@
 import { Header } from 'components/Header';
-import { MyIcon } from 'components/MyIcon';
-import { TextIn } from 'components/TextIn';
+import { NavigableButton } from 'components/NavigableButton';
+import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { Trace } from '../models/Trace';
+import { Trace } from 'models/Trace';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
 });
 
-export const PolicyInquiryPage: React.FC<ScreenProps> = ({ navigation }) => {
-  useEffect(() => {
-    setGlobalNavigation(navigation);
-  }, []);
-
+export const PolicyInquiryPage: React.FC = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
@@ -55,22 +48,22 @@ export const PolicyInquiryPage: React.FC<ScreenProps> = ({ navigation }) => {
             请输入需要查询的地点，政策为官方网站最新发布的为准。
           </Text>
         </VStack>
-        <TextIn
+        <TextInput
           text={province}
           setText={setProvince}
-          text2={'省/直辖市/自治区/特别行政区'}
+          label="省/直辖市/自治区/特别行政区"
           type="text"
         />
-        <TextIn
+        <TextInput
           text={city}
           setText={setCity}
-          text2={'市/区/盟/自治州'}
+          label="市/区/盟/自治州"
           type="text"
         />
-        <TextIn
+        <TextInput
           text={county}
           setText={setCounty}
-          text2={'区/县/街道/旗/自治县'}
+          label="区/县/街道/旗/自治县"
           type="text"
         />
         {message ? (
@@ -81,7 +74,7 @@ export const PolicyInquiryPage: React.FC<ScreenProps> = ({ navigation }) => {
         <Pressable onPress={PolicyInquiry} style={baseStyle.button}>
           <Text>查询</Text>
         </Pressable>
-        <MyIcon text="返回" navi="Applets" />
+        <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

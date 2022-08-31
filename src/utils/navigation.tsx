@@ -2,13 +2,24 @@ import type {
   NativeStackScreenProps,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
 import create from 'zustand';
-import { RootStackParamList } from '../../App';
+import { TabNames } from '../../App';
 
-export type ScreenProps = NativeStackScreenProps<RootStackParamList>;
-export type NavigationType = NativeStackNavigationProp<RootStackParamList>;
+type RootStackParamList = { [key in TabNames]: undefined; }
+type ScreenProps = NativeStackScreenProps<RootStackParamList>;
+type NavigationType = NativeStackNavigationProp<RootStackParamList>;
 
 export const globalNavigation = create<NavigationType | null>(() => null);
-
 export const setGlobalNavigation = (navigation: NavigationType) =>
   globalNavigation.setState(navigation);
+
+export function PageWrapper(Page: React.FC): React.FC<ScreenProps> {
+  return ({ navigation }: ScreenProps) => {
+    useEffect(() => {
+      setGlobalNavigation(navigation);
+    }, []);
+
+    return <Page />;
+  };
+};

@@ -11,27 +11,47 @@ import {
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
-import { RootStackParamList } from '../../App';
+import { TabNames } from '../../App';
 
 interface BottomBarProps {
   readonly tab: BottomTab;
 }
 
-interface BottomNaviProps extends BottomBarProps {
-  readonly navi1: keyof RootStackParamList;
-  readonly navi2: keyof RootStackParamList;
-  readonly navi3: keyof RootStackParamList;
-  readonly navi4: keyof RootStackParamList;
-}
-
 export enum BottomTab {
-  home,
-  applets,
-  lsz,
-  account,
+  HOME,
+  APPLETS,
+  LOGIN,
+  ACCOUNT,
 }
 
-const BottomNavi: React.FC<BottomNaviProps> = (props) => {
+const tabs = {
+  Home: {
+    tab: BottomTab.HOME,
+    text: 'Home',
+    icon: 'home-outline' as const,
+    activeIcon: 'home' as const
+  },
+  Applets: {
+    tab: BottomTab.APPLETS,
+    text: 'Applets',
+    icon: 'menu' as const,
+    activeIcon: 'menu' as const
+  },
+  Login: {
+    tab: BottomTab.LOGIN,
+    text: 'Login',
+    icon: 'cart-outline' as const,
+    activeIcon: 'cart' as const
+  },
+  Account: {
+    tab: BottomTab.ACCOUNT,
+    text: 'Account',
+    icon: 'account-outline' as const,
+    activeIcon: 'account' as const
+  },
+};
+
+const BottomNavi: React.FC<BottomBarProps> = (props) => {
   const navigation = globalNavigation()!;
   const [selected, setSelected] = React.useState<BottomTab>(props.tab);
   const { width: widthScreen } = Dimensions.get('window');
@@ -41,104 +61,37 @@ const BottomNavi: React.FC<BottomNaviProps> = (props) => {
       <Box flex={1} bg="red" safeAreaTop width={widthScreen} alignSelf="center">
         <Center flex={1}></Center>
         <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
-          <Pressable
-            opacity={selected === BottomTab.home ? 1 : 0.5}
-            py="3"
-            flex={1}
-            onPress={() =>
-              navigation.navigate(props.navi1)! && setSelected(BottomTab.home)
-            }
-          >
-            <Center>
-              <Icon
-                mb="1"
-                as={
-                  <MaterialCommunityIcons
-                    name={selected === 0 ? 'home' : 'home-outline'}
-                  />
-                }
-                color="white"
-                size="sm"
-              />
-              <Text color="white" fontSize="12">
-                Home
-              </Text>
-            </Center>
-          </Pressable>
-          <Pressable
-            opacity={selected === BottomTab.applets ? 1 : 0.5}
-            py="2"
-            flex={1}
-            onPress={() =>
-              navigation.navigate(props.navi2)! &&
-              setSelected(BottomTab.applets)
-            }
-          >
-            <Center>
-              <Icon
-                mb="1"
-                as={<MaterialCommunityIcons name="menu" />}
-                color="white"
-                size="sm"
-              />
-              <Text color="white" fontSize="12">
-                Applets
-              </Text>
-            </Center>
-          </Pressable>
-          <Pressable
-            opacity={selected === BottomTab.lsz ? 1 : 0.5}
-            py="2"
-            flex={1}
-            onPress={() =>
-              navigation.navigate(props.navi3)! && setSelected(BottomTab.lsz)
-            }
-          >
-            <Center>
-              <Icon
-                mb="1"
-                as={
-                  <MaterialCommunityIcons
-                    name={selected === 2 ? 'cart' : 'cart-outline'}
-                  />
-                }
-                color="white"
-                size="sm"
-              />
-              <Text color="white" fontSize="12">
-                Cart
-              </Text>
-            </Center>
-          </Pressable>
-          <Pressable
-            opacity={selected === BottomTab.account ? 1 : 0.5}
-            py="2"
-            flex={1}
-            onPress={() =>
-              navigation.navigate(props.navi4)! &&
-              setSelected(BottomTab.account)
-            }
-          >
-            <Center>
-              <Icon
-                mb="1"
-                as={
-                  <MaterialCommunityIcons
-                    name={
-                      selected === BottomTab.account
-                        ? 'account'
-                        : 'account-outline'
+          {
+            Object.entries(tabs).map(([key, { tab, text, icon, activeIcon }]) => {
+              const isSelected = selected === tab;
+              <Pressable
+                key={key}
+                opacity={isSelected ? 1 : .5}
+                py="2"
+                flex={1}
+                onPress={() => {
+                  navigation.navigate(key as TabNames);
+                  setSelected(tab);
+                }}
+              >
+                <Center>
+                  <Icon
+                    mb="1"
+                    as={
+                      <MaterialCommunityIcons
+                        name={isSelected ? activeIcon : icon}
+                      />
                     }
+                    color="white"
+                    size="sm"
                   />
-                }
-                color="white"
-                size="sm"
-              />
-              <Text color="white" fontSize="12">
-                Account
-              </Text>
-            </Center>
-          </Pressable>
+                  <Text color="white" fontSize="12">
+                    {text}
+                  </Text>
+                </Center>
+              </Pressable>
+            })
+          }
         </HStack>
       </Box>
     </NativeBaseProvider>
@@ -148,13 +101,7 @@ const BottomNavi: React.FC<BottomNaviProps> = (props) => {
 const BottomBar: React.FC<BottomBarProps> = (props) => {
   return (
     <Center flex={1} px="3">
-      <BottomNavi
-        navi1="Home"
-        navi2="Applets"
-        navi3="Login"
-        navi4="Account"
-        tab={props.tab}
-      />
+      <BottomNavi tab={props.tab} />
     </Center>
   );
 };

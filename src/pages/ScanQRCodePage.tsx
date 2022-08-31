@@ -7,7 +7,7 @@ import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
 import { UserAddTraceWithPeopleMessage } from 'models/messages/UserAddTraceWithPeopleMessage';
 import { Trace } from 'models/Trace';
 import { UserInfo } from 'models/UserInfo';
-import { ScreenProps } from 'utils/navigation';
+import { globalNavigation } from 'utils/navigation';
 import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
+export const ScanQRCodePage: React.FC = () => {
+  const navigation = globalNavigation()!;
+
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
 
@@ -49,7 +51,6 @@ export const ScanQRCodePage: React.FC<ScreenProps> = ({ navigation }) => {
     } else {
       const trace = result as Trace;
       try {
-        alert(JSON.stringify(new UserAddTraceMessage(token, idCard, trace)));
         await send(new UserAddTraceMessage(token, idCard, trace));
       } catch (e) {
         console.error(e);

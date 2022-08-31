@@ -18,7 +18,7 @@ export class UserAddTraceMessage extends TSMSPMessage {
     this.userToken = userToken;
     this.idCard = idCard;
     this.manufacture = manufacture;
-    this.now = new Date();
+    this.now = now;
     this.vaccineType = vaccineType;
   }
 }

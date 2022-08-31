@@ -1,38 +1,31 @@
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
-import { MyIcon } from 'components/MyIcon';
+import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider } from 'native-base';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
 });
 
-export const AccountPage: React.FC<ScreenProps> = ({ navigation }) => {
-  useEffect(() => {
-    setGlobalNavigation(navigation);
-  }, []);
-
+export const AccountPage: React.FC = () => {
   const { userName } = UserStore();
 
   return (
     <NativeBaseProvider>
       <Header content={`${userName} 的账号`} />
       <View style={styles.container}>
-        <MyIcon text="注册新账号" navi="Register" />
-        <MyIcon text="重新登录" navi="Login" />
-        <MyIcon text="查看我的信息" navi="MyInfo" />
-        <MyIcon text="进入管理员页面" navi="Admin" />
+        <NavigableButton text="注册新账号" route="Register" />
+        <NavigableButton text="重新登录" route="Login" />
+        <NavigableButton text="查看我的信息" route="MyInfo" />
+        <NavigableButton text="进入管理员页面" route="Admin" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.account} />
+      <BottomNavi tab={BottomTab.ACCOUNT} />
     </NativeBaseProvider>
   );
 };

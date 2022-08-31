@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Header } from 'components/Header';
+import { StatusBar } from 'expo-status-bar';
 import {
   setGlobalIDCard,
   setGlobalRealName,
   setGlobalUserName,
-  setUserToken,
+  setUserToken
 } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
-import type { ScreenProps } from 'utils/navigation';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
   label: baseStyle.label,
 });
 
-export const RegisterPage: React.FC<ScreenProps> = ({ navigation }) => {
+export const RegisterPage: React.FC = () => {
+  const navigation = globalNavigation()!;
+
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');

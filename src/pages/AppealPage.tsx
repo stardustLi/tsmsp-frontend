@@ -1,26 +1,22 @@
 import { Header } from 'components/Header';
-import { MyIcon } from 'components/MyIcon';
-import { TextIn } from 'components/TextIn';
+import { NavigableButton } from 'components/NavigableButton';
+import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { UserAppealMessage } from 'models/messages/UserAppealMessage';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
+import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
 });
 
-export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
-  useEffect(() => {
-    setGlobalNavigation(navigation);
-  }, []);
+export const AppealPage: React.FC = () => {
+  const navigation = globalNavigation()!;
 
   const [idCard, setIdCard] = useState('');
   const [reason, setReason] = useState('');
@@ -64,29 +60,29 @@ export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
             请注意,在申诉通过或被拒绝前,无法再次申诉。
           </Text>
         </VStack>
-        <TextIn
+        <TextInput
           text={userName}
           setText={setUserName}
-          text2="用户名"
+          label="用户名"
           type="text"
         />
-        <TextIn
+        <TextInput
           text={idCard}
           setText={setIdCard}
-          text2="身份证号"
+          label="身份证号"
           type="text"
         />
-        <TextIn
+        <TextInput
           text={reason}
           setText={setReason}
-          text2="申请理由简述"
+          label="申请理由简述"
           type="text"
           width="300"
         />
         <Pressable onPress={Appeal} style={baseStyle.button}>
           <Text>提交</Text>
         </Pressable>
-        <MyIcon text="返回" navi="Applets" />
+        <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

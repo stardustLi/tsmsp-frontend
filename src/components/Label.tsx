@@ -1,11 +1,11 @@
 import { Badge, Box, HStack, NativeBaseProvider, VStack } from 'native-base';
 import React from 'react';
 
-interface MyBadgeProps {
+interface LabelProps {
   readonly text: string;
 }
 
-export const MyBadge: React.FC<MyBadgeProps> = (props) => {
+export const Label: React.FC<LabelProps> = (props) => {
   return (
     <NativeBaseProvider>
       <Box alignItems="center">

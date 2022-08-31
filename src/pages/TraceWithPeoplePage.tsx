@@ -7,7 +7,7 @@ import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceWithPeopleMessage } from 'models/messages/UserGetTraceWithPeopleMessage';
 import type { UserTrace } from 'models/UserTrace';
-import { ScreenProps } from 'utils/navigation';
+import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-export const TraceWithPeoplePage: React.FC<ScreenProps> = ({ navigation }) => {
-  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
-
+export const TraceWithPeoplePage: React.FC = () => {
+  const navigation = globalNavigation()!;
   const { userName, token } = UserStore();
+
+  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
   async function fetchTrace() {
     try {

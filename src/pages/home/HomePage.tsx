@@ -1,29 +1,20 @@
 import { AddTrace } from 'components/AddTrace';
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
-import { MyIcon } from 'components/MyIcon';
+import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider } from 'native-base';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { alertBox } from 'utils/alert';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
 });
 
-export const AdminPage: React.FC<ScreenProps> = ({ navigation }) => {
-  useEffect(() => {
-    setGlobalNavigation(navigation);
-  }, []);
-
-  alertBox('Fish is coming!!!');
+export const HomePage: React.FC = () => {
   const { userName } = UserStore();
 
   return (
@@ -31,6 +22,7 @@ export const AdminPage: React.FC<ScreenProps> = ({ navigation }) => {
       <Header content={`${userName} 的北京健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
+          {/* TODO: 时间 */}
           <QRCode
             color="red"
             size={200}
@@ -38,11 +30,12 @@ export const AdminPage: React.FC<ScreenProps> = ({ navigation }) => {
           />
         </View>
         <AddTrace />
-        <MyIcon text="轨迹查询" navi="Trace" />
-        <MyIcon text="测试" navi="PolicyInquiry" />
+        <NavigableButton text="个人地点码" route="PersonalCode" />
+        <NavigableButton text="轨迹查询" route="Trace" />
+        <NavigableButton text="测试" route="PolicyInquiry" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.home} />
+      <BottomNavi tab={BottomTab.HOME} />
     </NativeBaseProvider>
   );
 };

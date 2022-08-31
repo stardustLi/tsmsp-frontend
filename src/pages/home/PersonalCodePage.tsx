@@ -1,27 +1,20 @@
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
-import { MyIcon } from 'components/MyIcon';
+import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider } from 'native-base';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
-import { UserInfo } from '../models/UserInfo';
+import { UserInfo } from 'models/UserInfo';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
 });
 
-export const PersonalCodePage: React.FC<ScreenProps> = ({ navigation }) => {
-  useEffect(() => {
-    setGlobalNavigation(navigation);
-  }, []);
-
+export const PersonalCodePage: React.FC = () => {
   const { userName } = UserStore();
 
   return (
@@ -33,13 +26,12 @@ export const PersonalCodePage: React.FC<ScreenProps> = ({ navigation }) => {
             color="black"
             size={300}
             value={JSON.stringify(UserInfo)}
-            // value={JSON.stringify(trace)}
           />
         </View>
-        <MyIcon text="返回" navi="Home" />
+        <NavigableButton text="返回" route="Home" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.home} />
+      <BottomNavi tab={BottomTab.HOME} />
     </NativeBaseProvider>
   );
 };

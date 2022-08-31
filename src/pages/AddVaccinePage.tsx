@@ -6,20 +6,21 @@ import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
+import { Trace } from 'models/Trace';
 import type { UserTrace } from 'models/UserTrace';
+import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { ScreenProps } from 'utils/navigation';
-import { Trace } from 'models/Trace';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-export const AddVaccinePage: React.FC<ScreenProps> = ({ navigation }) => {
-  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
-
+export const AddVaccinePage: React.FC = () => {
+  const navigation = globalNavigation()!;
   const { userName, idCard, token } = UserStore();
+
+  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
   async function fetchTrace() {
     try {

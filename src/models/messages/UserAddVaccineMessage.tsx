@@ -1,24 +1,14 @@
 import { IDCard } from 'models/IDCard';
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
 
-export class UserAddTraceMessage extends TSMSPMessage {
+export class UserAddVaccineMessage extends TSMSPMessage {
   userToken: string;
-  idCard: IDCard;
   manufacture: string;
-  now: Date;
-  vaccineType: number;
-  constructor(
-    userToken: string,
-    idCard: IDCard,
-    manufacture: string,
-    now: Date,
-    vaccineType: number
-  ) {
+  time: number;
+  constructor(userToken: string, manufacture: string, time: number) {
     super();
     this.userToken = userToken;
-    this.idCard = idCard;
     this.manufacture = manufacture;
-    this.now = now;
-    this.vaccineType = vaccineType;
+    this.time = time;
   }
 }

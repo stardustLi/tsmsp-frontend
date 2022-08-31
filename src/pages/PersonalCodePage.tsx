@@ -1,5 +1,6 @@
 import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
+import { MyIcon } from 'components/MyIcon';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider } from 'native-base';
@@ -35,6 +36,7 @@ export const PersonalCodePage: React.FC<ScreenProps> = ({ navigation }) => {
             // value={JSON.stringify(trace)}
           />
         </View>
+        <MyIcon text="返回" navi="Home" />
         <StatusBar style="auto" />
       </View>
       <BottomNavi tab={BottomTab.home} />

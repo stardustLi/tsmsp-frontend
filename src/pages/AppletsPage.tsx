@@ -53,9 +53,9 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
             text1={'疫苗\n查询'}
             text2={'疫苗\n预约'}
             text3={'记录\n疫苗'}
-            navi1="Home"
+            navi1="ShowVaccine"
             navi2="Home"
-            navi3="Home"
+            navi3="AddVaccine"
             title="疫苗核酸"
             colour={400}
           />

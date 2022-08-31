@@ -40,6 +40,8 @@ export type RootStackParamList = {
   MyInfo: undefined;
   Admin: undefined;
   PersonalCode: undefined;
+  AddVaccine: undefined;
+  ShowVaccine: undefined;
 };
 
 export default function App() {
@@ -130,6 +132,16 @@ export default function App() {
           <Stack.Screen
             name="PersonalCode"
             component={PersonalCodePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddVaccine"
+            component={AddVaccinePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ShowVaccine"
+            component={ShowVaccinePage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

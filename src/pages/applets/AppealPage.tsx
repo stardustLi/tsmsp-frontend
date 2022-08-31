@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { TextInput } from 'components/TextInput';
@@ -6,7 +7,7 @@ import { UserStore } from 'libs/UserStore';
 import { UserAppealMessage } from 'models/messages/UserAppealMessage';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -79,9 +80,7 @@ export const AppealPage: React.FC = () => {
           type="text"
           width="300"
         />
-        <Pressable onPress={Appeal} style={baseStyle.button}>
-          <Text>提交</Text>
-        </Pressable>
+        <Button text="提交" onPress={Appeal} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

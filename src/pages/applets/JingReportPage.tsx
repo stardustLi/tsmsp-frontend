@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { Checkbox } from 'components/Checkbox';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
@@ -5,9 +6,9 @@ import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { JingReportMessage } from 'models/messages/JingReportMessage';
-import { NativeBaseProvider, Text, VStack } from 'native-base';
+import { NativeBaseProvider, Text } from 'native-base';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { alertBox } from 'utils/alert';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -46,19 +47,17 @@ export const JingReportPage: React.FC = () => {
     <NativeBaseProvider>
       <Header content="进京报备" />
       <View style={styles.container}>
-        <VStack space={1} alignItems="center">
-          <Text
-            bold
-            italic
-            underline
-            highlight
-            _dark={{
-              color: 'coolgray.800',
-            }}
-          >
-            报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规。
-          </Text>
-        </VStack>
+        <Text
+          bold
+          italic
+          underline
+          highlight
+          _dark={{
+            color: 'coolgray.800',
+          }}
+        >
+          报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规。
+        </Text>
         <TextInput
           text={userName}
           setText={setUserName}
@@ -88,9 +87,7 @@ export const JingReportPage: React.FC = () => {
           checked={checkedSecond}
           handleChange={setCheckedSecond}
         />
-        <Pressable onPress={JingReport} style={baseStyle.button}>
-          <Text>提交</Text>
-        </Pressable>
+        <Button text="提交" onPress={JingReport} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

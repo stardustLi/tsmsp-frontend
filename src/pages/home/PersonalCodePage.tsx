@@ -1,4 +1,4 @@
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
+import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
@@ -27,7 +27,7 @@ export const PersonalCodePage: React.FC = () => {
         <NavigableButton text="返回" route="Home" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.HOME} />
+      <BottomBar tab={BottomTab.HOME} />
     </NativeBaseProvider>
   );
 };

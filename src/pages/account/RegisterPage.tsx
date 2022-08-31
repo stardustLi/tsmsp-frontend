@@ -1,3 +1,4 @@
+import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -8,7 +9,7 @@ import {
 } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -75,15 +76,11 @@ export const RegisterPage: React.FC = () => {
           value={idCard}
           onChangeText={(newText) => setIdCard(newText)}
         />
-        <Pressable onPress={register} style={baseStyle.button}>
-          <Text>注册</Text>
-        </Pressable>
-        <Pressable
+        <Button text="注册" onPress={register} />
+        <Button
+          text="切换至登录界面"
           onPress={() => navigation.navigate('Login')}
-          style={baseStyle.button}
-        >
-          <Text>切换至登录界面</Text>
-        </Pressable>
+        />
         <StatusBar style="auto" />
       </View>
     </>

@@ -1,5 +1,5 @@
 import { AddTrace } from 'components/AddTrace';
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
+import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
@@ -33,7 +33,7 @@ export const AdminPage: React.FC = () => {
         <NavigableButton text="测试" route="PolicyInquiry" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.HOME} />
+      <BottomBar tab={BottomTab.HOME} />
     </NativeBaseProvider>
   );
 };

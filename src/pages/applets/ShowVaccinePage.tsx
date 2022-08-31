@@ -1,13 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-
+import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
+import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
 import { Trace } from 'models/Trace';
 import type { UserTrace } from 'models/UserTrace';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -52,12 +52,7 @@ export const ShowVaccinePage: React.FC = () => {
       <Header content={`${userName} 的行程记录`} />
       <View style={styles.container}>
         <TraceTable data={traceHistory} />
-        <Pressable
-          onPress={() => navigation.navigate('Home')}
-          style={baseStyle.button}
-        >
-          <Text>返回</Text>
-        </Pressable>
+        <Button text="返回" onPress={() => navigation.navigate('Home')} />
         <StatusBar style="auto" />
       </View>
     </>

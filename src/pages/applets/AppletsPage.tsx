@@ -1,12 +1,12 @@
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
-import { Header } from 'components/Header';
 import { AppletsRow } from 'components/AppletsRow';
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Header } from 'components/Header';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import * as baseStyle from 'utils/styles';
-import { TabNames } from '../../../App';
+import type { TabNames } from '../../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -33,7 +33,7 @@ const applets: AppletCategory[] = [
         route: 'Appeal',
       },
       {
-        text: '在线\n申诉',
+        text: '进京\n报备',
         route: 'JingReport',
       },
     ],
@@ -98,19 +98,19 @@ export const AppletsPage: React.FC = () => {
       <View style={styles.container}>
         <ScrollView>
           <>
-            {applets.map((category, idx) => {
+            {applets.map((category, idx) => (
               <AppletsRow
                 key={category.category}
                 title={category.category}
                 applets={category.applets}
                 colour={300 + idx * 100}
-              />;
-            })}
+              />
+            ))}
           </>
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-      <BottomNavi tab={BottomTab.APPLETS} />
+      <BottomBar tab={BottomTab.APPLETS} />
     </NativeBaseProvider>
   );
 };

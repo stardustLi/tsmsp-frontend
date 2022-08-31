@@ -1,4 +1,4 @@
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
+import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
@@ -25,7 +25,7 @@ export const AccountPage: React.FC = () => {
         <NavigableButton text="进入管理员页面" route="Admin" />
         <StatusBar style="auto" />
       </View>
-      <BottomNavi tab={BottomTab.ACCOUNT} />
+      <BottomBar tab={BottomTab.ACCOUNT} />
     </NativeBaseProvider>
   );
 };

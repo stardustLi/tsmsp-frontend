@@ -1,3 +1,5 @@
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { TextInput } from 'components/TextInput';
@@ -10,15 +12,16 @@ import {
 } from 'libs/UserStore';
 import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';
-import { NativeBaseProvider, VStack } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
+  alignCenter: baseStyle.alignCenter,
 });
 
 export const LoginPage: React.FC = () => {
@@ -43,11 +46,10 @@ export const LoginPage: React.FC = () => {
   }
 
   return (
-    <ScrollView>
-      <NativeBaseProvider>
-        <VStack space="2.5" mt="20" px="8"></VStack>
-        <Header content="登录" />
-        <View style={styles.container}>
+    <NativeBaseProvider>
+      <Header content="登录" />
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.alignCenter}>
           <TextInput
             text={idcard}
             setText={setIdcard}
@@ -66,15 +68,14 @@ export const LoginPage: React.FC = () => {
             label="密码"
             type="password"
           />
-          <Pressable onPress={login} style={baseStyle.button}>
-            <Text>登录</Text>
-          </Pressable>
+          <Button text="登录" onPress={login} />
           <NavigableButton text="切换至注册界面" route="Register" />
           <NavigableButton text="小程序" route="Applets" />
           <NavigableButton text="测试" route="PolicyInquiry" />
           <StatusBar style="auto" />
-        </View>
-      </NativeBaseProvider>
-    </ScrollView>
+        </ScrollView>
+      </View>
+      <BottomBar tab={BottomTab.LOGIN} />
+    </NativeBaseProvider>
   );
 };

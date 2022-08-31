@@ -28,13 +28,11 @@ interface TextInputProps {
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
-  const width = props.width ?? 250;
-
   return (
     <NativeBaseProvider>
       <VStack space="2.5" mt="1" px="8"></VStack>
       <Box alignItems="center">
-        <Box w="100%" maxWidth={width} minWidth={width}>
+        <Box w="100%">
           <FormControl isRequired>
             <Stack mx="4">
               <FormControl.Label style={styles.label}>

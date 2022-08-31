@@ -1,14 +1,15 @@
+import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
+import { Trace } from 'models/Trace';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { Trace } from 'models/Trace';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -71,9 +72,7 @@ export const PolicyInquiryPage: React.FC = () => {
         ) : (
           <Text>暂无信息，请尝试在官方网站查找政策信息。</Text>
         )}
-        <Pressable onPress={PolicyInquiry} style={baseStyle.button}>
-          <Text>查询</Text>
-        </Pressable>
+        <Button text="查询" onPress={PolicyInquiry} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

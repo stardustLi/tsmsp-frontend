@@ -1,4 +1,4 @@
-import BottomNavi, { BottomTab } from 'components/BottomNavi';
+import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/Header';
 import { Label } from 'components/Label';
 import { NavigableButton } from 'components/NavigableButton';
@@ -35,8 +35,7 @@ export const MyInfoPage: React.FC = () => {
         <NavigableButton text="返回" route="Account" />
         <StatusBar style="auto" />
       </View>
-
-      <BottomNavi tab={BottomTab.ACCOUNT} />
+      <BottomBar tab={BottomTab.ACCOUNT} />
     </NativeBaseProvider>
   );
 };

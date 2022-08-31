@@ -4,7 +4,7 @@ import type {
 } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import create from 'zustand';
-import { TabNames } from '../../App';
+import type { TabNames } from '../../App';
 
 type RootStackParamList = { [key in TabNames]: undefined };
 type ScreenProps = NativeStackScreenProps<RootStackParamList>;

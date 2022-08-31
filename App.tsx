@@ -4,7 +4,7 @@ import { AccountPage } from 'pages/account/AccountPage';
 import { LoginPage } from 'pages/account/LoginPage';
 import { MyInfoPage } from 'pages/account/MyInfoPage';
 import { RegisterPage } from 'pages/account/RegisterPage';
-import { AddVaccinePage } from 'pages/AddVaccinePage';
+import { AddVaccinePage } from 'pages/applets/AddVaccinePage';
 import { AppealPage } from 'pages/applets/AppealPage';
 import { AppletsPage } from 'pages/applets/AppletsPage';
 import { JingReportPage } from 'pages/applets/JingReportPage';

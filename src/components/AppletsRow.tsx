@@ -3,7 +3,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
-import { TabNames } from '../../App';
+import type { TabNames } from '../../App';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

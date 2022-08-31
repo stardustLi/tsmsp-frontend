@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
-import { TabNames } from '../../App';
+import type { TabNames } from '../../App';
 
 interface BottomBarProps {
   readonly tab: BottomTab;
@@ -64,32 +64,34 @@ const BottomNavi: React.FC<BottomBarProps> = (props) => {
           {Object.entries(tabs).map(
             ([key, { tab, text, icon, activeIcon }]) => {
               const isSelected = selected === tab;
-              <Pressable
-                key={key}
-                opacity={isSelected ? 1 : 0.5}
-                py="2"
-                flex={1}
-                onPress={() => {
-                  navigation.navigate(key as TabNames);
-                  setSelected(tab);
-                }}
-              >
-                <Center>
-                  <Icon
-                    mb="1"
-                    as={
-                      <MaterialCommunityIcons
-                        name={isSelected ? activeIcon : icon}
-                      />
-                    }
-                    color="white"
-                    size="sm"
-                  />
-                  <Text color="white" fontSize="12">
-                    {text}
-                  </Text>
-                </Center>
-              </Pressable>;
+              return (
+                <Pressable
+                  key={key}
+                  opacity={isSelected ? 1 : 0.5}
+                  py="2"
+                  flex={1}
+                  onPress={() => {
+                    navigation.navigate(key as TabNames);
+                    setSelected(tab);
+                  }}
+                >
+                  <Center>
+                    <Icon
+                      mb="1"
+                      as={
+                        <MaterialCommunityIcons
+                          name={isSelected ? activeIcon : icon}
+                        />
+                      }
+                      color="white"
+                      size="sm"
+                    />
+                    <Text color="white" fontSize="12">
+                      {text}
+                    </Text>
+                  </Center>
+                </Pressable>
+              );
             }
           )}
         </HStack>
@@ -98,12 +100,10 @@ const BottomNavi: React.FC<BottomBarProps> = (props) => {
   );
 };
 
-const BottomBar: React.FC<BottomBarProps> = (props) => {
+export const BottomBar: React.FC<BottomBarProps> = (props) => {
   return (
-    <Center flex={1} px="3">
+    <Center height={50} px="3">
       <BottomNavi tab={props.tab} />
     </Center>
   );
 };
-
-export default BottomBar;

@@ -15,6 +15,9 @@ export const baseBorder = <const>{
       textAlign: 'center',
       width: 200,
     },
+  alignCenter = <const>{
+    alignItems: 'center',
+  },
   container = <const>{
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -23,7 +26,7 @@ export const baseBorder = <const>{
     borderTopWidth: 0,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    flex: 12,
+    flex: 1,
     justifyContent: 'center',
   },
   press = <const>{

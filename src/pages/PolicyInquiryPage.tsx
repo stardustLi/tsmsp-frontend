@@ -22,23 +22,17 @@ export const PolicyInquiryPage: React.FC<ScreenProps> = ({ navigation }) => {
     setGlobalNavigation(navigation);
   }, []);
 
-  const [trace, setTrace] = useState(new Trace('', '', ''));
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
   const [message, setMessage] = useState<string | null>(null);
 
   async function PolicyInquiry() {
-    trace.province = province;
-    trace.city = city;
-    trace.county = county;
-    setTrace(trace);
     try {
-      const response = await send(new PolicyQueryMessage(trace));
-      if (response.status !== 0) throw new Error(response.message);
-      setMessage(response.message);
-      //setGlobalUserName(userName);
-      //navigation.navigate('Applets');
+      const response = await send(
+        new PolicyQueryMessage(new Trace(province, city, county))
+      );
+      setMessage(response);
     } catch (e) {
       console.error(e);
     }

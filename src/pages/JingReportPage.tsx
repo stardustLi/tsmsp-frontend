@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-//import "./styles.css";
 import { MyCheckBox } from 'components/MyCheckBox';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';

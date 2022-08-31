@@ -31,6 +31,7 @@ export const HomePage: React.FC<ScreenProps> = ({ navigation }) => {
       <Header content={`${userName} 的北京健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
+          {/* TODO: 时间 */}
           <QRCode
             color="red"
             size={200}

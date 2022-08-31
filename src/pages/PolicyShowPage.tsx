@@ -22,7 +22,7 @@ export const PolicyShowPage: React.FC<ScreenProps> = ({ navigation }) => {
     setGlobalNavigation(navigation);
   }, []);
 
-  const [trace, setTrace] = useState<Trace>(new Trace('', '', ''));
+  const [trace /* setTrace */] = useState<Trace>(new Trace('', '', ''));
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');

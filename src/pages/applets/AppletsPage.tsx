@@ -26,68 +26,68 @@ const applets: AppletCategory[] = [
     applets: [
       {
         text: '政策\n查询',
-        route: 'PolicyInquiry'
+        route: 'PolicyInquiry',
       },
       {
         text: '在线\n申诉',
-        route: 'Appeal'
+        route: 'Appeal',
       },
       {
         text: '在线\n申诉',
-        route: 'JingReport'
+        route: 'JingReport',
       },
-    ]
+    ],
   },
   {
     category: '疫苗核酸',
     applets: [
       {
         text: '疫苗\n查询',
-        route: 'ShowVaccine'
+        route: 'ShowVaccine',
       },
       {
         text: '疫苗\n预约',
-        route: 'Home'
+        route: 'Home',
       },
       {
         text: '记录\n疫苗',
-        route: 'AddVaccine'
+        route: 'AddVaccine',
       },
-    ]
+    ],
   },
   {
     category: '猫猫宽宽',
     applets: [
       {
         text: '健康码\n代查',
-        route: 'ShowVaccine'
+        route: 'ShowVaccine',
       },
       {
         text: '猫猫',
-        route: 'Home'
+        route: 'Home',
       },
       {
         text: '返回',
-        route: 'Home'
+        route: 'Home',
       },
-    ]
+    ],
   },
   {
     category: '猫猫真猫',
     applets: [
       {
         text: '小猫',
-        route: 'ShowVaccine'
+        route: 'ShowVaccine',
       },
       {
         text: '猫猫',
-        route: 'Home'
+        route: 'Home',
       },
       {
         text: '返回',
-        route: 'Home'
+        route: 'Home',
       },
-    ]
+    ],
   },
 ];
 
@@ -98,16 +98,14 @@ export const AppletsPage: React.FC = () => {
       <View style={styles.container}>
         <ScrollView>
           <>
-            {
-              applets.map((category, idx) => {
-                <AppletsRow
-                  key={category.category}
-                  title={category.category}
-                  applets={category.applets}
-                  colour={300 + idx * 100}
-                />
-              })
-            }
+            {applets.map((category, idx) => {
+              <AppletsRow
+                key={category.category}
+                title={category.category}
+                applets={category.applets}
+                colour={300 + idx * 100}
+              />;
+            })}
           </>
           <StatusBar style="auto" />
         </ScrollView>

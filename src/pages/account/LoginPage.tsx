@@ -6,7 +6,7 @@ import {
   setGlobalIDCard,
   setGlobalRealName,
   setGlobalUserName,
-  setUserToken
+  setUserToken,
 } from 'libs/UserStore';
 import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
 import { UserLoginMessage } from 'models/messages/UserLoginMessage';

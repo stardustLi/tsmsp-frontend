@@ -52,16 +52,14 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {
-            Object.entries(Tabs).map(([key, page]) => (
-              <Stack.Screen
-                key={key}
-                name={key}
-                component={PageWrapper(page)}
-                options={{ headerShown: false }}
-              />
-            ))
-          }
+          {Object.entries(Tabs).map(([key, page]) => (
+            <Stack.Screen
+              key={key}
+              name={key}
+              component={PageWrapper(page)}
+              options={{ headerShown: false }}
+            />
+          ))}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

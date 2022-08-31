@@ -29,25 +29,25 @@ const tabs = {
     tab: BottomTab.HOME,
     text: 'Home',
     icon: 'home-outline' as const,
-    activeIcon: 'home' as const
+    activeIcon: 'home' as const,
   },
   Applets: {
     tab: BottomTab.APPLETS,
     text: 'Applets',
     icon: 'menu' as const,
-    activeIcon: 'menu' as const
+    activeIcon: 'menu' as const,
   },
   Login: {
     tab: BottomTab.LOGIN,
     text: 'Login',
     icon: 'cart-outline' as const,
-    activeIcon: 'cart' as const
+    activeIcon: 'cart' as const,
   },
   Account: {
     tab: BottomTab.ACCOUNT,
     text: 'Account',
     icon: 'account-outline' as const,
-    activeIcon: 'account' as const
+    activeIcon: 'account' as const,
   },
 };
 
@@ -61,12 +61,12 @@ const BottomNavi: React.FC<BottomBarProps> = (props) => {
       <Box flex={1} bg="red" safeAreaTop width={widthScreen} alignSelf="center">
         <Center flex={1}></Center>
         <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
-          {
-            Object.entries(tabs).map(([key, { tab, text, icon, activeIcon }]) => {
+          {Object.entries(tabs).map(
+            ([key, { tab, text, icon, activeIcon }]) => {
               const isSelected = selected === tab;
               <Pressable
                 key={key}
-                opacity={isSelected ? 1 : .5}
+                opacity={isSelected ? 1 : 0.5}
                 py="2"
                 flex={1}
                 onPress={() => {
@@ -89,9 +89,9 @@ const BottomNavi: React.FC<BottomBarProps> = (props) => {
                     {text}
                   </Text>
                 </Center>
-              </Pressable>
-            })
-          }
+              </Pressable>;
+            }
+          )}
         </HStack>
       </Box>
     </NativeBaseProvider>

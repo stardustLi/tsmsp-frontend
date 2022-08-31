@@ -6,7 +6,6 @@ import { Pressable, Text } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { TextInput } from './TextInput';
 
 export const AddTrace: React.FC = () => {
   const navigation = globalNavigation()!;

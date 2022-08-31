@@ -4,7 +4,7 @@ import {
   setGlobalIDCard,
   setGlobalRealName,
   setGlobalUserName,
-  setUserToken
+  setUserToken,
 } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
 import React, { useState } from 'react';

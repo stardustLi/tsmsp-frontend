@@ -29,25 +29,23 @@ export const AppletsRow: React.FC<AppletsRowProps> = (props) => {
     <VStack space="2.5" mt="4" px="8">
       <Heading size="md">{props.title}</Heading>
       <Stack direction="row" mb="2.5" mt="1.5" space={3}>
-        {
-          props.applets.map(({ text, route }, idx) => (
-            <Center
-              key={text}
-              size="24"
-              bg={`${tone}.${props.colour + idx * 100}`}
-              rounded="sm"
-              _text={{
-                color: 'warmGray.50',
-                fontWeight: 'medium',
-              }}
-              shadow="3"
-            >
-              <Pressable onPress={() => navigation.navigate(route)}>
-                <Text style={styles.label}>{text}</Text>
-              </Pressable>
-            </Center>
-          ))
-        }
+        {props.applets.map(({ text, route }, idx) => (
+          <Center
+            key={text}
+            size="24"
+            bg={`${tone}.${props.colour + idx * 100}`}
+            rounded="sm"
+            _text={{
+              color: 'warmGray.50',
+              fontWeight: 'medium',
+            }}
+            shadow="3"
+          >
+            <Pressable onPress={() => navigation.navigate(route)}>
+              <Text style={styles.label}>{text}</Text>
+            </Pressable>
+          </Center>
+        ))}
       </Stack>
       <Divider />
     </VStack>

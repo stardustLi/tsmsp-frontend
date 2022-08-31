@@ -22,11 +22,7 @@ export const PersonalCodePage: React.FC = () => {
       <Header content={`${userName} 的个人地点码`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <QRCode
-            color="black"
-            size={300}
-            value={JSON.stringify(UserInfo)}
-          />
+          <QRCode color="black" size={300} value={JSON.stringify(UserInfo)} />
         </View>
         <NavigableButton text="返回" route="Home" />
         <StatusBar style="auto" />

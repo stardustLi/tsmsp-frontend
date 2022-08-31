@@ -3,13 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
-import { UserAddTraceWithPeopleMessage } from 'models/messages/UserAddTraceWithPeopleMessage';
 import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
+import { UserAddTraceWithPeopleMessage } from 'models/messages/UserAddTraceWithPeopleMessage';
 import { Trace } from 'models/Trace';
 import { UserInfo } from 'models/UserInfo';
 import { ScreenProps } from 'utils/navigation';
 import { send } from 'utils/web';
-import { alertBox } from 'utils/alert';
 
 const styles = StyleSheet.create({
   container: {

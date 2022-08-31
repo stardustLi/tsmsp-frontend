@@ -1,26 +1,19 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
-  VStack,
-  Center,
-  ScrollView,
-  Stack,
-  Divider,
-  Heading,
   Box,
   FormControl,
   Input,
-  WarningOutlineIcon,
   NativeBaseProvider,
+  Stack,
+  VStack,
+  WarningOutlineIcon,
 } from 'native-base';
-import * as baseStyle from 'utils/styles';
-import { globalNavigation } from 'utils/navigation';
-import { RootStackParamList } from '../../App';
-import { Header } from './Header';
 import { InterfaceInputProps } from 'native-base/lib/typescript/components/primitives/Input/types';
+import React, { Dispatch } from 'react';
+import { StyleSheet } from 'react-native';
+import * as baseStyle from 'utils/styles';
+
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label,
 });
@@ -32,13 +25,11 @@ interface TextInProps {
   readonly reminder?: string;
   readonly warn?: boolean;
   readonly width?: string;
-  // readonly warn2?: InterfaceFormControlProps.isRequired;
 }
 
 export const TextIn: React.FC<TextInProps> = (props) => {
-  const warn: boolean = props.warn ?? true;
+  // const warn: boolean = props.warn ?? true;
   const width = props.width ?? 250;
-  //const tone = props.tone ?? 'info';
 
   return (
     <NativeBaseProvider>

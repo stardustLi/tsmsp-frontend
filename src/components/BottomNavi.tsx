@@ -1,24 +1,17 @@
-import React from 'react';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
-  NativeBaseProvider,
   Box,
-  Text,
-  Heading,
-  VStack,
-  FormControl,
-  Input,
-  Link,
-  Button,
-  Icon,
-  HStack,
   Center,
+  HStack,
+  Icon,
+  NativeBaseProvider,
   Pressable,
+  Text,
 } from 'native-base';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import React from 'react';
 import { Dimensions } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import { RootStackParamList } from '../../App';
-import { propsFlattener } from 'native-base/lib/typescript/hooks/useThemeProps/propsFlattener';
 
 interface BottomBarProps {
   readonly tab: BottomTab;
@@ -41,7 +34,7 @@ export enum BottomTab {
 const BottomNavi: React.FC<BottomNaviProps> = (props) => {
   const navigation = globalNavigation()!;
   const [selected, setSelected] = React.useState<BottomTab>(props.tab);
-  const { width: widthScreen, height: heightScreen } = Dimensions.get('window');
+  const { width: widthScreen } = Dimensions.get('window');
 
   return (
     <NativeBaseProvider>

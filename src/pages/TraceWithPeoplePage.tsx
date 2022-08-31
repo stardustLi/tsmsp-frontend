@@ -7,13 +7,12 @@ import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceWithPeopleMessage } from 'models/messages/UserGetTraceWithPeopleMessage';
 import type { UserTrace } from 'models/UserTrace';
+import { ScreenProps } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { ScreenProps } from 'utils/navigation';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
 });
 
 export const TraceWithPeoplePage: React.FC<ScreenProps> = ({ navigation }) => {

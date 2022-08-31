@@ -2,7 +2,6 @@ import { Header } from 'components/Header';
 import { MyIcon } from 'components/MyIcon';
 import { TextIn } from 'components/TextIn';
 import { StatusBar } from 'expo-status-bar';
-import { APIUrl } from 'libs/api/url';
 import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';

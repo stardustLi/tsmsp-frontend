@@ -13,7 +13,6 @@ import { JingReportMessage } from 'models/messages/JingReportMessage';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import { alertBox } from 'utils/alert';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
-//import theme, { ITheme } from "./theme";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

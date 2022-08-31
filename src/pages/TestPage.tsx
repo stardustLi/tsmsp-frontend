@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Header } from 'components/Header';
 import { MyIcon as Icon } from 'components/MyIcon';
-import { UserTestMessage } from 'models/messages/UserTestMessage';
 import { NativeBaseProvider } from 'native-base';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
-import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

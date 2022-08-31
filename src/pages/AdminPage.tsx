@@ -25,7 +25,7 @@ export const AdminPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   alertBox('Fish is coming!!!');
   const { userName } = UserStore();
-  const [selected, setSelected] = React.useState(1);
+
   return (
     <NativeBaseProvider>
       <Header content={`${userName} 的北京健康宝`} />

@@ -1,26 +1,17 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import {
-  VStack,
-  Center,
-  ScrollView,
-  Stack,
-  Divider,
-  Heading,
-} from 'native-base';
-import { NativeBaseProvider } from 'native-base';
-import * as baseStyle from 'utils/styles';
+import { Center, Divider, Heading, Stack, VStack } from 'native-base';
+import React from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
+import * as baseStyle from 'utils/styles';
 import { RootStackParamList } from '../../App';
-import { Header } from './Header';
+
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  //button: baseStyle.button,
   input: baseStyle.input,
   label: baseStyle.label2,
 });
+
 interface HeaderProps {
-  //readonly content: string;
   readonly title?: string;
   readonly text1: string;
   readonly text2: string;

@@ -29,7 +29,7 @@ export const AppealPage: React.FC<ScreenProps> = ({ navigation }) => {
 
   async function Appeal() {
     try {
-      const response = await send(new UserAppealMessage(idCard, reason, token));
+      await send(new UserAppealMessage(idCard, reason, token));
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);

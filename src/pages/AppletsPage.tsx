@@ -2,13 +2,11 @@ import BottomNavi, { BottomTab } from 'components/BottomNavi';
 import { Header } from 'components/Header';
 import { MyBox } from 'components/MyBox';
 import { StatusBar } from 'expo-status-bar';
-import { UserTestMessage } from 'models/messages/UserTestMessage';
 import { NativeBaseProvider } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ScreenProps, setGlobalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
-import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -20,7 +18,7 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
   useEffect(() => {
     setGlobalNavigation(navigation);
   }, []);
-
+  /*
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
@@ -35,7 +33,7 @@ export const AppletsPage: React.FC<ScreenProps> = ({ navigation }) => {
       console.error(e);
     }
   }
-
+*/
   return (
     <NativeBaseProvider>
       <Header content="小程序" />

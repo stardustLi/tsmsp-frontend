@@ -7,7 +7,6 @@ interface LabelProps {
 
 export const Label: React.FC<LabelProps> = (props) => {
   return (
-    <NativeBaseProvider>
       <Box alignItems="center">
         <HStack
           space={4}
@@ -25,6 +24,5 @@ export const Label: React.FC<LabelProps> = (props) => {
           ))}
         </HStack>
       </Box>
-    </NativeBaseProvider>
   );
 };

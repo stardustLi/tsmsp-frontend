@@ -6,6 +6,7 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import {
   setGlobalIDCard,
+  setGlobalPassword,
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
@@ -35,8 +36,9 @@ export const RegisterPage: React.FC = () => {
         new UserRegisterMessage(userName, password, realName, idCard)
       );
       setGlobalUserName(userName);
+      setGlobalPassword(password);
       setGlobalRealName(realName);
-      setGlobalIDCard(idCard);
+      setGlobalIDCard(idCard.toLowerCase());
       setUserToken(token);
       navigation.navigate('Home');
     } catch (e) {

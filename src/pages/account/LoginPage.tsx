@@ -10,6 +10,7 @@ import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import {
   setGlobalIDCard,
+  setGlobalPassword,
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
@@ -38,6 +39,7 @@ export const LoginPage: React.FC = () => {
       setGlobalUserName(userName);
       setUserToken(token);
       const userInfo = await send(new UserGetProfileMessage(token));
+      setGlobalPassword(userInfo.password);
       setGlobalRealName(userInfo.realName);
       setGlobalIDCard(userInfo.idCard);
       navigation.navigate('Home');

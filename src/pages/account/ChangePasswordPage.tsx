@@ -11,14 +11,17 @@ import { TextInput } from 'components/ui/TextInput';
 import {
   setGlobalIDCard,
   setGlobalRealName,
+  setGlobalUserName,
   setUserToken,
   UserStore,
 } from 'libs/UserStore';
-import { UserChangePasswordMessage } from 'models/messages/user/common/UserChangePasswordMessage';
 import { UserGetProfileMessage } from 'models/messages/user/common/UserGetProfileMessage';
+import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import { UserChangePasswordMessage } from 'models/messages/user/common/UserChangePasswordMessage';
+import { alertBox } from 'utils/alert';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -28,34 +31,40 @@ const styles = StyleSheet.create({
 export const ChangePasswordPage: React.FC = () => {
   const navigation = globalNavigation()!;
 
-  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [ensureNewPassword, setEnsureNewPassword] = useState('');
-  const { token } = UserStore();
+  const { password, token } = UserStore();
   async function changePassword() {
-    try {
-      const newToken = await send(
-        new UserChangePasswordMessage(token, password)
-      );
-      setUserToken(newToken);
-      const userInfo = await send(new UserGetProfileMessage(newToken));
-      setGlobalRealName(userInfo.realName);
-      setGlobalIDCard(userInfo.idCard);
-      navigation.navigate('Account');
-    } catch (e) {
-      console.error(e);
+    if (inputPassword == password) {
+      if (newPassword == ensureNewPassword){
+        try {
+          await send(new UserChangePasswordMessage(token, newPassword));
+          alertBox('修改成功！');
+          navigation.navigate('Applets');
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      else {
+        alertBox('两次输入的新密码不匹配！');
+      }
+
+    } else {
+      alertBox('旧密码不正确！');
     }
   }
 
   return (
     <NativeBaseProvider>
-      <Header content="登录" />
+      <Header content="修改密码" />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.alignCenter}>
           <VStack minHeight={50}></VStack>
           <TextInput
-            text={password}
-            setText={setPassword}
+            text={inputPassword}
+            setText={setInputPassword}
             label="请输入旧密码"
             type="password"
           />

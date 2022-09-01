@@ -5,6 +5,7 @@ interface UserInfo {
   realName: string;
   idCard: string;
   token: string;
+  password: string;
 }
 
 export const UserStore = create<UserInfo>(() => ({

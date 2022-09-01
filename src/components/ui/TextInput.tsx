@@ -30,37 +30,29 @@ interface TextInputProps {
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
   return (
-    <NativeBaseProvider>
-      <VStack space="2.5" mt="1" px="8"></VStack>
-      <Box alignItems="center">
-        <Box w="100%">
-          <FormControl isRequired>
-            <Stack mx="4">
-              <FormControl.Label style={styles.label}>
-                {props.label}
-              </FormControl.Label>
-              <Input
-                style={styles.input}
-                type={props.type}
-                defaultValue=""
-                placeholder={props.label}
-                value={props.text}
-                onChangeText={props.setText}
-              />
-              <FormControl.HelperText>
-                {/* Must be atleast 6 characters. */}
-                {props.reminder}
-              </FormControl.HelperText>
-              <FormControl.ErrorMessage
-                leftIcon={<WarningOutlineIcon size="xs" />}
-              >
-                Atleast 6 characters are required.
-              </FormControl.ErrorMessage>
-            </Stack>
-          </FormControl>
-        </Box>
-      </Box>
-      <VStack space="2.5" mt="4" px="8"></VStack>
-    </NativeBaseProvider>
+    <FormControl isRequired>
+      <Stack mx="4">
+        <FormControl.Label style={styles.label}>
+          {props.label}
+        </FormControl.Label>
+        <Input
+          style={styles.input}
+          type={props.type}
+          defaultValue=""
+          placeholder={props.label}
+          value={props.text}
+          onChangeText={props.setText}
+        />
+        <FormControl.HelperText>
+          {/* Must be atleast 6 characters. */}
+          {props.reminder}
+        </FormControl.HelperText>
+        <FormControl.ErrorMessage
+          leftIcon={<WarningOutlineIcon size="xs" />}
+        >
+          Atleast 6 characters are required.
+        </FormControl.ErrorMessage>
+      </Stack>
+    </FormControl>
   );
 };

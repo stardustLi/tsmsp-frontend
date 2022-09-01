@@ -11,6 +11,7 @@ import { JingReportPage } from 'pages/applets/JingReportPage';
 import { PolicyShowPage } from 'pages/applets/PolicyShowPage';
 import { ShowVaccinePage } from 'pages/applets/ShowVaccinePage';
 import { AdminPage } from 'pages/home/AdminPage';
+import { AuthorityPage } from 'pages/account/AuthorityPage';
 import { HomePage } from 'pages/home/HomePage';
 import { PersonalCodePage } from 'pages/home/PersonalCodePage';
 import { PolicyInquiryPage } from 'pages/home/PolicyInquiryPage';
@@ -43,6 +44,7 @@ const Tabs = {
   PersonalCode: PersonalCodePage,
   AddVaccine: AddVaccinePage,
   ShowVaccine: ShowVaccinePage,
+  Authority: AuthorityPage,
 };
 
 export type TabNames = keyof typeof Tabs;

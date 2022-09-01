@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import type { UserVaccine } from 'models/UserVaccine';
-import { date2datestr } from 'utils/date';
+import { date2datestr, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ export const VaccineRow: React.FC<ListRenderItemInfo<UserVaccine>> = (
 ) => {
   return (
     <View style={styles.tableRow}>
-      <Text style={styles.tableCellTime}>{date2datestr(props.item.time)}</Text>
+      <Text style={styles.tableCellTime}>{date2datestr(zonedDate(props.item.time))}</Text>
       <Text style={styles.tableCellOther}>{props.item.manufacture}</Text>
       <Text style={styles.tableCellOther}>{props.item.vaccineType}</Text>
     </View>

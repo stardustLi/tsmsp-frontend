@@ -19,3 +19,7 @@ export function date2timestr(date: Date, UTC?: boolean) {
 export function date2str(date: Date, UTC?: boolean) {
   return date2datestr(date, UTC) + ' ' + date2timestr(date, UTC);
 }
+
+export function zonedDate(date: Date) {
+  return new Date(date.getTime() + 288e5);
+}

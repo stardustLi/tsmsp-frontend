@@ -40,24 +40,7 @@ const applets: AppletCategory[] = [
     ],
   },
   {
-    category: '疫苗核酸',
-    applets: [
-      {
-        text: '疫苗\n查询',
-        route: 'ShowVaccine',
-      },
-      {
-        text: '疫苗\n预约',
-        route: 'Home',
-      },
-      {
-        text: '记录\n疫苗',
-        route: 'AddVaccine',
-      },
-    ],
-  },
-  {
-    category: '猫猫宽宽',
+    category: '核酸服务',
     applets: [
       {
         text: '健康码\n代查',
@@ -70,6 +53,23 @@ const applets: AppletCategory[] = [
       {
         text: '返回',
         route: 'Home',
+      },
+    ],
+  },  
+  {
+    category: '疫苗服务',
+    applets: [
+      {
+        text: '疫苗\n查询',
+        route: 'ShowVaccine',
+      },
+      {
+        text: '疫苗\n预约',
+        route: 'Home',
+      },
+      {
+        text: '记录\n疫苗',
+        route: 'AddVaccine',
       },
     ],
   },

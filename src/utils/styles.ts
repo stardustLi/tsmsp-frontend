@@ -29,6 +29,11 @@ export const baseBorder = <const>{
     flex: 1,
     justifyContent: 'center',
   },
+  timeText = (color: string) => <const>{
+    alignItems: 'center',
+    color,
+    fontSize: 40,
+  },
   press = <const>{
     cursor: 'pointer',
   },
@@ -58,6 +63,9 @@ export const baseBorder = <const>{
     textAlign: 'left',
     width: 200,
   },
+  test = <const>{
+    top: 100,
+  },
   label2 = <const>{
     marginTop: 0,
     fontWeight: 'bold',
@@ -82,7 +90,7 @@ export const baseBorder = <const>{
   },
   tableCellTime = <const>{
     ...tableCell,
-    flex: 3,
+    flex: 5,
   },
   tableCellOther = <const>{
     ...tableCell,
@@ -99,7 +107,7 @@ export const baseBorder = <const>{
   },
   tableHeadCellTime = <const>{
     ...tableHeadCell,
-    flex: 3,
+    flex: 5,
   },
   tableHeadCellOther = <const>{
     ...tableHeadCell,

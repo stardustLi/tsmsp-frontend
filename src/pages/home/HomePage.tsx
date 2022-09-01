@@ -10,6 +10,7 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
+import { MyQRCode } from 'components/MyQRCode';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -20,20 +21,14 @@ export const HomePage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
-      <Header content={`${userName} 的北京健康宝`} />
+      <Header content={`${userName} 的猫宽健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          {/* TODO: 时间 */}
-          <QRCode
-            color="red"
-            size={200}
-            value="http://people.iiis.tsinghua.edu.cn/~yuanyang/index.html"
-          />
+          <MyQRCode color="red" />
         </View>
         <AddTrace />
         <NavigableButton text="个人地点码" route="PersonalCode" />
         <NavigableButton text="轨迹查询" route="Trace" />
-        <NavigableButton text="测试" route="PolicyInquiry" />
         <StatusBar style="auto" />
       </View>
       <BottomBar tab={BottomTab.HOME} />

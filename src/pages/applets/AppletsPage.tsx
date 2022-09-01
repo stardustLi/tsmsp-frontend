@@ -1,10 +1,11 @@
-import { AppletsRow } from 'components/AppletsRow';
-import { BottomBar, BottomTab } from 'components/BottomBar';
-import { Header } from 'components/Header';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
+
+import { AppletsRow } from 'components/AppletsRow';
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Header } from 'components/ui/Header';
 import * as baseStyle from 'utils/styles';
 import type { TabNames } from '../../../App';
 

@@ -1,14 +1,15 @@
-import { Button } from 'components/Button';
-import { Checkbox } from 'components/Checkbox';
-import { Header } from 'components/Header';
-import { NavigableButton } from 'components/NavigableButton';
-import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
-import { UserStore } from 'libs/UserStore';
-import { JingReportMessage } from 'models/messages/JingReportMessage';
 import { NativeBaseProvider, Text } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { Button } from 'components/ui/Button';
+import { Checkbox } from 'components/ui/Checkbox';
+import { Header } from 'components/ui/Header';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { TextInput } from 'components/ui/TextInput';
+import { UserStore } from 'libs/UserStore';
+import { JingReportMessage } from 'models/messages/code/JingReportMessage';
 import { alertBox } from 'utils/alert';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -23,12 +24,13 @@ const styles = StyleSheet.create({
 export const JingReportPage: React.FC = () => {
   const navigation = globalNavigation()!;
 
+  const { token } = UserStore();
+
   const [idCard, setIdCard] = useState('');
   const [reason, setReason] = useState('');
   const [userName, setUserName] = useState('');
   const [checkedFirst, setCheckedFirst] = useState(false);
   const [checkedSecond, setCheckedSecond] = useState(false);
-  const { token } = UserStore();
 
   async function JingReport() {
     if (checkedFirst && checkedSecond) {

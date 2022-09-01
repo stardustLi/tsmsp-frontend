@@ -1,13 +1,14 @@
-import { Button } from 'components/Button';
-import { Header } from 'components/Header';
-import { NavigableButton } from 'components/NavigableButton';
-import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
-import { PolicyQueryMessage } from 'models/messages/PolicyQueryMessage';
-import { Trace } from 'models/Trace';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { Trace } from 'models/Trace';
+import { Button } from 'components/ui/Button';
+import { Header } from 'components/ui/Header';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { TextInput } from 'components/ui/TextInput';
+import { PolicyQueryMessage } from 'models/messages/policy/PolicyQueryMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -18,13 +19,13 @@ const styles = StyleSheet.create({
 });
 
 export const PolicyShowPage: React.FC = () => {
-  const [trace /* setTrace */] = useState<Trace>(new Trace('', '', ''));
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
-  async function PolicyInquiry() {
+
+  async function PolicyQuery() {
     try {
-      await send(new PolicyQueryMessage(trace));
+      await send(new PolicyQueryMessage(new Trace(province, city, county)));
     } catch (e) {
       console.error(e);
     }
@@ -65,7 +66,7 @@ export const PolicyShowPage: React.FC = () => {
           label="区/县/街道/旗/自治县"
           type="text"
         />
-        <Button text="查询" onPress={PolicyInquiry} />
+        <Button text="查询" onPress={PolicyQuery} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

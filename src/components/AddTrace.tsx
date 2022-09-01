@@ -1,12 +1,13 @@
-import { UserStore } from 'libs/UserStore';
-import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
-import { Trace } from 'models/Trace';
 import React, { useState } from 'react';
 import { Text } from 'react-native';
+
+import { Button } from 'components/ui/Button';
+import { UserStore } from 'libs/UserStore';
+import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
+import { Trace } from 'models/Trace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { Button } from './Button';
 
 export const AddTrace: React.FC = () => {
   const navigation = globalNavigation()!;

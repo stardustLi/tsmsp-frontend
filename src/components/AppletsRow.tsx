@@ -1,6 +1,7 @@
 import { Center, Divider, Heading, Stack, VStack } from 'native-base';
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
+
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import type { TabNames } from '../../App';

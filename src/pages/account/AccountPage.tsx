@@ -1,11 +1,12 @@
-import { BottomBar, BottomTab } from 'components/BottomBar';
-import { Header } from 'components/Header';
-import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
-import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider } from 'native-base';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Header } from 'components/ui/Header';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({

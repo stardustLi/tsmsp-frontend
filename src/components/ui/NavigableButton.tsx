@@ -1,7 +1,8 @@
 import React from 'react';
 import { globalNavigation } from 'utils/navigation';
-import type { TabNames } from '../../App';
-import { Button } from 'components/Button';
+
+import { Button } from 'components/ui/Button';
+import type { TabNames } from '../../../App';
 
 interface NavigableButtonProps {
   readonly text: string;

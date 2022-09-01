@@ -1,20 +1,21 @@
-import { BottomBar, BottomTab } from 'components/BottomBar';
-import { Button } from 'components/Button';
-import { Header } from 'components/Header';
-import { NavigableButton } from 'components/NavigableButton';
-import { TextInput } from 'components/TextInput';
 import { StatusBar } from 'expo-status-bar';
+import { NativeBaseProvider } from 'native-base';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Button } from 'components/ui/Button';
+import { Header } from 'components/ui/Header';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { TextInput } from 'components/ui/TextInput';
 import {
   setGlobalIDCard,
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
 } from 'libs/UserStore';
-import { UserGetProfileMessage } from 'models/messages/UserGetProfileMessage';
-import { UserLoginMessage } from 'models/messages/UserLoginMessage';
-import { NativeBaseProvider } from 'native-base';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { UserGetProfileMessage } from 'models/messages/user/common/UserGetProfileMessage';
+import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';

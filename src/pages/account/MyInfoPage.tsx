@@ -1,12 +1,13 @@
-import { BottomBar, BottomTab } from 'components/BottomBar';
-import { Header } from 'components/Header';
-import { Label } from 'components/Label';
-import { NavigableButton } from 'components/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
-import { UserStore } from 'libs/UserStore';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Header } from 'components/ui/Header';
+import { Label } from 'components/ui/Label';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
@@ -14,9 +15,7 @@ const styles = StyleSheet.create({
 });
 
 export const MyInfoPage: React.FC = () => {
-  const { userName } = UserStore();
-
-  const [idCard] = useState('');
+  const { userName, realName, idCard } = UserStore();
 
   return (
     <NativeBaseProvider>
@@ -28,6 +27,9 @@ export const MyInfoPage: React.FC = () => {
           <Text>{userName}</Text>
         </VStack>
         <Label text="姓名" />
+        <VStack space={1} alignItems="center">
+          <Text>{realName}</Text>
+        </VStack>
         <Label text="身份证号" />
         <VStack space={1} alignItems="center">
           <Text>{idCard}</Text>

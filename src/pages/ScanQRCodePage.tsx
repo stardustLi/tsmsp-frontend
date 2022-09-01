@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
-import { UserAddTraceMessage } from 'models/messages/UserAddTraceMessage';
-import { UserAddTraceWithPeopleMessage } from 'models/messages/UserAddTraceWithPeopleMessage';
+import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
+import { UserAddTraceWithPeopleMessage } from 'models/messages/trace/withPeople/UserAddTraceWithPeopleMessage';
 import { Trace } from 'models/Trace';
 import { UserInfo } from 'models/UserInfo';
 import { globalNavigation } from 'utils/navigation';
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
 export const ScanQRCodePage: React.FC = () => {
   const navigation = globalNavigation()!;
 
+  const { idCard, token } = UserStore();
+
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
-
-  const { idCard, token } = UserStore();
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -60,9 +60,11 @@ export const ScanQRCodePage: React.FC = () => {
     navigation.navigate('Home');
   };
 
-  if (hasPermission === null)
+  if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
-  else if (!hasPermission) return <Text>No access to camera</Text>;
+  } else if (!hasPermission) {
+    return <Text>No access to camera</Text>;
+  }
 
   return (
     <View style={styles.container}>

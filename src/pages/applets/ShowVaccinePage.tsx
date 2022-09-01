@@ -1,13 +1,14 @@
-import { Button } from 'components/Button';
-import { Header } from 'components/Header';
-import { VaccineTable } from 'components/VaccineTable';
 import { StatusBar } from 'expo-status-bar';
-import { UserStore } from 'libs/UserStore';
-import { UserGetVaccineMessage } from 'models/messages/UserGetVaccineMessage';
-import { RawUserVaccine, UserVaccine } from 'models/UserVaccine';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
+
+import { Button } from 'components/ui/Button';
+import { Header } from 'components/ui/Header';
+import { VaccineTable } from 'components/VaccineTable';
+import { UserStore } from 'libs/UserStore';
+import { UserGetVaccineMessage } from 'models/messages/vaccine/UserGetVaccineMessage';
+import { RawUserVaccine, UserVaccine } from 'models/UserVaccine';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
 
 export const ShowVaccinePage: React.FC = () => {
   const navigation = globalNavigation()!;
+
   const { userName, idCard, token } = UserStore();
 
   const [vaccineHistory, setVaccineHistory] = useState<UserVaccine[]>([]);

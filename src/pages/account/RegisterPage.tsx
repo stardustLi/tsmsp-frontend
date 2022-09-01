@@ -1,15 +1,16 @@
-import { Button } from 'components/Button';
-import { Header } from 'components/Header';
 import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+
+import { Button } from 'components/ui/Button';
+import { Header } from 'components/ui/Header';
 import {
   setGlobalIDCard,
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
 } from 'libs/UserStore';
-import { UserRegisterMessage } from 'models/messages/UserRegisterMessage';
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { UserRegisterMessage } from 'models/messages/user/common/UserRegisterMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';

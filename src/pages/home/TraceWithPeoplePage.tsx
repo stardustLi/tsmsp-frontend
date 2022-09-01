@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from 'components/Button';
-import { Header } from 'components/Header';
+import { Button } from 'components/ui/Button';
+import { Header } from 'components/ui/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
-import { UserGetTraceWithPeopleMessage } from 'models/messages/UserGetTraceWithPeopleMessage';
+import { UserGetTraceWithPeopleMessage } from 'models/messages/trace/withPeople/UserGetTraceWithPeopleMessage';
 import type { UserTrace } from 'models/UserTrace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 
 export const TraceWithPeoplePage: React.FC = () => {
   const navigation = globalNavigation()!;
+
   const { userName, token } = UserStore();
 
   const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);

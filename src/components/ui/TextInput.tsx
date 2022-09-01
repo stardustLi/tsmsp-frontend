@@ -10,6 +10,7 @@ import {
 import { InterfaceInputProps } from 'native-base/lib/typescript/components/primitives/Input/types';
 import React, { Dispatch } from 'react';
 import { StyleSheet } from 'react-native';
+
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { Divider, Heading, Input, Stack } from 'native-base';
+import { Input, Stack } from 'native-base';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as baseStyle from 'utils/styles';

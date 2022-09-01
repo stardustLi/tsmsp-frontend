@@ -33,7 +33,9 @@ export const TracePage: React.FC = () => {
         )
       );
       setTraceHistory(
-        traces.map(({ trace, time: timestamp }) => new UserTrace(trace, time))
+        traces.map(
+          ({ trace, time: timestamp }) => new UserTrace(trace, timestamp)
+        )
       );
     } catch (e) {
       console.error(e);

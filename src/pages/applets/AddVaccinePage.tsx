@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 export const AddVaccinePage: React.FC = () => {
   const navigation = globalNavigation()!;
-  
+
   const { idCard, token } = UserStore();
 
   const [manufacture, setManufacture] = useState('');
@@ -36,7 +36,9 @@ export const AddVaccinePage: React.FC = () => {
         throw new TypeError('你被猫猫抓走了');
       }
 
-      await send(new UserAddVaccineMessage(token, manufacture, time.getTime(), idCard));
+      await send(
+        new UserAddVaccineMessage(token, manufacture, time.getTime(), idCard)
+      );
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);
@@ -53,7 +55,6 @@ export const AddVaccinePage: React.FC = () => {
       <Header content="增加疫苗记录" />
       <View style={styles.container}>
         <TextInput
-
           text={manufacture}
           setText={setManufacture}
           label="疫苗生产机构"
@@ -63,19 +64,19 @@ export const AddVaccinePage: React.FC = () => {
           value={year}
           setValue={setYear}
           placeholder="年"
-          items={generateSelectItems(2019, 2022, year => year.toString())}
+          items={generateSelectItems(2019, 2022, (year) => year.toString())}
         />
         <Select
           value={month}
           setValue={setMonth}
           placeholder="月"
-          items={generateSelectItems(1, 12, month => months[month - 1])}
+          items={generateSelectItems(1, 12, (month) => `${months}月`)}
         />
         <Select
           value={day}
           setValue={setDay}
           placeholder="日"
-          items={generateSelectItems(1, 31, day => days[day])}
+          items={generateSelectItems(1, 31, (day) => `${day}日`)}
         />
         <Text>{year}</Text>
         {/* <TextInput

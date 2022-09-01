@@ -6,7 +6,12 @@ export class UserAddVaccineMessage extends TSMSPMessage {
   manufacture: string;
   time: number;
   idCard: IDCard;
-  constructor(userToken: string, manufacture: string, time: number, idCard: IDCard) {
+  constructor(
+    userToken: string,
+    manufacture: string,
+    time: number,
+    idCard: IDCard
+  ) {
     super();
     this.userToken = userToken;
     this.manufacture = manufacture;

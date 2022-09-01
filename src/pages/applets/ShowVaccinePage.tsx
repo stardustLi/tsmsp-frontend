@@ -1,6 +1,5 @@
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
-import { TraceTable } from 'components/TraceTable';
 import { VaccineTable } from 'components/VaccineTable';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
@@ -25,14 +24,12 @@ export const ShowVaccinePage: React.FC = () => {
   async function fetchVaccine() {
     try {
       const vaccines: RawUserVaccine[] = await send(
-        new UserGetVaccineMessage(
-          token,
-          idCard,
-        )
+        new UserGetVaccineMessage(token, idCard)
       );
       setVaccineHistory(
-        vaccines.map(({ manufacture, time: timestamp, vaccineType }) =>
-          new UserVaccine(manufacture, timestamp, vaccineType)
+        vaccines.map(
+          ({ manufacture, time: timestamp, vaccineType }) =>
+            new UserVaccine(manufacture, timestamp, vaccineType)
         )
       );
     } catch (e) {

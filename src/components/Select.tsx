@@ -1,4 +1,4 @@
-import { Box, Center, CheckIcon, Select as BaseSelect } from 'native-base';
+import { Box, Center, Select as BaseSelect } from 'native-base';
 import React, { Dispatch } from 'react';
 
 interface SelectProps {
@@ -22,11 +22,9 @@ export const Select: React.FC<SelectProps> = (props) => {
           mt={1}
           onValueChange={props.setValue}
         >
-          {
-            props.items.map(({ label, value }) => (
-              <BaseSelect.Item key={value} label={label} value={value} />
-            ))
-          }
+          {props.items.map(({ label, value }) => (
+            <BaseSelect.Item key={value} label={label} value={value} />
+          ))}
         </BaseSelect>
       </Box>
     </Center>

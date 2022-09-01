@@ -27,7 +27,9 @@ interface TraceTableProps {
 export const TraceRow: React.FC<ListRenderItemInfo<UserTrace>> = (props) => {
   return (
     <View style={styles.tableRow}>
-      <Text style={styles.tableCellTime}>{date2str(zonedDate(props.item.time))}</Text>
+      <Text style={styles.tableCellTime}>
+        {date2str(zonedDate(props.item.time))}
+      </Text>
       <Text style={styles.tableCellOther}>{props.item.trace.province}</Text>
       <Text style={styles.tableCellOther}>{props.item.trace.city}</Text>
       <Text style={styles.tableCellOther}>{props.item.trace.county}</Text>

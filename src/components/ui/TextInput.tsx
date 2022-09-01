@@ -1,12 +1,4 @@
-import {
-  Box,
-  FormControl,
-  Input,
-  NativeBaseProvider,
-  Stack,
-  VStack,
-  WarningOutlineIcon,
-} from 'native-base';
+import { FormControl, Input, Stack, WarningOutlineIcon } from 'native-base';
 import { InterfaceInputProps } from 'native-base/lib/typescript/components/primitives/Input/types';
 import React, { Dispatch } from 'react';
 import { StyleSheet } from 'react-native';
@@ -47,9 +39,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           {/* Must be atleast 6 characters. */}
           {props.reminder}
         </FormControl.HelperText>
-        <FormControl.ErrorMessage
-          leftIcon={<WarningOutlineIcon size="xs" />}
-        >
+        <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
           Atleast 6 characters are required.
         </FormControl.ErrorMessage>
       </Stack>

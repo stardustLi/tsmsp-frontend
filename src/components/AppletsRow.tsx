@@ -7,9 +7,7 @@ import * as baseStyle from 'utils/styles';
 import type { TabNames } from '../../App';
 
 const styles = StyleSheet.create({
-  container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label2,
+  label: baseStyle.labelWhite,
 });
 
 interface AppletsRowProps {

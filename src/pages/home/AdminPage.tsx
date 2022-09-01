@@ -6,10 +6,9 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { AppletsRow } from 'components/AppletsRow';
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
+import { NavigableButton } from 'components/ui/NavigableButton';
 import * as baseStyle from 'utils/styles';
 import type { TabNames } from '../../../App';
-import { NavigableButton } from 'components/ui/NavigableButton';
-import { YellowNavigableButton } from 'components/ui/YellowNavigableButton';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -57,7 +56,7 @@ const applets: AppletCategory[] = [
         route: 'Home',
       },
     ],
-  },  
+  },
   {
     category: '疫苗服务',
     applets: [
@@ -90,7 +89,7 @@ export const AdminPage: React.FC = () => {
                 title={category.category}
                 applets={category.applets}
                 colour={300 + idx * 100}
-                tone='yellow'
+                tone="yellow"
               />
             ))}
           </>
@@ -98,7 +97,7 @@ export const AdminPage: React.FC = () => {
           <StatusBar style="auto" />
         </ScrollView>
         <Center>
-          <YellowNavigableButton text="返回" route="Account" />
+          <NavigableButton color="yellow" text="返回" route="Account" />
         </Center>
       </View>
       <BottomBar tab={BottomTab.ACCOUNT} />

@@ -29,7 +29,9 @@ export const VaccineRow: React.FC<ListRenderItemInfo<UserVaccine>> = (
 ) => {
   return (
     <View style={styles.tableRow}>
-      <Text style={styles.tableCellTime}>{date2datestr(zonedDate(props.item.time))}</Text>
+      <Text style={styles.tableCellTime}>
+        {date2datestr(zonedDate(props.item.time))}
+      </Text>
       <Text style={styles.tableCellOther}>{props.item.manufacture}</Text>
       <Text style={styles.tableCellOther}>{props.item.vaccineType}</Text>
     </View>

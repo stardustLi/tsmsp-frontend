@@ -7,8 +7,7 @@ import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
-import { Trace } from 'models/Trace';
-import type { UserTrace } from 'models/UserTrace';
+import { RawUserTrace, UserTrace } from 'models/UserTrace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -25,7 +24,7 @@ export const TracePage: React.FC = () => {
 
   async function fetchTrace() {
     try {
-      const traces: { trace: Trace; time: number }[] = await send(
+      const traces: RawUserTrace[] = await send(
         new UserGetTraceMessage(
           token,
           idCard,
@@ -34,10 +33,7 @@ export const TracePage: React.FC = () => {
         )
       );
       setTraceHistory(
-        traces.map(({ trace, time: timestamp }) => ({
-          trace,
-          time: new Date(timestamp),
-        }))
+        traces.map(({ trace, time: timestamp }) => new UserTrace(trace, time))
       );
     } catch (e) {
       console.error(e);

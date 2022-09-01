@@ -84,7 +84,7 @@ export const baseBorder = <const>{
     ...tableCell,
     flex: 3,
   },
-  tableCellTrace = <const>{
+  tableCellOther = <const>{
     ...tableCell,
     flex: 5,
     borderLeftColor: 'rgba(34, 36, 38, .15)',
@@ -101,7 +101,7 @@ export const baseBorder = <const>{
     ...tableHeadCell,
     flex: 3,
   },
-  tableHeadCellTrace = <const>{
+  tableHeadCellOther = <const>{
     ...tableHeadCell,
     flex: 5,
     borderLeftColor: 'rgba(34, 36, 38, .15)',

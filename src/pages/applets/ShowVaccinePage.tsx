@@ -1,11 +1,11 @@
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { TraceTable } from 'components/TraceTable';
+import { VaccineTable } from 'components/VaccineTable';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
-import { UserGetTraceMessage } from 'models/messages/UserGetTraceMessage';
-import { Trace } from 'models/Trace';
-import type { UserTrace } from 'models/UserTrace';
+import { UserGetVaccineMessage } from 'models/messages/UserGetVaccineMessage';
+import { RawUserVaccine, UserVaccine } from 'models/UserVaccine';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
@@ -20,23 +20,20 @@ export const ShowVaccinePage: React.FC = () => {
   const navigation = globalNavigation()!;
   const { userName, idCard, token } = UserStore();
 
-  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
+  const [vaccineHistory, setVaccineHistory] = useState<UserVaccine[]>([]);
 
-  async function fetchTrace() {
+  async function fetchVaccine() {
     try {
-      const traces: { trace: Trace; time: number }[] = await send(
-        new UserGetTraceMessage(
+      const vaccines: RawUserVaccine[] = await send(
+        new UserGetVaccineMessage(
           token,
           idCard,
-          new Date().getTime() - 86400e3,
-          new Date().getTime()
         )
       );
-      setTraceHistory(
-        traces.map(({ trace, time: timestamp }) => ({
-          trace,
-          time: new Date(timestamp),
-        }))
+      setVaccineHistory(
+        vaccines.map(({ manufacture, time: timestamp, vaccineType }) =>
+          new UserVaccine(manufacture, timestamp, vaccineType)
+        )
       );
     } catch (e) {
       console.error(e);
@@ -44,15 +41,15 @@ export const ShowVaccinePage: React.FC = () => {
   }
 
   useEffect(() => {
-    fetchTrace();
+    fetchVaccine();
   }, []);
 
   return (
     <>
-      <Header content={`${userName} 的行程记录`} />
+      <Header content={`${userName} 的疫苗接种记录`} />
       <View style={styles.container}>
-        <TraceTable data={traceHistory} />
-        <Button text="返回" onPress={() => navigation.navigate('Home')} />
+        <VaccineTable data={vaccineHistory} />
+        <Button text="返回" onPress={() => navigation.navigate('Applets')} />
         <StatusBar style="auto" />
       </View>
     </>

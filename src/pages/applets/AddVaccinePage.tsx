@@ -3,14 +3,15 @@ import { Header } from 'components/Header';
 import { NavigableButton } from 'components/NavigableButton';
 import { Select } from 'components/Select';
 import { TextInput } from 'components/TextInput';
-import { TextInputRow } from 'components/TextInputRow';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { UserAddVaccineMessage } from 'models/messages/UserAddVaccineMessage';
 import { NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { days, months } from 'utils/date';
 import { globalNavigation } from 'utils/navigation';
+import { generateSelectItems } from 'utils/range';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -20,21 +21,22 @@ const styles = StyleSheet.create({
 
 export const AddVaccinePage: React.FC = () => {
   const navigation = globalNavigation()!;
-  const [manufacture, setManufacture] = useState('');
-  const { token } = UserStore();
+  
+  const { idCard, token } = UserStore();
 
+  const [manufacture, setManufacture] = useState('');
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
 
-  async function Appeal() {
+  async function AddVaccine() {
     try {
       const time = new Date(Number(year), Number(month) - 1, Number(day));
       if (Number.isNaN(time.getTime())) {
         throw new TypeError('你被猫猫抓走了');
       }
 
-      await send(new UserAddVaccineMessage(token, manufacture, time.getTime()));
+      await send(new UserAddVaccineMessage(token, manufacture, time.getTime(), idCard));
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);
@@ -51,6 +53,7 @@ export const AddVaccinePage: React.FC = () => {
       <Header content="增加疫苗记录" />
       <View style={styles.container}>
         <TextInput
+
           text={manufacture}
           setText={setManufacture}
           label="疫苗生产机构"
@@ -60,31 +63,21 @@ export const AddVaccinePage: React.FC = () => {
           value={year}
           setValue={setYear}
           placeholder="年"
-          items={[{
-            label: '猫猫',
-            value: '真猫'
-          }]}
+          items={generateSelectItems(2019, 2022, year => year.toString())}
         />
-        <TextInputRow
-          width={90}
-          inputs={[
-            {
-              text: year,
-              setText: setYear,
-              placeholder: '年',
-            },
-            {
-              text: month,
-              setText: setMonth,
-              placeholder: '月',
-            },
-            {
-              text: day,
-              setText: setDay,
-              placeholder: '日',
-            },
-          ]}
+        <Select
+          value={month}
+          setValue={setMonth}
+          placeholder="月"
+          items={generateSelectItems(1, 12, month => months[month - 1])}
         />
+        <Select
+          value={day}
+          setValue={setDay}
+          placeholder="日"
+          items={generateSelectItems(1, 31, day => days[day])}
+        />
+        <Text>{year}</Text>
         {/* <TextInput
           text={reason}
           setText={setReason}
@@ -92,7 +85,7 @@ export const AddVaccinePage: React.FC = () => {
           type="text"
           width="300"
         /> */}
-        <Button text="提交" onPress={Appeal} style={baseStyle.button} />
+        <Button text="提交" onPress={AddVaccine} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

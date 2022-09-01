@@ -4,28 +4,26 @@ export const baseBorder = <const>{
     borderStyle: 'solid',
     borderWidth: 1,
   },
-  button = ({ pressed }: { pressed: boolean }) =>
-    <const>{
-      backgroundColor: '#0ea5e9',
-      borderRadius: 4,
-      marginVertical: 5,
-      opacity: pressed ? 0.5 : 1,
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      textAlign: 'center',
-      width: 200,
-    },
-  yellowButton= ({ pressed }: { pressed: boolean }) =>
-  <const>{
-    backgroundColor: '#fde047',
+  baseButton = <const>{
     borderRadius: 4,
     marginVertical: 5,
-    opacity: pressed ? 0.5 : 1,
     paddingHorizontal: 20,
     paddingVertical: 10,
     textAlign: 'center',
     width: 200,
   },
+  button = ({ pressed }: { pressed: boolean }) =>
+    <const>{
+      ...baseButton,
+      backgroundColor: '#0ea5e9',
+      opacity: pressed ? 0.5 : 1,
+    },
+  yellowButton = ({ pressed }: { pressed: boolean }) =>
+    <const>{
+      ...baseButton,
+      backgroundColor: '#fde047',
+      opacity: pressed ? 0.5 : 1,
+    },
   alignCenter = <const>{
     alignItems: 'center',
   },
@@ -40,11 +38,12 @@ export const baseBorder = <const>{
     flex: 1,
     justifyContent: 'center',
   },
-  timeText = (color: string) => <const>{
-    alignItems: 'center',
-    color,
-    fontSize: 40,
-  },
+  timeText = (color: string) =>
+    <const>{
+      alignItems: 'center',
+      color,
+      fontSize: 40,
+    },
   press = <const>{
     cursor: 'pointer',
   },
@@ -74,10 +73,7 @@ export const baseBorder = <const>{
     textAlign: 'left',
     width: 200,
   },
-  test = <const>{
-    top: 100,
-  },
-  label2 = <const>{
+  labelWhite = <const>{
     marginTop: 0,
     fontWeight: 'bold',
     textAlign: 'center',

@@ -1,50 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, NativeBaseProvider, ScrollView, Text, VStack } from 'native-base';
+import { Center, NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { Alert, FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native';
+import {
+  Alert,
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
-import * as baseStyle from 'utils/styles';
-import { send } from 'utils/web';
-import { UserGrantPermissionMessage } from 'models/messages/user/permission/UserGrantPermissionMessage';
 import { UserStore } from 'libs/UserStore';
 import { UserFetchAllGrantedUsersMessage } from 'models/messages/user/permission/UserFetchAllGrantedUsersMessage';
+import { UserGrantPermissionMessage } from 'models/messages/user/permission/UserGrantPermissionMessage';
 import { UserRevokePermissionMessage } from 'models/messages/user/permission/UserRevokeUserRevokePermissionMessage';
+import * as baseStyle from 'utils/styles';
+import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
   tableRow: baseStyle.tableRow,
   tableCellOther: baseStyle.tableCellOther,
   tableHeadRow: baseStyle.tableHeadRow,
   tableHeadCellOther: baseStyle.tableHeadCellOther,
 });
 
+const UserRow: React.FC<ListRenderItemInfo<string>> = (props) => {
+  return (
+    <View style={styles.tableRow}>
+      <Text style={styles.tableCellOther}>{props.item}</Text>
+    </View>
+  );
+};
 
 export const AuthorityPage: React.FC = () => {
   const [userName, setUserName] = useState('');
   const { token } = UserStore();
-  const [ message, setMessage ] = useState<string[]>([]);
-
-
+  const [message, setMessage] = useState<string[]>([]);
 
   const header = (
     <View style={styles.tableHeadRow}>
       <Text style={styles.tableHeadCellOther}>当前我授权的用户</Text>
     </View>
   );
-  
-  const UserRow: React.FC<ListRenderItemInfo<string>> = (props) => {
-    return (
-      <View style={styles.tableRow}>
-        <Text style={styles.tableCellOther}>{props.item}</Text>
-      </View>
-    );
- };
+
   async function GrantPermission() {
     try {
       await send(new UserGrantPermissionMessage(token, userName));
@@ -53,6 +55,7 @@ export const AuthorityPage: React.FC = () => {
       console.error(e);
     }
   }
+
   async function RevokePermission() {
     try {
       await send(new UserRevokePermissionMessage(token, userName));
@@ -64,14 +67,13 @@ export const AuthorityPage: React.FC = () => {
 
   async function FetchPermission() {
     try {
-      const response = await send(
-        new UserFetchAllGrantedUsersMessage(token)
-      );
+      const response = await send(new UserFetchAllGrantedUsersMessage(token));
       setMessage(response);
     } catch (e) {
       console.error(e);
     }
   }
+
   useEffect(() => {
     FetchPermission();
   }, []);
@@ -96,7 +98,7 @@ export const AuthorityPage: React.FC = () => {
         <FlatList
           data={message}
           renderItem={UserRow}
-          // keyExtractor={(trace) => trace.time.getTime().toString()}
+          keyExtractor={(userName) => userName}
           ListHeaderComponent={header}
           style={{ minWidth: 400, height: 250 }}
         />

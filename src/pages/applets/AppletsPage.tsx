@@ -55,7 +55,7 @@ const applets: AppletCategory[] = [
         route: 'Home',
       },
     ],
-  },  
+  },
   {
     category: '疫苗服务',
     applets: [

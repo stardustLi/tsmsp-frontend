@@ -1,10 +1,8 @@
 import React from 'react';
-import { globalNavigation } from 'utils/navigation';
 
 import { Button } from 'components/ui/Button';
+import { globalNavigation } from 'utils/navigation';
 import type { TabNames } from '../../../App';
-import { color } from 'native-base/lib/typescript/theme/styled-system';
-
 
 interface NavigableButtonProps {
   readonly text: string;

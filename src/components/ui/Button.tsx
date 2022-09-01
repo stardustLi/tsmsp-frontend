@@ -5,13 +5,22 @@ import * as baseStyle from 'utils/styles';
 
 interface ButtonProps {
   readonly text: string;
+  readonly color?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   readonly [key: string]: any;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const colorMapping: { [key: string]: any } = {
+  yellow: baseStyle.yellowButton,
+};
+
 export const Button: React.FC<ButtonProps> = (props) => {
   return (
-    <Pressable style={baseStyle.button} {...props}>
+    <Pressable
+      style={colorMapping?.[props.color!] ?? baseStyle.button}
+      {...props}
+    >
       <Text>{props.text}</Text>
     </Pressable>
   );

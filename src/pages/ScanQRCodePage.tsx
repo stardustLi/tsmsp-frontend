@@ -1,12 +1,11 @@
 import { BarCodeEvent, BarCodeScanner } from 'expo-barcode-scanner';
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
 import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
 import { UserAddTraceWithPeopleMessage } from 'models/messages/trace/withPeople/UserAddTraceWithPeopleMessage';
 import { Trace } from 'models/Trace';
-import { UserInfo } from 'models/UserInfo';
 import { globalNavigation } from 'utils/navigation';
 import { send } from 'utils/web';
 
@@ -39,24 +38,17 @@ export const ScanQRCodePage: React.FC = () => {
     setScanned(true);
 
     const result = JSON.parse(data);
-    if (result.idCard) {
-      const userInfo = result as UserInfo;
-      Alert.alert("aaaa");
-      try {
+    try {
+      if (result.userName) {
         await send(
-          new UserAddTraceWithPeopleMessage(token, idCard, userInfo.idCard)
+          new UserAddTraceWithPeopleMessage(token, idCard, result.userName)
         );
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      const trace = result as Trace;
-      Alert.alert("bbbb");
-      try {
+      } else {
+        const trace = result as Trace;
         await send(new UserAddTraceMessage(token, idCard, trace));
-      } catch (e) {
-        console.error(e);
       }
+    } catch (e) {
+      console.error(e);
     }
 
     navigation.navigate('Home');

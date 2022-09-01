@@ -5,9 +5,7 @@ import { StyleSheet } from 'react-native';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
-  container: baseStyle.container,
   input: baseStyle.input,
-  label: baseStyle.label2,
 });
 
 interface TextInputRowProps {

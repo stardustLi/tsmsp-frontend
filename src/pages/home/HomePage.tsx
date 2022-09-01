@@ -2,15 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
 
 import { AddTrace } from 'components/AddTrace';
 import { BottomBar, BottomTab } from 'components/BottomBar';
+import { MyQRCode } from 'components/MyQRCode';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
-import { MyQRCode } from 'components/MyQRCode';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

@@ -9,7 +9,6 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
-import { UserInfo } from 'models/UserInfo';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -23,7 +22,11 @@ export const PersonalCodePage: React.FC = () => {
       <Header content={`${userName} 的个人地点码`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <QRCode color="black" size={300} value={JSON.stringify(UserInfo)} />
+          <QRCode
+            color="black"
+            size={300}
+            value={JSON.stringify({ userName })}
+          />
         </View>
         <NavigableButton text="返回" route="Home" />
         <StatusBar style="auto" />

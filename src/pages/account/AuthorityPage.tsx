@@ -22,13 +22,19 @@ import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-  input: baseStyle.input,
-  label: baseStyle.label,
   tableRow: baseStyle.tableRow,
   tableCellOther: baseStyle.tableCellOther,
   tableHeadRow: baseStyle.tableHeadRow,
   tableHeadCellOther: baseStyle.tableHeadCellOther,
 });
+
+const UserRow: React.FC<ListRenderItemInfo<string>> = (props) => {
+  return (
+    <View style={styles.tableRow}>
+      <Text style={styles.tableCellOther}>{props.item}</Text>
+    </View>
+  );
+};
 
 export const AuthorityPage: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -41,13 +47,6 @@ export const AuthorityPage: React.FC = () => {
     </View>
   );
 
-  const UserRow: React.FC<ListRenderItemInfo<string>> = (props) => {
-    return (
-      <View style={styles.tableRow}>
-        <Text style={styles.tableCellOther}>{props.item}</Text>
-      </View>
-    );
-  };
   async function GrantPermission() {
     try {
       await send(new UserGrantPermissionMessage(token, userName));
@@ -56,6 +55,7 @@ export const AuthorityPage: React.FC = () => {
       console.error(e);
     }
   }
+
   async function RevokePermission() {
     try {
       await send(new UserRevokePermissionMessage(token, userName));
@@ -73,6 +73,7 @@ export const AuthorityPage: React.FC = () => {
       console.error(e);
     }
   }
+
   useEffect(() => {
     FetchPermission();
   }, []);
@@ -97,7 +98,7 @@ export const AuthorityPage: React.FC = () => {
         <FlatList
           data={message}
           renderItem={UserRow}
-          // keyExtractor={(trace) => trace.time.getTime().toString()}
+          keyExtractor={(userName) => userName}
           ListHeaderComponent={header}
           style={{ minWidth: 400, height: 250 }}
         />

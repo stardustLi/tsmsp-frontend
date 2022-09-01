@@ -51,7 +51,7 @@ export const TraceWithPeoplePage: React.FC = () => {
 
   return (
     <>
-      <Header content={`和${userName} 贴贴过的人`} />
+      <Header content={`和 ${userName} 贴贴过的人`} />
       <View style={styles.container}>
         <TraceTable data={traceHistory} />
         <Button text="返回" onPress={() => navigation.navigate('Home')} />

@@ -53,14 +53,14 @@ export const RegisterPage: React.FC = () => {
           placeholder="用户名"
           style={styles.input}
           value={userName}
-          onChangeText={(newText) => setUserName(newText)}
+          onChangeText={setUserName}
         />
         <Text style={styles.label}>密码</Text>
         <TextInput
           placeholder="密码"
           style={styles.input}
           value={password}
-          onChangeText={(newText) => setPassword(newText)}
+          onChangeText={setPassword}
           secureTextEntry={true}
         />
         <Text style={styles.label}>真实姓名</Text>
@@ -68,14 +68,14 @@ export const RegisterPage: React.FC = () => {
           placeholder="真实姓名"
           style={styles.input}
           value={realName}
-          onChangeText={(newText) => setRealName(newText)}
+          onChangeText={setRealName}
         />
         <Text style={styles.label}>身份证号</Text>
         <TextInput
           placeholder="身份证号"
           style={styles.input}
           value={idCard}
-          onChangeText={(newText) => setIdCard(newText)}
+          onChangeText={setIdCard}
         />
         <Button text="注册" onPress={register} />
         <Button

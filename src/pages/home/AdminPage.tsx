@@ -1,40 +1,107 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from 'native-base';
+import { Center, NativeBaseProvider } from 'native-base';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { AddTrace } from 'components/AddTrace';
+import { AppletsRow } from 'components/AppletsRow';
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
-import { NavigableButton } from 'components/ui/NavigableButton';
-import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
+import type { TabNames } from '../../../App';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { YellowNavigableButton } from 'components/ui/YellowNavigableButton';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-export const AdminPage: React.FC = () => {
-  const { userName } = UserStore();
+interface AppletCategory {
+  category: string;
+  applets: {
+    text: string;
+    route: TabNames;
+  }[];
+}
 
+const applets: AppletCategory[] = [
+  {
+    category: '',
+    applets: [
+      {
+        text: '政策\n设置',
+        route: 'PolicyInquiry',
+      },
+      {
+        text: '在线\n申诉',
+        route: 'Appeal',
+      },
+      {
+        text: '进京\n报备',
+        route: 'JingReport',
+      },
+    ],
+  },
+  {
+    category: '核酸服务',
+    applets: [
+      {
+        text: '健康码\n代查',
+        route: 'ShowVaccine',
+      },
+      {
+        text: '猫猫',
+        route: 'Home',
+      },
+      {
+        text: '返回',
+        route: 'Home',
+      },
+    ],
+  },  
+  {
+    category: '疫苗服务',
+    applets: [
+      {
+        text: '疫苗\n查询',
+        route: 'ShowVaccine',
+      },
+      {
+        text: '疫苗\n预约',
+        route: 'Home',
+      },
+      {
+        text: '记录\n疫苗',
+        route: 'AddVaccine',
+      },
+    ],
+  },
+];
+
+export const AdminPage: React.FC = () => {
   return (
     <NativeBaseProvider>
-      <Header content={`${userName} 的北京健康宝`} />
+      <Header content="管理员" />
       <View style={styles.container}>
-        <View style={{ marginBottom: 14 }}>
-          <QRCode
-            color="red"
-            size={200}
-            value="http://people.iiis.tsinghua.edu.cn/~yuanyang/index.html"
-          />
-        </View>
-        <AddTrace />
-        <NavigableButton text="轨迹查询" route="Trace" />
-        <NavigableButton text="测试" route="PolicyInquiry" />
-        <StatusBar style="auto" />
+        <ScrollView>
+          <>
+            {applets.map((category, idx) => (
+              <AppletsRow
+                key={category.category}
+                title={category.category}
+                applets={category.applets}
+                colour={300 + idx * 100}
+                tone='yellow'
+              />
+            ))}
+          </>
+
+          <StatusBar style="auto" />
+        </ScrollView>
+        <Center>
+          <YellowNavigableButton text="返回" route="Account" />
+        </Center>
       </View>
-      <BottomBar tab={BottomTab.HOME} />
+      <BottomBar tab={BottomTab.APPLETS} />
     </NativeBaseProvider>
   );
 };

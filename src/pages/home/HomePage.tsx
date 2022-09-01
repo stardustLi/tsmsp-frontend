@@ -27,7 +27,7 @@ export const HomePage: React.FC = () => {
           <MyQRCode color="red" />
         </View>
         <AddTrace />
-        <NavigableButton text="个人地点码" route="PersonalCode" />
+        <NavigableButton text="我的贴贴码" route="PersonalCode" />
         <NavigableButton text="轨迹查询" route="Trace" />
         <StatusBar style="auto" />
       </View>

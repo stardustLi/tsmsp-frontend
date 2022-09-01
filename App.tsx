@@ -8,7 +8,6 @@ import { AddVaccinePage } from 'pages/applets/AddVaccinePage';
 import { AppealPage } from 'pages/applets/AppealPage';
 import { AppletsPage } from 'pages/applets/AppletsPage';
 import { JingReportPage } from 'pages/applets/JingReportPage';
-import { PolicyShowPage } from 'pages/applets/PolicyShowPage';
 import { ShowVaccinePage } from 'pages/applets/ShowVaccinePage';
 import { AdminPage } from 'pages/home/AdminPage';
 import { AuthorityPage } from 'pages/account/AuthorityPage';
@@ -36,7 +35,6 @@ const Tabs = {
   TraceWithPeople: TraceWithPeoplePage,
   Appeal: AppealPage,
   PolicyInquiry: PolicyInquiryPage,
-  PolicyShow: PolicyShowPage,
   JingReport: JingReportPage,
   Account: AccountPage,
   MyInfo: MyInfoPage,

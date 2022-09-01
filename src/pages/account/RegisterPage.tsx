@@ -38,7 +38,7 @@ export const RegisterPage: React.FC = () => {
       setGlobalRealName(realName);
       setGlobalIDCard(idCard);
       setUserToken(token);
-      navigation.navigate('Trace');
+      navigation.navigate('Home');
     } catch (e) {
       console.error(e);
     }

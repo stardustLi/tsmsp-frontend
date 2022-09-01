@@ -23,8 +23,9 @@ export const AccountPage: React.FC = () => {
         <NavigableButton text="注册新账号" route="Register" />
         <NavigableButton text="重新登录" route="Login" />
         <NavigableButton text="查看我的信息" route="MyInfo" />
+        <NavigableButton text="修改密码" route="MyInfo" />
         <NavigableButton text="权限管理" route="Authority" />
-        <NavigableButton text="进入管理员页面" route="Home" />
+        <NavigableButton text="进入管理员页面" route="Admin" />
         <StatusBar style="auto" />
       </View>
       <BottomBar tab={BottomTab.ACCOUNT} />

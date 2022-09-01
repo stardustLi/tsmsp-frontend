@@ -25,12 +25,13 @@ export const AddTrace: React.FC = () => {
   return (
     <>
       <Button
-        text="扫场所码登记"
+        text="扫码登记"
+        style = {baseStyle.button}
         onPress={() => navigation.navigate('ScanQRCode')}
       />
-      <Text style={baseStyle.label}>手动登记</Text>
+      {/* <Text style={baseStyle.label}>手动登记</Text> */}
       {/* <TextInput label="手动登记" text={'err'} onChangeText={setNewTrace} /> */}
-      <Button text="提交新轨迹" onPress={addTrace} />
+      <Button text="手动提交新轨迹" onPress={addTrace} />
     </>
   );
 };

@@ -15,6 +15,17 @@ export const baseBorder = <const>{
       textAlign: 'center',
       width: 200,
     },
+  yellowButton= ({ pressed }: { pressed: boolean }) =>
+  <const>{
+    backgroundColor: '#fde047',
+    borderRadius: 4,
+    marginVertical: 5,
+    opacity: pressed ? 0.5 : 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    textAlign: 'center',
+    width: 200,
+  },
   alignCenter = <const>{
     alignItems: 'center',
   },

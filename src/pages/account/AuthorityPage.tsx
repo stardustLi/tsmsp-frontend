@@ -1,20 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { Center, NativeBaseProvider, ScrollView, Text, VStack } from 'native-base';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native';
 
-import { Trace } from 'models/Trace';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
-import { PolicyQueryMessage } from 'models/messages/policy/PolicyQueryMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { UserTrace } from 'models/UserTrace';
 import { UserGrantPermissionMessage } from 'models/messages/user/permission/UserGrantPermissionMessage';
-import { useStore } from 'zustand';
 import { UserStore } from 'libs/UserStore';
+import { UserFetchAllGrantedUsersMessage } from 'models/messages/user/permission/UserFetchAllGrantedUsersMessage';
+import { UserRevokePermissionMessage } from 'models/messages/user/permission/UserRevokeUserRevokePermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -25,32 +23,58 @@ const styles = StyleSheet.create({
   tableHeadRow: baseStyle.tableHeadRow,
   tableHeadCellOther: baseStyle.tableHeadCellOther,
 });
-interface TraceTableProps {
-  readonly data: UserTrace[];
-}
-export const UserRow: React.FC<ListRenderItemInfo<UserTrace>> = (props) => {
-  return (
-    <View style={styles.tableRow}>
-      <Text style={styles.tableCellOther}>{props.item.trace.province}</Text>
-    </View>
-  );
-};
-export const AuthorityPage: React.FC<TraceTableProps> = (props) => {
+
+
+export const AuthorityPage: React.FC = () => {
   const [userName, setUserName] = useState('');
   const { token } = UserStore();
+  const [ message, setMessage ] = useState<string[]>([]);
+
+
+
   const header = (
     <View style={styles.tableHeadRow}>
       <Text style={styles.tableHeadCellOther}>当前我授权的用户</Text>
     </View>
   );
+  
+  const UserRow: React.FC<ListRenderItemInfo<string>> = (props) => {
+    return (
+      <View style={styles.tableRow}>
+        <Text style={styles.tableCellOther}>{props.item}</Text>
+      </View>
+    );
+ };
   async function GrantPermission() {
-    Alert.alert('警告');
     try {
       await send(new UserGrantPermissionMessage(token, userName));
+      Alert.alert('添加成功！');
     } catch (e) {
       console.error(e);
     }
   }
+  async function RevokePermission() {
+    try {
+      await send(new UserRevokePermissionMessage(token, userName));
+      Alert.alert('移除成功！');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function FetchPermission() {
+    try {
+      const response = await send(
+        new UserFetchAllGrantedUsersMessage(token)
+      );
+      setMessage(response);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  useEffect(() => {
+    FetchPermission();
+  }, []);
 
   return (
     <NativeBaseProvider>
@@ -70,8 +94,7 @@ export const AuthorityPage: React.FC<TraceTableProps> = (props) => {
           </Text>
         </VStack>
         <FlatList
-
-          data={props.data}
+          data={message}
           renderItem={UserRow}
           // keyExtractor={(trace) => trace.time.getTime().toString()}
           ListHeaderComponent={header}
@@ -86,8 +109,9 @@ export const AuthorityPage: React.FC<TraceTableProps> = (props) => {
           />
           <Center>
             <Text>{userName}</Text>
+            <Button text="刷新" onPress={FetchPermission} />
             <Button text="添加为授权账号" onPress={GrantPermission} />
-            <Button text="移除该授权账号" onPress={GrantPermission} />
+            <Button text="移除该授权账号" onPress={RevokePermission} />
             <NavigableButton text="返回" route="Account" />
           </Center>
         </View>

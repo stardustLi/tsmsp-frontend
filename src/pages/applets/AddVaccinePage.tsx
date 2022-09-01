@@ -9,7 +9,6 @@ import { UserAddVaccineMessage } from 'models/messages/UserAddVaccineMessage';
 import { NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { days, months } from 'utils/date';
 import { globalNavigation } from 'utils/navigation';
 import { generateSelectItems } from 'utils/range';
 import * as baseStyle from 'utils/styles';
@@ -70,7 +69,7 @@ export const AddVaccinePage: React.FC = () => {
           value={month}
           setValue={setMonth}
           placeholder="月"
-          items={generateSelectItems(1, 12, (month) => `${months}月`)}
+          items={generateSelectItems(1, 12, (month) => `${month}月`)}
         />
         <Select
           value={day}

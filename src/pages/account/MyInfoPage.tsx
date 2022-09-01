@@ -21,7 +21,7 @@ export const MyInfoPage: React.FC = () => {
     <NativeBaseProvider>
       <Header content={`${userName} 的账号信息`} />
       <View style={styles.container}>
-        <NavigableButton text="注册新账号" route="Register" />
+        
         <Label text="用户名" />
         <VStack space={1} alignItems="center">
           <Text>{userName}</Text>
@@ -34,6 +34,8 @@ export const MyInfoPage: React.FC = () => {
         <VStack space={1} alignItems="center">
           <Text>{idCard}</Text>
         </VStack>
+        <NavigableButton text="注册新账号" route="Register" />
+        <NavigableButton text="登录其它账号" route="Login" />
         <NavigableButton text="返回" route="Account" />
         <StatusBar style="auto" />
       </View>

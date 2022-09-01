@@ -43,15 +43,15 @@ const applets: AppletCategory[] = [
     category: '核酸服务',
     applets: [
       {
-        text: '健康码\n代查',
+        text: '核酸结\n果查询',
         route: 'ShowVaccine',
       },
       {
-        text: '猫猫',
+        text: '预约\n检测',
         route: 'Home',
       },
       {
-        text: '返回',
+        text: '排队人\n数查询',
         route: 'Home',
       },
     ],

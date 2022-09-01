@@ -32,7 +32,7 @@ const applets: AppletCategory[] = [
         route: 'PolicyInquiry',
       },
       {
-        text: '在线\n申诉',
+        text: '处理\n申诉',
         route: 'Appeal',
       },
       {
@@ -42,10 +42,10 @@ const applets: AppletCategory[] = [
     ],
   },
   {
-    category: '核酸服务',
+    category: '',
     applets: [
       {
-        text: '健康码\n代查',
+        text: '我是\n赋码爷',
         route: 'ShowVaccine',
       },
       {
@@ -101,7 +101,7 @@ export const AdminPage: React.FC = () => {
           <YellowNavigableButton text="返回" route="Account" />
         </Center>
       </View>
-      <BottomBar tab={BottomTab.APPLETS} />
+      <BottomBar tab={BottomTab.ACCOUNT} />
     </NativeBaseProvider>
   );
 };

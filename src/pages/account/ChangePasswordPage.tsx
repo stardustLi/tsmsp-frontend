@@ -11,17 +11,14 @@ import { TextInput } from 'components/ui/TextInput';
 import {
   setGlobalIDCard,
   setGlobalRealName,
-  setGlobalUserName,
   setUserToken,
   UserStore,
 } from 'libs/UserStore';
+import { UserChangePasswordMessage } from 'models/messages/user/common/UserChangePasswordMessage';
 import { UserGetProfileMessage } from 'models/messages/user/common/UserGetProfileMessage';
-import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { UserChangePasswordMessage } from 'models/messages/user/common/UserChangePasswordMessage';
-import { useStore } from 'zustand';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -31,17 +28,17 @@ const styles = StyleSheet.create({
 export const ChangePasswordPage: React.FC = () => {
   const navigation = globalNavigation()!;
 
-  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [ensureNewPassword, setEnsureNewPassword] = useState('');
   const { token } = UserStore();
   async function changePassword() {
     try {
-      const token = await send(new UserChangePasswordMessage(userToken, password));
-      setGlobalUserName(userName);
-      setUserToken(token);
-      const userInfo = await send(new UserGetProfileMessage(token));
+      const newToken = await send(
+        new UserChangePasswordMessage(token, password)
+      );
+      setUserToken(newToken);
+      const userInfo = await send(new UserGetProfileMessage(newToken));
       setGlobalRealName(userInfo.realName);
       setGlobalIDCard(userInfo.idCard);
       navigation.navigate('Account');

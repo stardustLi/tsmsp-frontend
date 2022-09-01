@@ -21,7 +21,6 @@ export const MyInfoPage: React.FC = () => {
     <NativeBaseProvider>
       <Header content={`${userName} 的账号信息`} />
       <View style={styles.container}>
-        
         <Label text="用户名" />
         <VStack space={1} alignItems="center">
           <Text>{userName}</Text>

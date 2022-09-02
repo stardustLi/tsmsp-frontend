@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider,Text } from 'native-base';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 export const HomePage: React.FC = () => {
-  const { userName } = UserStore();
+  const { userName,admin } = UserStore();
 
   return (
     <NativeBaseProvider>
@@ -26,6 +26,11 @@ export const HomePage: React.FC = () => {
           <MyQRCode color="red" />
         </View>
         <AddTrace />
+        {admin ? (
+          <Text>爷是尊贵的管理员</Text>
+        ) : (
+          <Text>爷不是管理员</Text>
+        )}
         <NavigableButton text="我的贴贴码" route="PersonalCode" />
         <NavigableButton text="轨迹查询" route="Trace" />
         <StatusBar style="auto" />

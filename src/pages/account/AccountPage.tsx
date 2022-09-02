@@ -1,20 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, useToken } from 'native-base';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
-import { UserStore } from 'libs/UserStore';
+import { setAdmin, UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
+import { send } from 'utils/web';
+import { GetAdminPermissionMessage } from 'models/messages/user/admin/GetAdminPermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
+
 export const AccountPage: React.FC = () => {
-  const { userName } = UserStore();
+  const { userName,token,admin } = UserStore();
+
 
   return (
     <NativeBaseProvider>
@@ -25,7 +29,12 @@ export const AccountPage: React.FC = () => {
         <NavigableButton text="查看我的信息" route="MyInfo" />
         <NavigableButton text="修改密码" route="ChangePassword" />
         <NavigableButton text="权限管理" route="Authority" />
-        <NavigableButton text="进入管理员页面" route="Admin" />
+        {admin ? (
+          <NavigableButton text="进入管理员页面" route="Admin" />
+        ):(
+          <></>
+        )}
+        
         <StatusBar style="auto" />
       </View>
       <BottomBar tab={BottomTab.ACCOUNT} />

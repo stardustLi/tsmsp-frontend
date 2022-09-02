@@ -5,6 +5,7 @@ interface UserInfo {
   realName: string;
   idCard: string;
   token: string;
+  admin: Boolean;
   password: string;
 }
 
@@ -14,6 +15,7 @@ export const UserStore = create<UserInfo>(() => ({
   realName: '',
   idCard: '',
   token: '',
+  admin: false,
 }));
 
 export const setGlobalUserName = (userName: string) =>
@@ -21,4 +23,5 @@ export const setGlobalUserName = (userName: string) =>
   setGlobalPassword = (password: string) => UserStore.setState({ password }),
   setGlobalRealName = (realName: string) => UserStore.setState({ realName }),
   setGlobalIDCard = (idCard: string) => UserStore.setState({ idCard }),
-  setUserToken = (token: string) => UserStore.setState({ token });
+  setUserToken = (token: string) => UserStore.setState({ token }),
+  setAdmin = (admin: boolean) => UserStore.setState({admin});

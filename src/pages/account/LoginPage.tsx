@@ -9,6 +9,7 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import {
+  setAdmin,
   setGlobalIDCard,
   setGlobalPassword,
   setGlobalRealName,
@@ -20,6 +21,7 @@ import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import { GetAdminPermissionMessage } from 'models/messages/user/admin/GetAdminPermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -42,6 +44,8 @@ export const LoginPage: React.FC = () => {
       setGlobalPassword(userInfo.password);
       setGlobalRealName(userInfo.realName);
       setGlobalIDCard(userInfo.idCard);
+      const admin = await send(new GetAdminPermissionMessage(token)); 
+      setAdmin(admin);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);

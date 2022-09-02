@@ -10,11 +10,13 @@ import {
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
+  setAdmin,
 } from 'libs/UserStore';
 import { UserRegisterMessage } from 'models/messages/user/common/UserRegisterMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import { GetAdminPermissionMessage } from 'models/messages/user/admin/GetAdminPermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -29,6 +31,9 @@ export const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
   const [idCard, setIdCard] = useState('');
+  async function getAdmin(){
+
+  }
 
   async function register() {
     try {
@@ -40,6 +45,8 @@ export const RegisterPage: React.FC = () => {
       setGlobalRealName(realName);
       setGlobalIDCard(idCard.toLowerCase());
       setUserToken(token);
+      const admin = await send(new GetAdminPermissionMessage(token)); 
+      setAdmin(admin);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);

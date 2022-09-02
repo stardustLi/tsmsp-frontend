@@ -14,6 +14,7 @@ import {
   setGlobalUserName,
   setUserToken,
   UserStore,
+  setAdmin,
 } from 'libs/UserStore';
 import { UserGetProfileMessage } from 'models/messages/user/common/UserGetProfileMessage';
 import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';

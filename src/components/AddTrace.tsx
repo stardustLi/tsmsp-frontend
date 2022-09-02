@@ -31,7 +31,7 @@ export const AddTrace: React.FC = () => {
       />
       {/* <Text style={baseStyle.label}>手动登记</Text> */}
       {/* <TextInput label="手动登记" text={'err'} onChangeText={setNewTrace} /> */}
-      <Button text="手动提交新轨迹" onPress={addTrace} />
+      <Button text="手动提交新轨迹" onPress={'AddTrace'} />
     </>
   );
 };

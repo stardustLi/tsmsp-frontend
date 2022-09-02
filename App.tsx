@@ -22,6 +22,7 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PageWrapper } from 'utils/navigation';
 import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
+import { AddTracePage } from 'pages/home/AddTracePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,7 @@ const Tabs = {
   ShowVaccine: ShowVaccinePage,
   Authority: AuthorityPage,
   ChangePassword: ChangePasswordPage,
+  AddTrace: AddTracePage,
 };
 
 export type TabNames = keyof typeof Tabs;

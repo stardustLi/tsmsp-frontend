@@ -1,91 +1,69 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { Button } from 'components/ui/Button';
-import { Header } from 'components/ui/Header';
-import { NavigableButton } from 'components/ui/NavigableButton';
-import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
-import { UserAppealMessage } from 'models/messages/code/appeal/UserAppealMessage';
+import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
+import { Trace } from 'models/Trace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import { NativeBaseProvider } from 'native-base';
+import { TextInput } from 'components/ui/TextInput';
+import { NavigableButton } from 'components/ui/NavigableButton';
+import { BottomBar, BottomTab } from 'components/BottomBar';
+import { Header } from 'components/ui/Header';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
+  alignCenter: baseStyle.alignCenter,
 });
 
-export const AppealPage: React.FC = () => {
+export const AddTracePage: React.FC = () => {
   const navigation = globalNavigation()!;
-
-  const { token } = UserStore();
-
-  const [idCard, setIdCard] = useState('');
-  const [reason, setReason] = useState('');
-  const [userName, setUserName] = useState('');
-
-  async function AddTrace() {
+  const { idCard, token } = UserStore();
+  const [newTrace, setNewTrace] = useState<Trace | null>(null);
+  const [province, setProvince] = useState('');
+  const [city, setCity] = useState('');
+  const [county, setCounty] = useState('');
+  const { userName,admin } = UserStore();
+  async function addTrace() {
     try {
-      await send(new UserAppealMessage(idCard, reason, token));
-      navigation.navigate('Applets');
+      await send(new UserAddTraceMessage(token, idCard, new Trace(province, city, county)!));
     } catch (e) {
       console.error(e);
     }
   }
 
   return (
-    <NativeBaseProvider>
-      <Header content="在线申诉" />
+  <NativeBaseProvider>
+    <Header content="手动登记轨迹" />
       <View style={styles.container}>
-        <VStack space={1} alignItems="center">
-          <Text
-            bold
-            italic
-            underline
-            highlight
-            _dark={{
-              color: 'coolgray.800',
-            }}
-          >
-            申诉前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规,在河南村镇银行没有存款,没有上访记录和上访意图。
-          </Text>
-          <Text
-            bold
-            italic
-            underline
-            highlight
-            _dark={{
-              color: 'coolgray.800',
-            }}
-          >
-            请注意,在申诉通过或被拒绝前,无法再次申诉。
-          </Text>
-        </VStack>
-        <TextInput
-          text={userName}
-          setText={setUserName}
-          label="用户名"
-          type="text"
-        />
-        <TextInput
-          text={idCard}
-          setText={setIdCard}
-          label="身份证号"
-          type="text"
-        />
-        <TextInput
-          text={reason}
-          setText={setReason}
-          label="申请理由简述"
-          type="text"
-          width="300"
-        />
-        <Button text="提交" onPress={AddTrace} style={baseStyle.button} />
-        <NavigableButton text="返回" route="Applets" />
-        <StatusBar style="auto" />
+        <ScrollView contentContainerStyle={styles.alignCenter}>
+          <TextInput
+            text={province}
+            setText={setProvince}
+            label="省/直辖市/自治区/特别行政区"
+            type="text"
+          />
+          <TextInput
+            text={city}
+            setText={setCity}
+            label="市/区/盟/自治州"
+            type="text"
+          />
+          <TextInput
+            text={county}
+            setText={setCounty}
+            label="区/县/街道/旗/自治县"
+            type="text"
+          />
+          <Button text="提交轨迹" onPress={addTrace} />
+          <NavigableButton text="返回" route="Home" />
+          <StatusBar style="auto" />
+        </ScrollView>
       </View>
-    </NativeBaseProvider>
+    <BottomBar tab={BottomTab.LOGIN} />
+  </NativeBaseProvider>
   );
 };

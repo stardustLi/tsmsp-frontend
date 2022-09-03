@@ -7,10 +7,7 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
-import { PolicyQueryMessage } from 'models/messages/policy/PolicyQueryMessage';
-import { Trace } from 'models/Trace';
 import * as baseStyle from 'utils/styles';
-import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

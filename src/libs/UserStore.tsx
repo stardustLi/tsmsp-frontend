@@ -1,12 +1,15 @@
 import create from 'zustand';
 
+import type { IDCard, Password, UserName } from 'models/fields';
+import { UserAdminPermission } from 'models/UserAdminPermission';
+
 interface UserInfo {
-  userName: string;
+  userName: UserName;
+  password: Password;
   realName: string;
-  idCard: string;
+  idCard: IDCard;
   token: string;
-  admin: Boolean;
-  password: string;
+  admin: UserAdminPermission;
 }
 
 export const UserStore = create<UserInfo>(() => ({
@@ -15,13 +18,13 @@ export const UserStore = create<UserInfo>(() => ({
   realName: '',
   idCard: '',
   token: '',
-  admin: false,
+  admin: new UserAdminPermission(),
 }));
 
-export const setGlobalUserName = (userName: string) =>
+export const setGlobalUserName = (userName: UserName) =>
     UserStore.setState({ userName }),
-  setGlobalPassword = (password: string) => UserStore.setState({ password }),
+  setGlobalPassword = (password: Password) => UserStore.setState({ password }),
   setGlobalRealName = (realName: string) => UserStore.setState({ realName }),
-  setGlobalIDCard = (idCard: string) => UserStore.setState({ idCard }),
+  setGlobalIDCard = (idCard: IDCard) => UserStore.setState({ idCard }),
   setUserToken = (token: string) => UserStore.setState({ token }),
-  setAdmin = (admin: boolean) => UserStore.setState({ admin });
+  setAdmin = (admin: UserAdminPermission) => UserStore.setState({ admin });

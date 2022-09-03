@@ -7,9 +7,7 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
-import { QueryWaitingPersonMessage } from 'models/messages/acid/QueryWaitingPersonMessage';
-import { Trace } from 'models/Trace';
-import { DetailedTrace } from 'models/DetailedTrace';
+import { QueryWaitingPersonMessage } from 'models/api/nucleicAcidTest/QueryTestPointWaitingPersonMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -26,11 +24,8 @@ export const QueryWaitingPersonPage: React.FC = () => {
 
   async function DangerousPlaceSet() {
     try {
-      /*
-      const response = await send(
-        new QueryWaitingPersonMessage(new DetailedTrace(new Trace(province, city, county), street))
-      );*/
-      /*setMessage(response);*/
+      const response = await send(new QueryWaitingPersonMessage(place));
+      setMessage(response);
     } catch (e) {
       console.error(e);
     }
@@ -71,12 +66,7 @@ export const QueryWaitingPersonPage: React.FC = () => {
           label="区/县/街道/旗/自治县"
           type="text"
         />
-        <TextInput
-          text={street}
-          setText={setstreet}
-          label={'街道'}
-          type={'text'}
-        />
+        <TextInput text={street} setText={setstreet} label="街道" type="text" />
         {message ? (
           <Text>该核酸检测点目前排队人数：{message}</Text>
         ) : (

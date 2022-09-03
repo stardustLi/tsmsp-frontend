@@ -1,6 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import { AccountPage } from 'pages/account/AccountPage';
+import { AuthorityPage } from 'pages/account/AuthorityPage';
+import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
 import { LoginPage } from 'pages/account/LoginPage';
 import { MyInfoPage } from 'pages/account/MyInfoPage';
 import { RegisterPage } from 'pages/account/RegisterPage';
@@ -8,9 +13,11 @@ import { AddVaccinePage } from 'pages/applets/AddVaccinePage';
 import { AppealPage } from 'pages/applets/AppealPage';
 import { AppletsPage } from 'pages/applets/AppletsPage';
 import { JingReportPage } from 'pages/applets/JingReportPage';
+import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
 import { ShowVaccinePage } from 'pages/applets/ShowVaccinePage';
+import { AddTracePage } from 'pages/home/AddTracePage';
 import { AdminPage } from 'pages/home/AdminPage';
-import { AuthorityPage } from 'pages/account/AuthorityPage';
+import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { HomePage } from 'pages/home/HomePage';
 import { PersonalCodePage } from 'pages/home/PersonalCodePage';
 import { PolicyInquiryPage } from 'pages/home/PolicyInquiryPage';
@@ -18,8 +25,6 @@ import { TracePage } from 'pages/home/TracePage';
 import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PageWrapper } from 'utils/navigation';
 import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
 

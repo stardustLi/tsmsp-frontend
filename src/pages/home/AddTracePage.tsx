@@ -1,25 +1,19 @@
+import { StatusBar } from 'expo-status-bar';
+import { NativeBaseProvider, Stack } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
+
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
-import { Select, SelectItem } from 'components/ui/Select';
-import { StatusBar } from 'expo-status-bar';
+import { Select, type SelectItem } from 'components/ui/Select';
 import { UserStore } from 'libs/UserStore';
-import { GetPlaceSubordinatesMessage } from 'models/messages/trace/common/GetPlaceSubordinatesMessage';
-import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
-import { Trace } from 'models/Trace';
-import { NativeBaseProvider, Stack } from 'native-base';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
-import { globalNavigation } from 'utils/navigation';
+import { UserAddTraceMessage } from 'models/api/trace/common/UserAddTraceMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-
-interface RawSubordinate {
-  id: number;
-  name: string;
-  level: number;
-}
+import { GetPlaceSubordinatesMessage } from 'models/api/trace/GetPlaceSubordinatesMessage';
+import { TraceID } from 'models/fields';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -46,11 +40,11 @@ export const AddTracePage: React.FC = () => {
   }
 
   async function getSubordinate(
-    value: number,
+    value: TraceID,
     callback: (value: SelectItem[]) => void
   ) {
     try {
-      const response: RawSubordinate[] = await send(
+      const response: { id: number; name: string }[] = await send(
         new GetPlaceSubordinatesMessage(value)
       );
       callback(

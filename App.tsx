@@ -25,6 +25,7 @@ import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
 
 import {DangerousPlaceSetPage} from 'pages/home/DangerousPlaceSetPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
+import {QueryWaitingPersonPage} from 'pages/applets/QueryWaitingPersonPage'
 
 
 const Stack = createNativeStackNavigator();
@@ -50,7 +51,8 @@ const Tabs = {
   Authority: AuthorityPage,
   ChangePassword: ChangePasswordPage,
   AddTrace: AddTracePage,
-  DangerousPlaceSet: DangerousPlaceSetPage
+  DangerousPlaceSet: DangerousPlaceSetPage,
+  QueryWaitingPerson: QueryWaitingPersonPage
 };
 
 export type TabNames = keyof typeof Tabs;

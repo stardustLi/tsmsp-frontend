@@ -52,7 +52,7 @@ const applets: AppletCategory[] = [
       },
       {
         text: '排队人\n数查询',
-        route: 'Home',
+        route: 'QueryWaitingPerson',
       },
     ],
   },

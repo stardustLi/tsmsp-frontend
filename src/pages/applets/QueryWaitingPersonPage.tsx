@@ -7,8 +7,9 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
-import { DangerousPlaceSetMessage } from 'models/messages/dangerousPlace/DangerousPlaceSetMessage';
-import { Trace } from 'models/Trace';
+import { QueryWaitingPersonMessage } from 'models/messages/acid/QueryWaitingPersonMessage';
+import {Trace} from 'models/Trace'
+import { DetailedTrace } from 'models/DetailedTrace';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -16,19 +17,17 @@ const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-//risklevel类型与后端的对应尚未实现，暂时以Number类型存储，Number类型的输入暂未实现
-
-export const DangerousPlaceSetPage: React.FC = () => {
+export const QueryWaitingPersonPage: React.FC = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
-  const [riskLevel, setRiskLevel] = useState(0);
-  const [message, setMessage] = useState<string | null>('1');
+  const [street, setstreet] = useState('');
+  const [message, setMessage] = useState<number | null>(null);
 
   async function DangerousPlaceSet() {
     try {
       const response = await send(
-        new DangerousPlaceSetMessage(new Trace(province, city, county), riskLevel)
+        new QueryWaitingPersonMessage(new DetailedTrace(new Trace(province, city, county), street))
       );
       setMessage(response);
     } catch (e) {
@@ -38,7 +37,7 @@ export const DangerousPlaceSetPage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
-      <Header content="风险地区设置" />
+      <Header content="排队人数查询" />
       <View style={styles.container}>
         <VStack space={1} alignItems="center">
           <Text
@@ -50,7 +49,7 @@ export const DangerousPlaceSetPage: React.FC = () => {
               color: 'coolgray.800',
             }}
           >
-            请输入需要设置的风险地区以及风险等级。
+            请输入查询的核酸检测点地址。
           </Text>
         </VStack>
         <TextInput
@@ -71,13 +70,18 @@ export const DangerousPlaceSetPage: React.FC = () => {
           label="区/县/街道/旗/自治县"
           type="text"
         />
-
+        <TextInput
+            text={street}
+            setText={setstreet}
+            label={"街道"}
+            type={"text"}
+        />
         {message ? (
-          <Text>风险地区设置成功。</Text>
+          <Text>该核酸检测点目前排队人数：{message}</Text>
         ) : (
-          <Text>设置失败，请检查地名及风险等级是否有误。</Text>//此行只应在设置失败时出现，目前有Bug，在PolicyInquiryPage中同样如此
+          <Text>查询失败，请检查输入的地址是否有误</Text>
         )}
-        <Button text="设置" onPress={DangerousPlaceSet} style={baseStyle.button} />
+        <Button text="查询" onPress={DangerousPlaceSet} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

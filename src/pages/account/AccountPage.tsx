@@ -15,10 +15,8 @@ const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-
 export const AccountPage: React.FC = () => {
-  const { userName,token,admin } = UserStore();
-
+  const { userName, token, admin } = UserStore();
 
   return (
     <NativeBaseProvider>
@@ -31,10 +29,10 @@ export const AccountPage: React.FC = () => {
         <NavigableButton text="权限管理" route="Authority" />
         {admin ? (
           <NavigableButton text="进入管理员页面" route="Admin" />
-        ):(
+        ) : (
           <></>
         )}
-        
+
         <StatusBar style="auto" />
       </View>
       <BottomBar tab={BottomTab.ACCOUNT} />

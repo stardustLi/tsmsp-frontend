@@ -31,9 +31,7 @@ export const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
   const [idCard, setIdCard] = useState('');
-  async function getAdmin(){
-
-  }
+  async function getAdmin() {}
 
   async function register() {
     try {
@@ -45,7 +43,7 @@ export const RegisterPage: React.FC = () => {
       setGlobalRealName(realName);
       setGlobalIDCard(idCard.toLowerCase());
       setUserToken(token);
-      const admin = await send(new GetAdminPermissionMessage(token)); 
+      const admin = await send(new GetAdminPermissionMessage(token));
       setAdmin(admin);
       navigation.navigate('Home');
     } catch (e) {

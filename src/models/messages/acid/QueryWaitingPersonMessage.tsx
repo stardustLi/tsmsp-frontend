@@ -1,5 +1,5 @@
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
-import {DetailedTrace} from "models/DetailedTrace";
+import { DetailedTrace } from 'models/DetailedTrace';
 
 export class QueryWaitingPersonMessage extends TSMSPMessage {
   place: DetailedTrace;

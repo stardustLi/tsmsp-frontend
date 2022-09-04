@@ -30,7 +30,9 @@ export const TraceRow: React.FC<ListRenderItemInfo<UserTrace>> = (props) => {
       <Text style={styles.tableCellTime}>
         {date2str(zonedDate(props.item.time))}
       </Text>
-      <Text style={styles.tableCellOther}>{props.item.trace.parent?.parent?.name}</Text>
+      <Text style={styles.tableCellOther}>
+        {props.item.trace.parent?.parent?.name}
+      </Text>
       <Text style={styles.tableCellOther}>{props.item.trace.parent?.name}</Text>
       <Text style={styles.tableCellOther}>{props.item.trace.name}</Text>
     </View>

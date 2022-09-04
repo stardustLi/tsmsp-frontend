@@ -45,18 +45,31 @@ export const AddTracePage: React.FC = () => {
     }
   }
 
-  async function getSubordinate(value: number, callback: (value: SelectItem[]) => void) {
+  async function getSubordinate(
+    value: number,
+    callback: (value: SelectItem[]) => void
+  ) {
     try {
-      const response: RawSubordinate[] = await send(new GetPlaceSubordinatesMessage(value));
-      callback(response.map(({ id, name }) => ({ label: name, value: id.toString() })));
+      const response: RawSubordinate[] = await send(
+        new GetPlaceSubordinatesMessage(value)
+      );
+      callback(
+        response.map(({ id, name }) => ({ label: name, value: id.toString() }))
+      );
     } catch (e) {
       console.error(e);
     }
   }
 
-  useEffect(() => { getSubordinate(0, setProvinceList); }, []);
-  useEffect(() => { getSubordinate(Number(province), setCityList); }, [province]);
-  useEffect(() => { getSubordinate(Number(city), setCountyList); }, [city]);
+  useEffect(() => {
+    getSubordinate(0, setProvinceList);
+  }, []);
+  useEffect(() => {
+    getSubordinate(Number(province), setCityList);
+  }, [province]);
+  useEffect(() => {
+    getSubordinate(Number(city), setCountyList);
+  }, [city]);
 
   return (
     <NativeBaseProvider>

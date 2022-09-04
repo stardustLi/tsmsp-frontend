@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import {NativeBaseProvider, Text, VStack} from 'native-base';
+import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -8,7 +8,7 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import { QueryWaitingPersonMessage } from 'models/messages/acid/QueryWaitingPersonMessage';
-import {Trace} from 'models/Trace'
+import { Trace } from 'models/Trace';
 import { DetailedTrace } from 'models/DetailedTrace';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -25,7 +25,8 @@ export const QueryWaitingPersonPage: React.FC = () => {
   const [message, setMessage] = useState<number | null>(null);
 
   async function DangerousPlaceSet() {
-    try {/*
+    try {
+      /*
       const response = await send(
         new QueryWaitingPersonMessage(new DetailedTrace(new Trace(province, city, county), street))
       );*/
@@ -71,17 +72,21 @@ export const QueryWaitingPersonPage: React.FC = () => {
           type="text"
         />
         <TextInput
-            text={street}
-            setText={setstreet}
-            label={"街道"}
-            type={"text"}
+          text={street}
+          setText={setstreet}
+          label={'街道'}
+          type={'text'}
         />
         {message ? (
           <Text>该核酸检测点目前排队人数：{message}</Text>
         ) : (
           <Text>查询失败，请检查输入的地址是否有误</Text>
         )}
-        <Button text="查询" onPress={DangerousPlaceSet} style={baseStyle.button} />
+        <Button
+          text="查询"
+          onPress={DangerousPlaceSet}
+          style={baseStyle.button}
+        />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

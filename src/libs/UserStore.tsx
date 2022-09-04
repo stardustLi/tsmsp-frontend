@@ -24,4 +24,4 @@ export const setGlobalUserName = (userName: string) =>
   setGlobalRealName = (realName: string) => UserStore.setState({ realName }),
   setGlobalIDCard = (idCard: string) => UserStore.setState({ idCard }),
   setUserToken = (token: string) => UserStore.setState({ token }),
-  setAdmin = (admin: boolean) => UserStore.setState({admin});
+  setAdmin = (admin: boolean) => UserStore.setState({ admin });

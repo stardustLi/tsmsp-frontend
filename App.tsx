@@ -23,11 +23,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PageWrapper } from 'utils/navigation';
 import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
 
-import {DangerousPlaceSetPage} from 'pages/home/DangerousPlaceSetPage';
+import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
-import {QueryWaitingPersonPage} from 'pages/applets/QueryWaitingPersonPage'
+import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
 import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -54,13 +53,12 @@ const Tabs = {
   AddTrace: AddTracePage,
   DangerousPlaceSet: DangerousPlaceSetPage,
   QueryWaitingPerson: QueryWaitingPersonPage,
-  ShowAcid: ShowAcidPage 
+  ShowAcid: ShowAcidPage,
 };
 
 export type TabNames = keyof typeof Tabs;
 
 export default function App() {
-  
   return (
     <SafeAreaProvider>
       <NavigationContainer>

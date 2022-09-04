@@ -1,6 +1,6 @@
-import {Trace} from "./Trace";
+import { Trace } from './Trace';
 
-export class DetailedTrace{
+export class DetailedTrace {
   approximatePlace: Trace;
   street: string;
   constructor(approximatePlace: Trace, street: string) {

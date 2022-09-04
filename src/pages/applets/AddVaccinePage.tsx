@@ -17,7 +17,7 @@ import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
-});      
+});
 export const AddVaccinePage: React.FC = () => {
   const navigation = globalNavigation()!;
 

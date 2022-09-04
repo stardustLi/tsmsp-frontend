@@ -39,7 +39,7 @@ export const ChangePasswordPage: React.FC = () => {
   const { password, token } = UserStore();
   async function changePassword() {
     if (inputPassword == password) {
-      if (newPassword == ensureNewPassword){
+      if (newPassword == ensureNewPassword) {
         try {
           await send(new UserChangePasswordMessage(token, newPassword));
           alertBox('修改成功！');
@@ -47,11 +47,9 @@ export const ChangePasswordPage: React.FC = () => {
         } catch (e) {
           console.error(e);
         }
-      }
-      else {
+      } else {
         alertBox('两次输入的新密码不匹配！');
       }
-
     } else {
       alertBox('旧密码不正确！');
     }

@@ -11,7 +11,6 @@ import type { UserAcid } from 'models/UserAcid';
 import { date2datestr, date2timestr, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
 
-
 const styles = StyleSheet.create({
   tableRow: baseStyle.tableRow,
   tableCellTime: baseStyle.tableCellTime,
@@ -25,16 +24,18 @@ interface AcidTableProps {
   readonly data: UserAcid[];
 }
 
-export const AcidRow: React.FC<ListRenderItemInfo<UserAcid>> = (
-  props
-) => {
+export const AcidRow: React.FC<ListRenderItemInfo<UserAcid>> = (props) => {
   return (
     <View style={styles.tableRow}>
       <Text style={styles.tableCellTime}>
-        {date2datestr(zonedDate(props.item.time))+" "+date2timestr(zonedDate(props.item.time))}
+        {date2datestr(zonedDate(props.item.time)) +
+          ' ' +
+          date2timestr(zonedDate(props.item.time))}
       </Text>
       <Text style={styles.tableCellOther}>{props.item.testPlace}</Text>
-      <Text style={styles.tableCellOther}>{props.item.result ? "y阳性" : "阴性"}</Text>
+      <Text style={styles.tableCellOther}>
+        {props.item.result ? 'y阳性' : '阴性'}
+      </Text>
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider,Text } from 'native-base';
+import { NativeBaseProvider, Text } from 'native-base';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -21,15 +21,12 @@ const styles = StyleSheet.create({
 
 export const HomePage: React.FC = () => {
   const navigation = globalNavigation()!;
-  const { userName,admin } = UserStore();
+  const { userName, admin } = UserStore();
 
   return (
     <NativeBaseProvider>
-
-
       <Header content={`${userName} 的猫宽健康宝`} />
       <View style={styles.container}>
-
         <View style={{ marginBottom: 14 }}>
           <MyQRCode color="red" />
         </View>

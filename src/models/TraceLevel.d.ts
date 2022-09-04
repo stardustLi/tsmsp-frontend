@@ -3,4 +3,4 @@ export enum TraceLevel {
   CITY,
   COUNTY,
   STREET,
-};
+}

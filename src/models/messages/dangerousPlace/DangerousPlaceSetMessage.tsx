@@ -3,7 +3,7 @@ import { Trace } from 'models/Trace';
 
 export class DangerousPlaceSetMessage extends TSMSPMessage {
   place: Trace;
-  riskLevel: Number
+  riskLevel: Number;
   constructor(trace: Trace, riskLevel: Number) {
     super();
     this.place = trace;

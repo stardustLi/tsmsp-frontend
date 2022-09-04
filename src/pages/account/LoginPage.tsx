@@ -44,7 +44,7 @@ export const LoginPage: React.FC = () => {
       setGlobalPassword(userInfo.password);
       setGlobalRealName(userInfo.realName);
       setGlobalIDCard(userInfo.idCard);
-      const admin = await send(new GetAdminPermissionMessage(token)); 
+      const admin = await send(new GetAdminPermissionMessage(token));
       setAdmin(admin);
       navigation.navigate('Home');
     } catch (e) {

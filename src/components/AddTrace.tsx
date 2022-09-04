@@ -27,17 +27,23 @@ export const AddTrace: React.FC = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [county, setCounty] = useState('');
-  const { userName,admin } = UserStore();
+  const { userName, admin } = UserStore();
   async function addTrace() {
     try {
-      await send(new UserAddTraceMessage(token, idCard, new Trace(province, city, county)!));
+      await send(
+        new UserAddTraceMessage(
+          token,
+          idCard,
+          new Trace(province, city, county)!
+        )
+      );
     } catch (e) {
       console.error(e);
     }
   }
 
   return (
-<NativeBaseProvider>
+    <NativeBaseProvider>
       <Header content="登录" />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.alignCenter}>

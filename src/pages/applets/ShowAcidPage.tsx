@@ -30,7 +30,7 @@ export const ShowAcidPage: React.FC = () => {
       );
       setAcidHistory(
         acids.map(
-          ({time: timestamp, testPlace, result }) =>
+          ({ time: timestamp, testPlace, result }) =>
             new UserAcid(testPlace, timestamp, result)
         )
       );

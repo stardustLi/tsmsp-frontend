@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import {NativeBaseProvider, Text, VStack} from 'native-base';
+import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -75,9 +75,13 @@ export const DangerousPlaceSetPage: React.FC = () => {
         {message ? (
           <Text>风险地区设置成功。</Text>
         ) : (
-          <Text>设置失败，请检查地名及风险等级是否有误。</Text>//此行只应在设置失败时出现，目前有Bug，在PolicyInquiryPage中同样如此
+          <Text>设置失败，请检查地名及风险等级是否有误。</Text> //此行只应在设置失败时出现，目前有Bug，在PolicyInquiryPage中同样如此
         )}
-        <Button text="设置" onPress={DangerousPlaceSet} style={baseStyle.button} />
+        <Button
+          text="设置"
+          onPress={DangerousPlaceSet}
+          style={baseStyle.button}
+        />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

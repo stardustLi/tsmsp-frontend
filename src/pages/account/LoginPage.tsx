@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
@@ -57,6 +57,7 @@ export const LoginPage: React.FC = () => {
       <Header content="登录" />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.alignCenter}>
+          <Stack minHeight={100}></Stack>
           <TextInput
             text={idcard}
             setText={setIdcard}
@@ -77,12 +78,12 @@ export const LoginPage: React.FC = () => {
           />
           <Button text="登录" onPress={login} />
           <NavigableButton text="切换至注册界面" route="Register" />
-          <NavigableButton text="小程序" route="Applets" />
-          <NavigableButton text="测试" route="PolicyInquiry" />
+          {/* <NavigableButton text="小程序" route="Applets" />
+          <NavigableButton text="测试" route="PolicyInquiry" /> */}
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-      <BottomBar tab={BottomTab.LOGIN} />
+      {/* <BottomBar tab={BottomTab.LOGIN} /> */}
     </NativeBaseProvider>
   );
 };

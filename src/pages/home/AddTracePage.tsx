@@ -3,15 +3,14 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select, SelectItem } from 'components/ui/Select';
-import { TextInput } from 'components/ui/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { GetPlaceSubordinatesMessage } from 'models/messages/trace/common/GetPlaceSubordinatesMessage';
 import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
 import { Trace } from 'models/Trace';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -40,6 +39,7 @@ export const AddTracePage: React.FC = () => {
   async function addTrace() {
     try {
       await send(new UserAddTraceMessage(token, idCard, Number(county)));
+      Alert.alert('提交成功！');
     } catch (e) {
       console.error(e);
     }
@@ -76,6 +76,7 @@ export const AddTracePage: React.FC = () => {
       <Header content="手动登记轨迹" />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.alignCenter}>
+          <Stack minHeight={120}></Stack>
           <Text>省/直辖市/自治区/特别行政区</Text>
           <Select
             value={province}
@@ -83,12 +84,14 @@ export const AddTracePage: React.FC = () => {
             placeholder="省/直辖市/自治区/特别行政区"
             items={provinceList}
           />
+          <Text>市/区/盟/自治州</Text>
           <Select
             value={city}
             setValue={setCity}
             placeholder="市/区/盟/自治州"
             items={cityList}
           />
+          <Text>区/县/街道/旗/自治县</Text>
           <Select
             value={county}
             setValue={setCounty}

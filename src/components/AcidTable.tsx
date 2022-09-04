@@ -7,9 +7,10 @@ import {
   View,
 } from 'react-native';
 
-import type { UserTrace } from 'models/UserTrace';
-import { date2str, zonedDate } from 'utils/date';
+import type { UserAcid } from 'models/UserAcid';
+import { date2datestr, date2timestr, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
+
 
 const styles = StyleSheet.create({
   tableRow: baseStyle.tableRow,
@@ -20,37 +21,37 @@ const styles = StyleSheet.create({
   tableHeadCellOther: baseStyle.tableHeadCellOther,
 });
 
-interface TraceTableProps {
-  readonly data: UserTrace[];
+interface AcidTableProps {
+  readonly data: UserAcid[];
 }
 
-export const TraceRow: React.FC<ListRenderItemInfo<UserTrace>> = (props) => {
+export const AcidRow: React.FC<ListRenderItemInfo<UserAcid>> = (
+  props
+) => {
   return (
     <View style={styles.tableRow}>
       <Text style={styles.tableCellTime}>
-        {date2str(zonedDate(props.item.time))}
+        {date2datestr(zonedDate(props.item.time))+" "+date2timestr(zonedDate(props.item.time))}
       </Text>
-      <Text style={styles.tableCellOther}>{props.item.trace.parent?.parent?.name}</Text>
-      <Text style={styles.tableCellOther}>{props.item.trace.parent?.name}</Text>
-      <Text style={styles.tableCellOther}>{props.item.trace.name}</Text>
+      <Text style={styles.tableCellOther}>{props.item.testPlace}</Text>
+      <Text style={styles.tableCellOther}>{props.item.result ? "y阳性" : "阴性"}</Text>
     </View>
   );
 };
 
-export const TraceTable: React.FC<TraceTableProps> = (props) => {
+export const AcidTable: React.FC<AcidTableProps> = (props) => {
   const header = (
     <View style={styles.tableHeadRow}>
       <Text style={styles.tableHeadCellTime}>时间</Text>
-      <Text style={styles.tableHeadCellOther}>省/直辖市/自治区/特别行政区</Text>
-      <Text style={styles.tableHeadCellOther}>市/区/盟/自治州</Text>
-      <Text style={styles.tableHeadCellOther}>区/县/街道/旗/自治县</Text>
+      <Text style={styles.tableHeadCellOther}>核酸地点</Text>
+      <Text style={styles.tableHeadCellOther}>核酸结果</Text>
     </View>
   );
 
   return (
     <FlatList
       data={props.data}
-      renderItem={TraceRow}
+      renderItem={AcidRow}
       keyExtractor={(trace) => trace.time.getTime().toString()}
       ListHeaderComponent={header}
       style={{ minWidth: 400 }}

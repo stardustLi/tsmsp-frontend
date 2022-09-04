@@ -25,11 +25,11 @@ export const QueryWaitingPersonPage: React.FC = () => {
   const [message, setMessage] = useState<number | null>(null);
 
   async function DangerousPlaceSet() {
-    try {
+    try {/*
       const response = await send(
         new QueryWaitingPersonMessage(new DetailedTrace(new Trace(province, city, county), street))
-      );
-      setMessage(response);
+      );*/
+      /*setMessage(response);*/
     } catch (e) {
       console.error(e);
     }

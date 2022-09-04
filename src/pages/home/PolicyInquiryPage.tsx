@@ -24,10 +24,10 @@ export const PolicyInquiryPage: React.FC = () => {
 
   async function PolicyInquiry() {
     try {
-      const response = await send(
+      /*(const response = await send(
         new PolicyQueryMessage(new Trace(province, city, county))
       );
-      setMessage(response);
+      setMessage(response);*/
     } catch (e) {
       console.error(e);
     }

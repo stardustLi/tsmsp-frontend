@@ -26,6 +26,7 @@ import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
 import {DangerousPlaceSetPage} from 'pages/home/DangerousPlaceSetPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
 import {QueryWaitingPersonPage} from 'pages/applets/QueryWaitingPersonPage'
+import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
 
 
 const Stack = createNativeStackNavigator();
@@ -52,7 +53,8 @@ const Tabs = {
   ChangePassword: ChangePasswordPage,
   AddTrace: AddTracePage,
   DangerousPlaceSet: DangerousPlaceSetPage,
-  QueryWaitingPerson: QueryWaitingPersonPage
+  QueryWaitingPerson: QueryWaitingPersonPage,
+  ShowAcid: ShowAcidPage 
 };
 
 export type TabNames = keyof typeof Tabs;

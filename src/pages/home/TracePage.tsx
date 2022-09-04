@@ -11,6 +11,7 @@ import { RawUserTrace, UserTrace } from 'models/UserTrace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import { Trace } from 'models/Trace';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

@@ -45,7 +45,7 @@ export const ScanQRCodePage: React.FC = () => {
         );
       } else {
         const trace = result as Trace;
-        await send(new UserAddTraceMessage(token, idCard, trace));
+        /*await send(new UserAddTraceMessage(token, idCard, trace));*/
       }
     } catch (e) {
       console.error(e);

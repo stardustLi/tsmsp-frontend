@@ -44,7 +44,7 @@ const applets: AppletCategory[] = [
     applets: [
       {
         text: '核酸结\n果查询',
-        route: 'ShowVaccine',
+        route: 'ShowAcid',
       },
       {
         text: '预约\n检测',

@@ -27,10 +27,10 @@ export const DangerousPlaceSetPage: React.FC = () => {
 
   async function DangerousPlaceSet() {
     try {
-      const response = await send(
+      /*const response = await send(
         new DangerousPlaceSetMessage(new Trace(province, city, county), riskLevel)
       );
-      setMessage(response);
+      setMessage(response);*/
     } catch (e) {
       console.error(e);
     }

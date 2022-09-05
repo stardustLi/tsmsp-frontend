@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import type { NucleicAcidPoint } from 'models/NucleicAcidPoint';
-import { date2datestr, date2timestr, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
@@ -22,20 +21,23 @@ interface NucleicAcidPointTableProps {
   readonly data: NucleicAcidPoint[];
 }
 
-export const NucleicAcidPointRow: React.FC<ListRenderItemInfo<NucleicAcidPoint>> = (props) => {
+export const NucleicAcidPointRow: React.FC<
+  ListRenderItemInfo<NucleicAcidPoint>
+> = (props) => {
   return (
     <View style={styles.tableRow}>
       <Text style={styles.tableCellOther}>{props.item.testPlace}</Text>
-      <Text style={styles.tableCellOther}>
-      </Text>
+      <Text style={styles.tableCellOther}></Text>
     </View>
   );
 };
 
-export const NucleicAcidPointTable: React.FC<NucleicAcidPointTableProps> = (props) => {
+export const NucleicAcidPointTable: React.FC<NucleicAcidPointTableProps> = (
+  props
+) => {
   const header = (
     <View style={styles.tableHeadRow}>
-        <Text style={styles.tableHeadCellOther}>检测点名称</Text>
+      <Text style={styles.tableHeadCellOther}>检测点名称</Text>
     </View>
   );
 

@@ -9,7 +9,7 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
-import { JingReportMessage } from 'models/messages/code/JingReportMessage';
+import { JingReportMessage } from 'models/api/code/JingReportMessage';
 import { alertBox } from 'utils/alert';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
@@ -35,7 +35,7 @@ export const JingReportPage: React.FC = () => {
   async function JingReport() {
     if (checkedFirst && checkedSecond) {
       try {
-        await send(new JingReportMessage(idCard, reason, token));
+        await send(new JingReportMessage(token, idCard, reason));
         navigation.navigate('Applets');
       } catch (e) {
         console.error(e);
@@ -49,15 +49,7 @@ export const JingReportPage: React.FC = () => {
     <NativeBaseProvider>
       <Header content="进京报备" />
       <View style={styles.container}>
-        <Text
-          bold
-          italic
-          underline
-          highlight
-          _dark={{
-            color: 'coolgray.800',
-          }}
-        >
+        <Text bold italic underline highlight>
           报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规。
         </Text>
         <TextInput

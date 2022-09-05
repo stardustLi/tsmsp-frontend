@@ -3,7 +3,6 @@ import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
@@ -16,12 +15,12 @@ import {
   setGlobalUserName,
   setUserToken,
 } from 'libs/UserStore';
-import { UserGetProfileMessage } from 'models/messages/user/common/UserGetProfileMessage';
-import { UserLoginMessage } from 'models/messages/user/common/UserLoginMessage';
+import { GetAdminPermissionMessage } from 'models/api/user/admin/GetAdminPermissionMessage';
+import { UserGetProfileMessage } from 'models/api/user/common/UserGetProfileMessage';
+import { UserLoginMessage } from 'models/api/user/common/UserLoginMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { GetAdminPermissionMessage } from 'models/messages/user/admin/GetAdminPermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -40,12 +39,14 @@ export const LoginPage: React.FC = () => {
       const token = await send(new UserLoginMessage(userName, password));
       setGlobalUserName(userName);
       setUserToken(token);
-      const userInfo = await send(new UserGetProfileMessage(token));
-      setGlobalPassword(userInfo.password);
-      setGlobalRealName(userInfo.realName);
-      setGlobalIDCard(userInfo.idCard);
-      const admin = await send(new GetAdminPermissionMessage(token));
-      setAdmin(admin);
+      await Promise.all([
+        send(new UserGetProfileMessage(token)).then((userInfo) => {
+          setGlobalPassword(userInfo.password);
+          setGlobalRealName(userInfo.realName);
+          setGlobalIDCard(userInfo.idCard);
+        }),
+        send(new GetAdminPermissionMessage(token)).then(setAdmin),
+      ]);
       navigation.navigate('Home');
     } catch (e) {
       console.error(e);
@@ -78,8 +79,6 @@ export const LoginPage: React.FC = () => {
           />
           <Button text="登录" onPress={login} />
           <NavigableButton text="切换至注册界面" route="Register" />
-          {/* <NavigableButton text="小程序" route="Applets" />
-          <NavigableButton text="测试" route="PolicyInquiry" /> */}
           <StatusBar style="auto" />
         </ScrollView>
       </View>

@@ -6,7 +6,7 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { TraceTable } from 'components/TraceTable';
 import { UserStore } from 'libs/UserStore';
-import { UserGetTraceWithPeopleMessage } from 'models/messages/trace/withPeople/UserGetTraceWithPeopleMessage';
+import { UserGetTraceWithPeopleMessage } from 'models/api/trace/withPeople/UserGetTraceWithPeopleMessage';
 import type { UserTrace } from 'models/UserTrace';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';

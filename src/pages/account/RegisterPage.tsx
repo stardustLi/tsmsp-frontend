@@ -5,18 +5,18 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import {
+  setAdmin,
   setGlobalIDCard,
   setGlobalPassword,
   setGlobalRealName,
   setGlobalUserName,
   setUserToken,
-  setAdmin,
 } from 'libs/UserStore';
-import { UserRegisterMessage } from 'models/messages/user/common/UserRegisterMessage';
+import { GetAdminPermissionMessage } from 'models/api/user/admin/GetAdminPermissionMessage';
+import { UserRegisterMessage } from 'models/api/user/common/UserRegisterMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { GetAdminPermissionMessage } from 'models/messages/user/admin/GetAdminPermissionMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -31,7 +31,6 @@ export const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [realName, setRealName] = useState('');
   const [idCard, setIdCard] = useState('');
-  async function getAdmin() {}
 
   async function register() {
     try {

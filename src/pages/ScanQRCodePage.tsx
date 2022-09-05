@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
-import { UserAddTraceMessage } from 'models/messages/trace/common/UserAddTraceMessage';
-import { UserAddTraceWithPeopleMessage } from 'models/messages/trace/withPeople/UserAddTraceWithPeopleMessage';
-import { Trace } from 'models/Trace';
+import { UserAddTraceMessage } from 'models/api/trace/common/UserAddTraceMessage';
+import { UserAddTraceWithPeopleMessage } from 'models/api/trace/withPeople/UserAddTraceWithPeopleMessage';
 import { globalNavigation } from 'utils/navigation';
 import { send } from 'utils/web';
 
@@ -44,8 +43,7 @@ export const ScanQRCodePage: React.FC = () => {
           new UserAddTraceWithPeopleMessage(token, idCard, result.userName)
         );
       } else {
-        const trace = result as Trace;
-        /*await send(new UserAddTraceMessage(token, idCard, trace));*/
+        await send(new UserAddTraceMessage(token, idCard, result.traceID));
       }
     } catch (e) {
       console.error(e);

@@ -14,9 +14,9 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
-import { UserFetchAllGrantedUsersMessage } from 'models/messages/user/permission/UserFetchAllGrantedUsersMessage';
-import { UserGrantPermissionMessage } from 'models/messages/user/permission/UserGrantPermissionMessage';
-import { UserRevokePermissionMessage } from 'models/messages/user/permission/UserRevokeUserRevokePermissionMessage';
+import { UserFetchAllGrantedUsersMessage } from 'models/api/user/permission/UserFetchAllGrantedUsersMessage';
+import { UserGrantPermissionMessage } from 'models/api/user/permission/UserGrantPermissionMessage';
+import { UserRevokePermissionMessage } from 'models/api/user/permission/UserRevokeUserRevokePermissionMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 

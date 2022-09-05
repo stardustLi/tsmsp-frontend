@@ -48,8 +48,8 @@ const applets: AppletCategory[] = [
         route: 'DangerousPlaceSet',
       },
       {
-        text: '猫猫',
-        route: 'Home',
+        text: '核酸结\n果上传',
+        route: 'FinishNucleicAcidTest',
       },
       {
         text: '返回',

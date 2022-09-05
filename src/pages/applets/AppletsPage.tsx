@@ -27,7 +27,7 @@ const applets: AppletCategory[] = [
     applets: [
       {
         text: '政策\n查询',
-        route: 'PolicyInquiry',
+        route: 'PolicyQuery',
       },
       {
         text: '在线\n申诉',

@@ -1,5 +1,5 @@
 import { Input, Stack } from 'native-base';
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { StyleSheet } from 'react-native';
 
 import * as baseStyle from 'utils/styles';
@@ -8,13 +8,15 @@ const styles = StyleSheet.create({
   input: baseStyle.input,
 });
 
+interface InputProps {
+  readonly text: string;
+  readonly setText: Dispatch<string>;
+  readonly placeholder: string;
+}
+
 interface TextInputRowProps {
   readonly width: number;
-  readonly inputs: {
-    text: string;
-    setText: React.Dispatch<string>;
-    placeholder: string;
-  }[];
+  readonly inputs: InputProps[];
 }
 
 export const TextInputRow: React.FC<TextInputRowProps> = (props) => {

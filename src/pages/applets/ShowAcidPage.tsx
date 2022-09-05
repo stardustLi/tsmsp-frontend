@@ -9,7 +9,7 @@ import { AcidTable } from 'components/AcidTable';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { GetNucleicAcidTestResultsMessage } from 'models/messages/acid/GetNucleicAcidTestResultsMessage';
+import { GetNucleicAcidTestResultsMessage } from 'models/api/nucleicAcidTest/GetNucleicAcidTestResultsMessage';
 import { RawUserAcid, UserAcid } from 'models/UserAcid';
 
 const styles = StyleSheet.create({

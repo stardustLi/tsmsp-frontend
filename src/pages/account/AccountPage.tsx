@@ -25,7 +25,7 @@ export const AccountPage: React.FC = () => {
         <NavigableButton text="查看我的信息" route="MyInfo" />
         <NavigableButton text="修改密码" route="ChangePassword" />
         <NavigableButton text="权限管理" route="Authority" />
-        {admin.hasAny() ? (
+        {admin ? (
           <NavigableButton text="进入管理员页面" route="Admin" />
         ) : (
           <></>

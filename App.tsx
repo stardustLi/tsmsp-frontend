@@ -29,6 +29,7 @@ import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
+import { FinishNucleicAcidTestPage} from 'pages/home/FinishNucleicAcidTestPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,7 @@ const Tabs = {
   ShowAcid: ShowAcidPage,
   AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
   PolicyUpdate: PolicyUpdatePage,
+  FinishNucleicAcidTest: FinishNucleicAcidTestPage,
 };
 
 export type TabNames = keyof typeof Tabs;

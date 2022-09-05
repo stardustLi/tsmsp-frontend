@@ -28,6 +28,8 @@ import { AddTracePage } from 'pages/home/AddTracePage';
 import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
 import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
 import { AddNucleicAcidTestPointPage } from 'pages/home/AddNucleicAcidTestPointPage';
+import { GetNucleicAcidPointPage} from 'pages/applets/GetNucleicAcidPointPage';
+import { PolicyUpdatePage} from 'pages/home/PolicyUpdatePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +58,8 @@ const Tabs = {
   QueryWaitingPerson: QueryWaitingPersonPage,
   ShowAcid: ShowAcidPage,
   AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
+  GetNucleicAcidPoint: GetNucleicAcidPointPage,
+  PolicyUpdate: PolicyUpdatePage;
 };
 
 export type TabNames = keyof typeof Tabs;

@@ -6,14 +6,14 @@ import { Select, SelectItem } from 'components/ui/Select';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
 import { GetPlaceSubordinatesMessage } from 'models/messages/trace/common/GetPlaceSubordinatesMessage';
-import { DangerousPlaceSetMessage } from 'models/messages/dangerousPlace/DangerousPlaceSetMessage';
+import { PolicyUpdateMessage } from 'models/messages/policy/PolicyUpdateMessage';
 import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { RiskLevel } from 'models/RiskLevel';
+import {TextInput} from "../../components/ui/TextInput";
 
 interface RawSubordinate {
   id: number;
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
-export const DangerousPlaceSetPage: React.FC = () => {
+export const PolicyUpdatePage: React.FC = () => {
   const { idCard, token } = UserStore();
   const [province, setProvince] = useState('');
   const [provinceList, setProvinceList] = useState<SelectItem[]>([]);
@@ -33,13 +33,12 @@ export const DangerousPlaceSetPage: React.FC = () => {
   const [cityList, setCityList] = useState<SelectItem[]>([]);
   const [county, setCounty] = useState('');
   const [countyList, setCountyList] = useState<SelectItem[]>([]);
-  const [riskLevel, setRiskLevel] = useState('');
-  const [riskLevelList, setRiskLevelList] = useState<SelectItem[]>([]);//not finished
+  const [content, setContent] = useState('');
 
-  async function DangerousPlaceSet() {
+  async function PolicyUpdate() {
     try {
       await send(
-        new DangerousPlaceSetMessage(token, Number(county), riskLevel)
+        new PolicyUpdateMessage(token, Number(county), content)
       );
       Alert.alert('设置成功！');
     } catch (e) {
@@ -75,7 +74,7 @@ export const DangerousPlaceSetPage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
-      <Header content="风险地区设置" />
+      <Header content="防疫政策设置" />
       <View style={styles.container}>
         <ScrollView>
           <Stack minHeight={120}></Stack>
@@ -100,13 +99,14 @@ export const DangerousPlaceSetPage: React.FC = () => {
             placeholder="区/县/街道/旗/自治县"
             items={countyList}
           />
-          <Select
-              value={riskLevel}
-              setValue={setRiskLevel}
-              placeholder="风险等级"
-              items={riskLevelList}
+          <TextInput
+              text={content}
+              setText={setContent}
+              label="政策内容"
+              type="text"
+              width="300"
           />
-          <Button text="设置" onPress={DangerousPlaceSet} />
+          <Button text="设置" onPress={PolicyUpdate} />
           <NavigableButton text="返回" route="Admin" />
           <StatusBar style="auto" />
         </ScrollView>

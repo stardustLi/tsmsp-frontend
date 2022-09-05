@@ -28,7 +28,7 @@ const applets: AppletCategory[] = [
     applets: [
       {
         text: '政策\n设置',
-        route: 'PolicyInquiry',
+        route: 'PolicyUpdate',
       },
       {
         text: '处理\n申诉',
@@ -44,8 +44,8 @@ const applets: AppletCategory[] = [
     category: '',
     applets: [
       {
-        text: '我是\n赋码爷',
-        route: 'ShowVaccine',
+        text: '风险地\n区设置',
+        route: 'DangerousPlaceSet',
       },
       {
         text: '猫猫',

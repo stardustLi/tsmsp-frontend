@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
 
 export const TraceWithPeoplePage: React.FC = () => {
   const navigation = globalNavigation()!;
-
-  const { userName, token } = UserStore();
+  
+  const { userName, token, idCard } = UserStore();
 
   const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
 
@@ -28,6 +28,7 @@ export const TraceWithPeoplePage: React.FC = () => {
       const response = await send(
         new UserGetTraceWithPeopleMessage(
           token,
+          idCard,
           new Date().getTime() - 86400e3,
           new Date().getTime()
         )

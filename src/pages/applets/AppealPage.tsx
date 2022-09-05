@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
@@ -29,6 +29,7 @@ export const AppealPage: React.FC = () => {
   async function Appeal() {
     try {
       await send(new UserAppealMessage(token, idCard, reason));
+      Alert.alert("提交成功！");
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);

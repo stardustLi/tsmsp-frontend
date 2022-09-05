@@ -1,6 +1,6 @@
 import { BarCodeEvent, BarCodeScanner } from 'expo-barcode-scanner';
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 
 import { UserStore } from 'libs/UserStore';
 import { UserAddTraceMessage } from 'models/api/trace/common/UserAddTraceMessage';
@@ -41,9 +41,11 @@ export const ScanQRCodePage: React.FC = () => {
       if (result.userName) {
         await send(
           new UserAddTraceWithPeopleMessage(token, idCard, result.userName)
-        );
+          
+        );Alert.alert("贴贴码扫描成功！");
       } else {
         await send(new UserAddTraceMessage(token, idCard, result.traceID));
+        Alert.alert("地点码扫描成功！");
       }
     } catch (e) {
       console.error(e);

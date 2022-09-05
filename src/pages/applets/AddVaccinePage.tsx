@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
@@ -29,19 +29,32 @@ export const AddVaccinePage: React.FC = () => {
   const [day, setDay] = useState('');
 
   async function AddVaccine() {
-    try {
-      const time = new Date(Number(year), Number(month) - 1, Number(day));
-      if (Number.isNaN(time.getTime())) {
-        throw new TypeError('你被猫猫抓走了');
-      }
+    if (manufacture){
+      if (year && month && day){
+        try {
+          const time = new Date(Number(year), Number(month) - 1, Number(day));
+          if (Number.isNaN(time.getTime())) {
+            throw new TypeError('请选择合法的时间！');
+          }
 
-      await send(
-        new UserAddVaccineMessage(token, idCard, manufacture, time.getTime())
-      );
-      navigation.navigate('Applets');
-    } catch (e) {
-      console.error(e);
+          await send(
+            new UserAddVaccineMessage(token, idCard, manufacture, time.getTime())
+          );
+          Alert.alert("提交成功！");
+          // navigation.navigate('Applets');
+        } catch (e) {
+          console.error(e);
+        }      
+      }
+      else {
+        Alert.alert("请选择合法的日期！");
+      }      
     }
+    else {
+      Alert.alert("请输入机构名称！");
+    }
+
+
   }
 
   return (

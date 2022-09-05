@@ -21,7 +21,7 @@ interface BottomBarProps {
 export enum BottomTab {
   HOME,
   APPLETS,
-  LOGIN,
+  SCAN,
   ACCOUNT,
 }
 
@@ -39,10 +39,10 @@ const tabs = {
     activeIcon: 'menu' as const,
   },
   Login: {
-    tab: BottomTab.LOGIN,
-    text: 'Login',
-    icon: 'cart-outline' as const,
-    activeIcon: 'cart' as const,
+    tab: BottomTab.SCAN,
+    text: 'Scan',
+    icon: 'camera-outline' as const,
+    activeIcon: 'camera' as const,
   },
   Account: {
     tab: BottomTab.ACCOUNT,
@@ -72,7 +72,7 @@ const BottomNavi: React.FC<BottomBarProps> = (props) => {
                   py="2"
                   flex={1}
                   onPress={() => {
-                    navigation.navigate(key as TabNames);
+                    navigation.navigate(key);
                     setSelected(tab);
                   }}
                 >

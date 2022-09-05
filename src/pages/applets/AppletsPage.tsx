@@ -81,8 +81,8 @@ const applets: AppletCategory[] = [
         route: 'OtherCode',
       },
       {
-        text: '猫猫',
-        route: 'Home',
+        text: '风险程\n度查询',
+        route: 'QueryRiskLevel',
       },
       {
         text: '返回',

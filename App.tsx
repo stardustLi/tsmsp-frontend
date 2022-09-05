@@ -31,6 +31,7 @@ import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
+import { QueryRiskLevelPage} from 'pages/home/QueryRiskLevelPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,7 @@ const Tabs = {
   PolicyUpdate: PolicyUpdatePage,
   OtherCode: OtherCodePage,
   FinishNucleicAcidTest: FinishNucleicAcidTestPage,
+  QueryRiskLevel: QueryRiskLevelPage,
 };
 
 export type TabNames = keyof typeof Tabs;

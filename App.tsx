@@ -27,6 +27,7 @@ import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
 import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
 import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
+import {AddNucleicAcidTestPointPage} from 'pages/home/AddNucleicAcidTestPointPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,7 @@ const Tabs = {
   DangerousPlaceSet: DangerousPlaceSetPage,
   QueryWaitingPerson: QueryWaitingPersonPage,
   ShowAcid: ShowAcidPage,
+  AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
 };
 
 export type TabNames = keyof typeof Tabs;

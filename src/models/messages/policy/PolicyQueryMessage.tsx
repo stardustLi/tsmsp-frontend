@@ -2,8 +2,8 @@ import { TSMSPMessage } from 'models/messages/TSMSPMessage';
 import { Trace } from 'models/Trace';
 
 export class PolicyQueryMessage extends TSMSPMessage {
-  place: Trace;
-  constructor(trace: Trace) {
+  place: number;
+  constructor(trace: number) {
     super();
     this.place = trace;
   }

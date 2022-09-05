@@ -1,12 +1,15 @@
 import { TSMSPMessage } from 'models/messages/TSMSPMessage';
+import {RiskLevel} from "models/RiskLevel.d";
 import { Trace } from 'models/Trace';
 
 export class DangerousPlaceSetMessage extends TSMSPMessage {
-  place: Trace;
-  riskLevel: Number;
-  constructor(trace: Trace, riskLevel: Number) {
+  userToken: string
+  place: number;
+  riskLevel: RiskLevel;
+  constructor(userToken: string, place: number, riskLevel: RiskLevel) {
     super();
-    this.place = trace;
+    this.userToken = userToken;
+    this.place = place;
     this.riskLevel = riskLevel;
   }
 }

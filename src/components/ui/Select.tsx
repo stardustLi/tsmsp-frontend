@@ -2,8 +2,8 @@ import { Box, Center, Select as BaseSelect } from 'native-base';
 import React, { Dispatch } from 'react';
 
 export interface SelectItem {
-  label: string;
-  value: string;
+  readonly label: string;
+  readonly value: string;
 }
 
 interface SelectProps {

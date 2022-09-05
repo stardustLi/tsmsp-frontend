@@ -34,7 +34,7 @@ export const AcidRow: React.FC<ListRenderItemInfo<UserAcid>> = (props) => {
       </Text>
       <Text style={styles.tableCellOther}>{props.item.testPlace}</Text>
       <Text style={styles.tableCellOther}>
-        {props.item.result ? 'y阳性' : '阴性'}
+        {props.item.result ? '阳性' : '阴性'}
       </Text>
     </View>
   );

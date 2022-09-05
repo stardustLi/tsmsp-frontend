@@ -7,7 +7,7 @@ import { date2str, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
 
 interface MyQRCodeProps {
-  color: string;
+  readonly color: string;
 }
 
 export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {

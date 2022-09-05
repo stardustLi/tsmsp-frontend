@@ -79,8 +79,6 @@ export const LoginPage: React.FC = () => {
           />
           <Button text="登录" onPress={login} />
           <NavigableButton text="切换至注册界面" route="Register" />
-          {/* <NavigableButton text="小程序" route="Applets" />
-          <NavigableButton text="测试" route="PolicyInquiry" /> */}
           <StatusBar style="auto" />
         </ScrollView>
       </View>

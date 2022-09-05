@@ -14,24 +14,20 @@ import { AppealPage } from 'pages/applets/AppealPage';
 import { AppletsPage } from 'pages/applets/AppletsPage';
 import { JingReportPage } from 'pages/applets/JingReportPage';
 import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
+import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
 import { ShowVaccinePage } from 'pages/applets/ShowVaccinePage';
+import { AddNucleicAcidTestPointPage } from 'pages/home/AddNucleicAcidTestPointPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
 import { AdminPage } from 'pages/home/AdminPage';
 import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { HomePage } from 'pages/home/HomePage';
 import { PersonalCodePage } from 'pages/home/PersonalCodePage';
-import { PolicyInquiryPage } from 'pages/home/PolicyInquiryPage';
+import { PolicyQueryPage } from 'pages/home/PolicyQueryPage';
 import { TracePage } from 'pages/home/TracePage';
 import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
-import { ChangePasswordPage } from 'pages/account/ChangePasswordPage';
-
-import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
-import { AddTracePage } from 'pages/home/AddTracePage';
-import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
-import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +41,7 @@ const Tabs = {
   Applets: AppletsPage,
   TraceWithPeople: TraceWithPeoplePage,
   Appeal: AppealPage,
-  PolicyInquiry: PolicyInquiryPage,
+  PolicyQuery: PolicyQueryPage,
   JingReport: JingReportPage,
   Account: AccountPage,
   MyInfo: MyInfoPage,
@@ -59,6 +55,7 @@ const Tabs = {
   DangerousPlaceSet: DangerousPlaceSetPage,
   QueryWaitingPerson: QueryWaitingPersonPage,
   ShowAcid: ShowAcidPage,
+  AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
 };
 
 export type TabNames = keyof typeof Tabs;

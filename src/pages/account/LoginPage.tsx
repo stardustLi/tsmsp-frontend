@@ -82,7 +82,6 @@ export const LoginPage: React.FC = () => {
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-      {/* <BottomBar tab={BottomTab.LOGIN} /> */}
     </NativeBaseProvider>
   );
 };

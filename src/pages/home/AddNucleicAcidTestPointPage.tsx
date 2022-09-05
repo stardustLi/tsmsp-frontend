@@ -61,7 +61,7 @@ export const AddNucleicAcidTestPointPage: React.FC = () => {
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-      <BottomBar tab={BottomTab.LOGIN} />
+      <BottomBar tab={BottomTab.APPLETS} />
     </NativeBaseProvider>
   );
 };

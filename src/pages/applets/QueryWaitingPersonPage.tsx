@@ -94,7 +94,7 @@ export const QueryWaitingPersonPage: React.FC = () => {
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>
-      <BottomBar tab={BottomTab.LOGIN} />
+      <BottomBar tab={BottomTab.APPLETS} />
     </NativeBaseProvider>
   );
 };

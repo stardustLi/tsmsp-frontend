@@ -52,7 +52,7 @@ export const PolicyQueryPage: React.FC = () => {
           <StatusBar style="auto" />
         </ScrollView>
       </View>
-      <BottomBar tab={BottomTab.LOGIN} />
+      <BottomBar tab={BottomTab.APPLETS} />
     </NativeBaseProvider>
   );
 };

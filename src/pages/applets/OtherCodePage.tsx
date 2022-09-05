@@ -11,11 +11,13 @@ import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 import { Button } from 'components/ui/Button';
 import { globalNavigation } from 'utils/navigation';
-import { CodeColor } from 'models/CodeColor';
+
 import { TextInput } from 'components/ui/TextInput';
 import { send } from 'utils/web';
-import { UserWhetherGrantedMessage } from 'models/messages/user/permission/UserWhetherGrantedMessage';
-import { UserGetColorMessage } from 'models/messages/code/appeal/UserGetColorMessage';
+import { UserGetColorMessage } from 'models/api/code/UserGetColorMessage';
+import { UserWhetherGrantedMessage } from 'models/api/user/permission/UserWhetherGrantedMessage';
+import { CodeColor } from 'models/enums/CodeColor';
+
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -31,7 +33,7 @@ export const OtherCodePage: React.FC = () => {
   
   async function getOtherCodeColor() {
     try {
-      const response = await send(new UserGetColorMessage(otherIdcard, token));
+      const response = await send(new UserGetColorMessage(token, otherIdcard));
       setCodeColor(response);
     } catch (e) {
       console.error(e);
@@ -41,7 +43,7 @@ export const OtherCodePage: React.FC = () => {
     try{
       const response = await send(new UserWhetherGrantedMessage(token, otherIdcard));
       setPermission(response);
-      if (permission){
+      if (response){
         setQuiry(true);
         getOtherCodeColor()
         //Alert.alert("您有权限访问该用户的健康码！")

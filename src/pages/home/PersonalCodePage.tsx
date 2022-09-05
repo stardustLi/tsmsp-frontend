@@ -29,7 +29,7 @@ export const PersonalCodePage: React.FC = () => {
 
   async function getCodeColor() {
     try {
-      const response = await send(new UserGetColorMessage(idCard, token));
+      const response = await send(new UserGetColorMessage(token, idCard));
       setCodeColor(response);
     } catch (e) {
       console.error(e);

@@ -29,6 +29,7 @@ export function POST(url: URL | RequestInfo, data: JacksonSerializable) {
 
 export async function send(data: JacksonSerializable) {
   const response = await POST(APIUrl, data);
+  console.log(data, '=>', response);
   if (response?.status !== 0) throw new Error(response?.message);
   return response?.message;
 }

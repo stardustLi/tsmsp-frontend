@@ -1,16 +1,16 @@
+import { NativeBaseProvider, Stack } from 'native-base';
+import React, { useState } from 'react';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select, SelectItem } from 'components/ui/Select';
+import { TextInput } from 'components/ui/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
-import { FinishNucleicAcidTestMessage } from 'models/messages/acid/FinishNucleicAcidTestMessage';
-import { NativeBaseProvider, Stack } from 'native-base';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
-import { TextInput } from 'components/ui/TextInput';
-import { globalNavigation } from 'utils/navigation';
+import { FinishNucleicAcidTestMessage } from 'models/api/nucleicAcidTest/FinishNucleicAcidTestMessage';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 
@@ -45,17 +45,17 @@ export const FinishNucleicAcidTestPage: React.FC = () => {
           <Stack minHeight={120}></Stack>
           <Text>省/直辖市/自治区/特别行政区</Text>
           <TextInput
-              text={idCard}
-              setText={setIdCard}
-              label="受检者身份证号"
-              type="text"
+            text={idCard}
+            setText={setIdCard}
+            label="受检者身份证号"
+            type="text"
           />
           <Text>市/区/盟/自治州</Text>
           <TextInput
-              text={testPlace}
-              setText={setTestPlace}
-              label="检测点名称"
-              type="text"
+            text={testPlace}
+            setText={setTestPlace}
+            label="检测点名称"
+            type="text"
           />
           <Text>区/县/街道/旗/自治县</Text>
           <Select

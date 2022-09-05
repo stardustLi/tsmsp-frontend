@@ -23,13 +23,12 @@ export const FinishNucleicAcidTestPage: React.FC = () => {
   const { token } = UserStore();
   const [idCard, setIdCard] = useState('');
   const [testPlace, setTestPlace] = useState('');
-  const [result, setResult] = useState('');
-  const [resultList, setResultList] = useState<SelectItem[]>([]);//not finished
+  const [result, setResult] = useState(false);
 
   async function finishNucleicAcidTest() {
     try {
       await send(
-        new FinishNucleicAcidTestMessage(token, idCard, testPlace, false)//to be changed
+          new FinishNucleicAcidTestMessage(token, idCard, testPlace, result)
       );
       Alert.alert('提交成功！');
     } catch (e) {
@@ -38,38 +37,47 @@ export const FinishNucleicAcidTestPage: React.FC = () => {
   }
 
   return (
-    <NativeBaseProvider>
-      <Header content="添加核酸检测结果" />
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.alignCenter}>
-          <Stack minHeight={120}></Stack>
-          <Text>省/直辖市/自治区/特别行政区</Text>
-          <TextInput
-            text={idCard}
-            setText={setIdCard}
-            label="受检者身份证号"
-            type="text"
-          />
-          <Text>市/区/盟/自治州</Text>
-          <TextInput
-            text={testPlace}
-            setText={setTestPlace}
-            label="检测点名称"
-            type="text"
-          />
-          <Text>区/县/街道/旗/自治县</Text>
-          <Select
-            value={result}
-            setValue={setResult}
-            placeholder="检测结果"
-            items={resultList}
-          />
-          <Button text="提交核酸检测结果" onPress={finishNucleicAcidTest} />
-          <NavigableButton text="返回" route="Admin" />
-          <StatusBar style="auto" />
-        </ScrollView>
-      </View>
-      <BottomBar tab={BottomTab.LOGIN} />
-    </NativeBaseProvider>
+      <NativeBaseProvider>
+        <Header content="添加核酸检测结果" />
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.alignCenter}>
+            <Stack minHeight={120}></Stack>
+            <Text>受检者身份证号</Text>
+            <TextInput
+                text={idCard}
+                setText={setIdCard}
+                label="受检者身份证号"
+                type="text"
+            />
+            <Text>检测点名称</Text>
+            <TextInput
+                text={testPlace}
+                setText={setTestPlace}
+                label="检测点名称"
+                type="text"
+            />
+            <Text>检测结果</Text>
+            <Select
+                value={result.toString()}
+                setValue={(newValue) => setResult(Boolean(newValue))}
+                placeholder="检测结果"
+                items={[
+                  {
+                    label: '阴性',
+                    value: false.toString(),
+                  },
+                  {
+                    label: '阳性',
+                    value: true.toString(),
+                  },
+                ]}
+            />
+            <Button text="提交核酸检测结果" onPress={finishNucleicAcidTest} />
+            <NavigableButton text="返回" route="Admin" />
+            <StatusBar style="auto" />
+          </ScrollView>
+        </View>
+        <BottomBar tab={BottomTab.LOGIN} />
+      </NativeBaseProvider>
   );
 };

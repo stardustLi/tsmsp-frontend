@@ -92,7 +92,7 @@ export const AuthorityPage: React.FC = () => {
               color: 'coolgray.800',
             }}
           >
-            警告：获得授权的账号可以访问您的核酸结果、行程轨迹、健康码状态等信息，请勿随意授权！
+            警告：获得授权的账号可以访问您的健康码状态信息，请勿随意授权！
           </Text>
         </VStack>
         <FlatList

@@ -3,7 +3,6 @@ import { NativeBaseProvider, Text } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AddTrace } from 'components/AddTrace';
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { MyQRCode } from 'components/MyQRCode';
 import { Header } from 'components/ui/Header';
@@ -27,7 +26,7 @@ export const HomePage: React.FC = () => {
       <Header content={`${userName} 的猫宽健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <MyQRCode color="red" />
+          <MyQRCode  />
         </View>
 
         <Button

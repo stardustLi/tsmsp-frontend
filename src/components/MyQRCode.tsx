@@ -10,7 +10,7 @@ import { send } from 'utils/web';
 import { CodeColor } from 'models/CodeColor';
 
 interface MyQRCodeProps {
-  color: string;
+  color?: string;
 }
 
 export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
@@ -47,7 +47,7 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
     <>
       <Text
         style={baseStyle.timeText(
-          CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()
+          props.color ? props.color : (CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()) 
         )}
       >
         {date2str(zonedDate(now))}
@@ -57,7 +57,7 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
       </Text> */}
       <Center>
         <QRCode
-          color={CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()}
+          color={props.color ? props.color : (CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()) }
           backgroundColor={'white'}
           logo={require('../assets/千束.png')}
           logoMargin={5}

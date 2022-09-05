@@ -74,11 +74,11 @@ const applets: AppletCategory[] = [
     ],
   },
   {
-    category: '猫猫真猫',
+    category: '其它服务',
     applets: [
       {
-        text: '小猫',
-        route: 'ShowVaccine',
+        text: '健康码\n代查',
+        route: 'OtherCode',
       },
       {
         text: '猫猫',

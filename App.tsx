@@ -30,6 +30,7 @@ import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
 import { AddNucleicAcidTestPointPage } from 'pages/home/AddNucleicAcidTestPointPage';
 import { GetNucleicAcidPointPage} from 'pages/applets/GetNucleicAcidPointPage';
 import { PolicyUpdatePage} from 'pages/home/PolicyUpdatePage';
+import { OtherCodePage } from 'pages/applets/OtherCodePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,7 @@ const Tabs = {
   AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
   GetNucleicAcidPoint: GetNucleicAcidPointPage,
   PolicyUpdate: PolicyUpdatePage,
+  OtherCode: OtherCodePage,
 };
 
 export type TabNames = keyof typeof Tabs;

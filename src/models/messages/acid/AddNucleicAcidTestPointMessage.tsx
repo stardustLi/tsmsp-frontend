@@ -4,7 +4,7 @@ import { Trace } from 'models/Trace';
 export class AddNucleicAcidTestPointMessage extends TSMSPMessage {
   userToken: string;
   trace: number;
-  pointName: string
+  pointName: string;
   constructor(userToken: string, trace: number, pointName: string) {
     super();
     this.userToken = userToken;

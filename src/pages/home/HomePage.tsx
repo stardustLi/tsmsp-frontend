@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, Text } from 'native-base';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AddTrace } from 'components/AddTrace';
@@ -12,8 +12,7 @@ import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 import { Button } from 'components/ui/Button';
 import { globalNavigation } from 'utils/navigation';
-import { background } from 'native-base/lib/typescript/theme/styled-system';
-import Background from 'components/ImageBackground';
+import { CodeColor } from 'models/CodeColor';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

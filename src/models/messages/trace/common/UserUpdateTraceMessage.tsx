@@ -9,7 +9,7 @@ export class UserUpdateTraceMessage extends TSMSPMessage {
   constructor(userToken: string, time: number, idCard: string, trace: number) {
     super();
     this.userToken = userToken;
-    this.time = time
+    this.time = time;
     this.idCard = idCard;
     this.trace = trace;
   }

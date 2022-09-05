@@ -27,7 +27,7 @@ import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { AddTracePage } from 'pages/home/AddTracePage';
 import { QueryWaitingPersonPage } from 'pages/applets/QueryWaitingPersonPage';
 import { ShowAcidPage } from 'pages/applets/ShowAcidPage';
-import {AddNucleicAcidTestPointPage} from 'pages/home/AddNucleicAcidTestPointPage';
+import { AddNucleicAcidTestPointPage } from 'pages/home/AddNucleicAcidTestPointPage';
 
 const Stack = createNativeStackNavigator();
 

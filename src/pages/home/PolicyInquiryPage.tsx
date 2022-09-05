@@ -21,7 +21,6 @@ interface RawSubordinate {
   level: number;
 }
 
-
 const styles = StyleSheet.create({
   container: baseStyle.container,
   alignCenter: baseStyle.alignCenter,
@@ -45,15 +44,15 @@ export const PolicyInquiryPage: React.FC = () => {
   }
 
   async function getSubordinate(
-      value: number,
-      callback: (value: SelectItem[]) => void
+    value: number,
+    callback: (value: SelectItem[]) => void
   ) {
     try {
       const response: RawSubordinate[] = await send(
-          new GetPlaceSubordinatesMessage(value)
+        new GetPlaceSubordinatesMessage(value)
       );
       callback(
-          response.map(({ id, name }) => ({ label: name, value: id.toString() }))
+        response.map(({ id, name }) => ({ label: name, value: id.toString() }))
       );
     } catch (e) {
       console.error(e);
@@ -78,34 +77,38 @@ export const PolicyInquiryPage: React.FC = () => {
           <Stack minHeight={120}></Stack>
           <Text>省/直辖市/自治区/特别行政区</Text>
           <Select
-              value={province}
-              setValue={setProvince}
-              placeholder="省/直辖市/自治区/特别行政区"
-              items={provinceList}
+            value={province}
+            setValue={setProvince}
+            placeholder="省/直辖市/自治区/特别行政区"
+            items={provinceList}
           />
           <Text>市/区/盟/自治州</Text>
           <Select
-              value={city}
-              setValue={setCity}
-              placeholder="市/区/盟/自治州"
-              items={cityList}
+            value={city}
+            setValue={setCity}
+            placeholder="市/区/盟/自治州"
+            items={cityList}
           />
           <Text>区/县/街道/旗/自治县</Text>
           <Select
-              value={county}
-              setValue={setCounty}
-              placeholder="区/县/街道/旗/自治县"
-              items={countyList}
+            value={county}
+            setValue={setCounty}
+            placeholder="区/县/街道/旗/自治县"
+            items={countyList}
           />
-        {message ? (
-          <Text>目标地区政策： {message}</Text>
-        ) : (
-          <Text>暂无信息，请尝试在官方网站查找政策信息。</Text>
-        )}
-        <Button text="查询" onPress={PolicyInquiry} style={baseStyle.button} />
-        <NavigableButton text="返回" route="Applets" />
-        <StatusBar style="auto" />
-      </ScrollView>
+          {message ? (
+            <Text>目标地区政策： {message}</Text>
+          ) : (
+            <Text>暂无信息，请尝试在官方网站查找政策信息。</Text>
+          )}
+          <Button
+            text="查询"
+            onPress={PolicyInquiry}
+            style={baseStyle.button}
+          />
+          <NavigableButton text="返回" route="Applets" />
+          <StatusBar style="auto" />
+        </ScrollView>
       </View>
       <BottomBar tab={BottomTab.LOGIN} />
     </NativeBaseProvider>

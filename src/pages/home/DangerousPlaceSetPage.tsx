@@ -13,7 +13,7 @@ import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {RiskLevel} from "models/RiskLevel.d";
+import { RiskLevel } from 'models/RiskLevel';
 
 interface RawSubordinate {
   id: number;
@@ -21,13 +21,12 @@ interface RawSubordinate {
   level: number;
 }
 
-
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
 export const DangerousPlaceSetPage: React.FC = () => {
-  const {idCard, token} = UserStore();
+  const { idCard, token } = UserStore();
   const [province, setProvince] = useState('');
   const [provinceList, setProvinceList] = useState<SelectItem[]>([]);
   const [city, setCity] = useState('');
@@ -39,7 +38,9 @@ export const DangerousPlaceSetPage: React.FC = () => {
 
   async function DangerousPlaceSet() {
     try {
-      await send(new DangerousPlaceSetMessage(token, Number(county), riskLevel));
+      await send(
+        new DangerousPlaceSetMessage(token, Number(county), riskLevel)
+      );
       Alert.alert('设置成功！');
     } catch (e) {
       console.error(e);
@@ -47,15 +48,15 @@ export const DangerousPlaceSetPage: React.FC = () => {
   }
 
   async function getSubordinate(
-      value: number,
-      callback: (value: SelectItem[]) => void
+    value: number,
+    callback: (value: SelectItem[]) => void
   ) {
     try {
       const response: RawSubordinate[] = await send(
-          new GetPlaceSubordinatesMessage(value)
+        new GetPlaceSubordinatesMessage(value)
       );
       callback(
-          response.map(({ id, name }) => ({ label: name, value: id.toString() }))
+        response.map(({ id, name }) => ({ label: name, value: id.toString() }))
       );
     } catch (e) {
       console.error(e);
@@ -80,24 +81,24 @@ export const DangerousPlaceSetPage: React.FC = () => {
           <Stack minHeight={120}></Stack>
           <Text>省/直辖市/自治区/特别行政区</Text>
           <Select
-              value={province}
-              setValue={setProvince}
-              placeholder="省/直辖市/自治区/特别行政区"
-              items={provinceList}
+            value={province}
+            setValue={setProvince}
+            placeholder="省/直辖市/自治区/特别行政区"
+            items={provinceList}
           />
           <Text>市/区/盟/自治州</Text>
           <Select
-              value={city}
-              setValue={setCity}
-              placeholder="市/区/盟/自治州"
-              items={cityList}
+            value={city}
+            setValue={setCity}
+            placeholder="市/区/盟/自治州"
+            items={cityList}
           />
           <Text>区/县/街道/旗/自治县</Text>
           <Select
-              value={county}
-              setValue={setCounty}
-              placeholder="区/县/街道/旗/自治县"
-              items={countyList}
+            value={county}
+            setValue={setCounty}
+            placeholder="区/县/街道/旗/自治县"
+            items={countyList}
           />
           <Button text="设置" onPress={DangerousPlaceSet} />
           <NavigableButton text="返回" route="Admin" />

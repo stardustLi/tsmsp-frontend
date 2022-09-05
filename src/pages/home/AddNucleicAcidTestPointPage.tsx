@@ -39,7 +39,9 @@ export const AddNucleicAcidTestPointPage: React.FC = () => {
 
   async function addNucleicAcidTestPoint() {
     try {
-      await send(new AddNucleicAcidTestPointMessage(token, Number(county), pointName));
+      await send(
+        new AddNucleicAcidTestPointMessage(token, Number(county), pointName)
+      );
       Alert.alert('提交成功！');
     } catch (e) {
       console.error(e);
@@ -100,10 +102,10 @@ export const AddNucleicAcidTestPointPage: React.FC = () => {
             items={countyList}
           />
           <TextInput
-              text={pointName}
-              setText={setPointName}
-              label="检测点名称"
-              type="text"
+            text={pointName}
+            setText={setPointName}
+            label="检测点名称"
+            type="text"
           />
           <Button text="提交核酸检测点" onPress={addNucleicAcidTestPoint} />
           <NavigableButton text="返回" route="Home" />

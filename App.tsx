@@ -59,7 +59,7 @@ const Tabs = {
   ShowAcid: ShowAcidPage,
   AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
   GetNucleicAcidPoint: GetNucleicAcidPointPage,
-  PolicyUpdate: PolicyUpdatePage;
+  PolicyUpdate: PolicyUpdatePage,
 };
 
 export type TabNames = keyof typeof Tabs;

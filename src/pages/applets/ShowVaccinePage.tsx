@@ -7,7 +7,7 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { VaccineTable } from 'components/VaccineTable';
 import { UserStore } from 'libs/UserStore';
-import { UserGetVaccineMessage } from 'models/messages/vaccine/UserGetVaccineMessage';
+import { UserGetVaccineMessage } from 'models/api/vaccine/UserGetVaccineMessage';
 import { RawUserVaccine, UserVaccine } from 'models/UserVaccine';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';

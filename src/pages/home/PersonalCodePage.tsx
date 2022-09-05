@@ -8,9 +8,10 @@ import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
+import { UserGetColorMessage } from 'models/api/code/UserGetColorMessage';
+import { CodeColor } from 'models/enums/CodeColor';
+import { colorDict } from 'utils/codeColor';
 import * as baseStyle from 'utils/styles';
-import { CodeColor } from 'models/CodeColor';
-import { UserGetColorMessage } from 'models/messages/code/appeal/UserGetColorMessage';
 import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
@@ -18,11 +19,9 @@ const styles = StyleSheet.create({
 });
 
 export const PersonalCodePage: React.FC = () => {
-  const { userName } = UserStore();
-  const [now, setNow] = useState(new Date());
-  const [minute, setMinute] = useState(new Date());
-  const { token, idCard } = UserStore();
-  const [codeColor, setCodeColor] = useState<number>();
+  const { userName, token, idCard } = UserStore();
+
+  const [codeColor, setCodeColor] = useState<CodeColor | null>(null);
 
   useEffect(() => {
     getCodeColor();
@@ -36,13 +35,14 @@ export const PersonalCodePage: React.FC = () => {
       console.error(e);
     }
   }
+
   return (
     <NativeBaseProvider>
       <Header content={`${userName} 的个人地点码`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
           <QRCode
-            color={CodeColor[codeColor ? codeColor : 0].toLowerCase()}
+            color={colorDict[codeColor ?? CodeColor.GREEN]}
             size={300}
             value={JSON.stringify({ userName })}
           />

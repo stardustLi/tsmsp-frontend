@@ -9,7 +9,7 @@ import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select } from 'components/ui/Select';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
-import { UserAddVaccineMessage } from 'models/messages/vaccine/UserAddVaccineMessage';
+import { UserAddVaccineMessage } from 'models/api/vaccine/UserAddVaccineMessage';
 import { globalNavigation } from 'utils/navigation';
 import { generateSelectItems } from 'utils/range';
 import * as baseStyle from 'utils/styles';
@@ -36,19 +36,14 @@ export const AddVaccinePage: React.FC = () => {
       }
 
       await send(
-        new UserAddVaccineMessage(token, manufacture, time.getTime(), idCard)
+        new UserAddVaccineMessage(token, idCard, manufacture, time.getTime())
       );
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);
     }
   }
-  // userToken: string,
-  // idCard: IDCard,
-  // manufacture: string,
-  // now: Date,
-  // vaccineType: number
-  // manufacture: String, now: DateTime, vaccineType
+
   return (
     <NativeBaseProvider>
       <Header content="增加疫苗记录" />
@@ -69,22 +64,15 @@ export const AddVaccinePage: React.FC = () => {
           value={month}
           setValue={setMonth}
           placeholder="月"
-          items={generateSelectItems(1, 12, (month) => `${month}月`)}
+          items={generateSelectItems(1, 12, (month) => `${month} 月`)}
         />
         <Select
           value={day}
           setValue={setDay}
           placeholder="日"
-          items={generateSelectItems(1, 31, (day) => `${day}日`)}
+          items={generateSelectItems(1, 31, (day) => `${day} 日`)}
         />
         <Text>{year}</Text>
-        {/* <TextInput
-          text={reason}
-          setText={setReason}
-          label="申请理由简述"
-          type="text"
-          width="300"
-        /> */}
         <Button text="提交" onPress={AddVaccine} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />

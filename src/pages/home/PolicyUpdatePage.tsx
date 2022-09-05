@@ -3,17 +3,16 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select, SelectItem } from 'components/ui/Select';
+import { TextInput } from 'components/ui/TextInput';
 import { StatusBar } from 'expo-status-bar';
 import { UserStore } from 'libs/UserStore';
-import { GetPlaceSubordinatesMessage } from 'models/messages/trace/common/GetPlaceSubordinatesMessage';
-import { PolicyUpdateMessage } from 'models/messages/policy/PolicyUpdateMessage';
+import { PolicyUpdateMessage } from 'models/api/policy/PolicyUpdateMessage';
+import { GetPlaceSubordinatesMessage } from 'models/api/trace/GetPlaceSubordinatesMessage';
 import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
-import { globalNavigation } from 'utils/navigation';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {TextInput} from "../../components/ui/TextInput";
 
 interface RawSubordinate {
   id: number;
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 export const PolicyUpdatePage: React.FC = () => {
-  const { idCard, token } = UserStore();
+  const { token } = UserStore();
   const [province, setProvince] = useState('');
   const [provinceList, setProvinceList] = useState<SelectItem[]>([]);
   const [city, setCity] = useState('');
@@ -37,9 +36,7 @@ export const PolicyUpdatePage: React.FC = () => {
 
   async function PolicyUpdate() {
     try {
-      await send(
-        new PolicyUpdateMessage(token, Number(county), content)
-      );
+      await send(new PolicyUpdateMessage(token, Number(county), content));
       Alert.alert('设置成功！');
     } catch (e) {
       console.error(e);
@@ -100,11 +97,11 @@ export const PolicyUpdatePage: React.FC = () => {
             items={countyList}
           />
           <TextInput
-              text={content}
-              setText={setContent}
-              label="政策内容"
-              type="text"
-              width="300"
+            text={content}
+            setText={setContent}
+            label="政策内容"
+            type="text"
+            width="300"
           />
           <Button text="设置" onPress={PolicyUpdate} />
           <NavigableButton text="返回" route="Admin" />

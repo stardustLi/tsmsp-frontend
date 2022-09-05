@@ -1,8 +1,8 @@
 export class UserAcid {
   time: Date;
   testPlace: string;
-  result: Boolean;
-  constructor(testPlace: string, time: number, result: Boolean) {
+  result: boolean;
+  constructor(testPlace: string, time: number, result: boolean) {
     this.time = new Date(time);
     this.testPlace = testPlace;
     this.result = result;

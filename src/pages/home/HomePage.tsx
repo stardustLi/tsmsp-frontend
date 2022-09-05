@@ -1,18 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Text } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import { NativeBaseProvider } from 'native-base';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AddTrace } from 'components/AddTrace';
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { MyQRCode } from 'components/MyQRCode';
+import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
-import * as baseStyle from 'utils/styles';
-import { Button } from 'components/ui/Button';
 import { globalNavigation } from 'utils/navigation';
-import { CodeColor } from 'models/CodeColor';
+import * as baseStyle from 'utils/styles';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -20,7 +18,7 @@ const styles = StyleSheet.create({
 
 export const HomePage: React.FC = () => {
   const navigation = globalNavigation()!;
-  const { userName, admin } = UserStore();
+  const { userName } = UserStore();
 
   return (
     <NativeBaseProvider>

@@ -15,13 +15,11 @@ export const Label: React.FC<LabelProps> = (props) => {
           md: '0',
         }}
       >
-        {['outline'].map((key) => (
-          <VStack key={key} space={4}>
-            <Badge colorScheme="info" alignSelf="center" variant={key}>
-              {props.text}
-            </Badge>
-          </VStack>
-        ))}
+        <VStack space={4}>
+          <Badge colorScheme="info" alignSelf="center" variant="outline">
+            {props.text}
+          </Badge>
+        </VStack>
       </HStack>
     </Box>
   );

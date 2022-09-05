@@ -1,27 +1,33 @@
+import { Center } from 'native-base';
 import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+
+import { UserStore } from 'libs/UserStore';
+import { UserGetColorMessage } from 'models/api/code/UserGetColorMessage';
+import { CodeColor } from 'models/enums/CodeColor';
+import { colorDict } from 'utils/codeColor';
 import { date2str, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
-import { Text } from 'react-native';
-import { Center } from 'native-base';
-import { UserStore } from 'libs/UserStore';
-import { UserGetColorMessage } from 'models/messages/code/appeal/UserGetColorMessage';
 import { send } from 'utils/web';
-import { CodeColor } from 'models/CodeColor';
 
 interface MyQRCodeProps {
-  color: string;
+  readonly color: string;
 }
 
 export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
+  const { token, idCard } = UserStore();
+
   const [now, setNow] = useState(new Date());
   const [minute, setMinute] = useState(new Date());
-  const { token, idCard } = UserStore();
-  const [codeColor, setCodeColor] = useState<number | null>(null);
-  //const { admin } = UserStore();
+  const [codeColor, setCodeColor] = useState<CodeColor | null>(null);
+
   useEffect(() => {
     setInterval(() => setNow(new Date()), 1000);
-    setInterval(() => setMinute(new Date()), 60000);
+    setInterval(() => {
+      setMinute(new Date());
+      getCodeColor();
+    }, 60000);
     getCodeColor();
   }, []);
 
@@ -39,31 +45,20 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
     }
   }
 
-  // const hackCodeColor = codecolor == null ? 0 : codeColor;
-  // let x: CodeColor = CodeColor.GREEN;
-  // let y: number = x;
-  // let z: CodeColor = y as CodeColor;
+  const colorString = colorDict[codeColor ?? CodeColor.GREEN];
+
   return (
     <>
-      <Text
-        style={baseStyle.timeText(
-          CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()
-        )}
-      >
+      <Text style={baseStyle.timeText(colorString)}>
         {date2str(zonedDate(now))}
       </Text>
-      {/* <Text style={baseStyle.timeText(props.color)}>
-        {CodeColor[codeColor!]}
-      </Text> */}
       <Center>
         <QRCode
-          color={CodeColor[Number(codeColor ? codeColor : 0)].toLowerCase()}
-          backgroundColor={'white'}
+          color={colorString}
+          backgroundColor="white"
           logo={require('../assets/千束.png')}
           logoMargin={5}
           logoSize={50}
-          //logo={1}
-          // quietZone={50}
           size={250}
           value={JSON.stringify(codeContent)}
         />

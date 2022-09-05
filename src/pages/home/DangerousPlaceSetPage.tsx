@@ -13,7 +13,7 @@ import { ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {RiskLevel} from "../../models/RiskLevel";
+import {RiskLevel} from "models/RiskLevel.d";
 
 interface RawSubordinate {
   id: number;

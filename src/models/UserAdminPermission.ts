@@ -1,4 +1,4 @@
-import { UserName } from './fields';
+import { UserName } from 'models/fields';
 
 export class UserAdminPermission {
   userName: UserName;

@@ -3,6 +3,7 @@ import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { BottomBar, BottomTab } from 'components/BottomBar';
 import {
   StandardPCCLevelsWithStreet,
   TraceSelect,
@@ -10,13 +11,12 @@ import {
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
+import { Select } from 'components/ui/Select';
 import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
 import { QueryTestPointWaitingPersonMessage } from 'models/api/nucleicAcidTest/QueryTestPointWaitingPersonMessage';
 import type { TraceID } from 'models/fields';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { BottomBar, BottomTab } from '../../components/BottomBar';
-import { Select } from '../../components/ui/Select';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

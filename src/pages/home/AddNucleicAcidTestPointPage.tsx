@@ -6,7 +6,7 @@ import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import {
   StandardPCCLevelsWithStreet,
-  TraceSelect
+  TraceSelect,
 } from 'components/TraceSelect';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';

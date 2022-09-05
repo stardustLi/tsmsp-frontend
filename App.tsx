@@ -23,6 +23,7 @@ import { DangerousPlaceSetPage } from 'pages/home/DangerousPlaceSetPage';
 import { HomePage } from 'pages/home/HomePage';
 import { PersonalCodePage } from 'pages/home/PersonalCodePage';
 import { PolicyQueryPage } from 'pages/home/PolicyQueryPage';
+import { PolicyUpdatePage } from 'pages/home/PolicyUpdatePage';
 import { TracePage } from 'pages/home/TracePage';
 import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
@@ -56,6 +57,7 @@ const Tabs = {
   QueryWaitingPerson: QueryWaitingPersonPage,
   ShowAcid: ShowAcidPage,
   AddNucleicAcidTestPoint: AddNucleicAcidTestPointPage,
+  PolicyUpdate: PolicyUpdatePage,
 };
 
 export type TabNames = keyof typeof Tabs;

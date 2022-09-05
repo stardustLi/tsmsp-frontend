@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -8,14 +8,33 @@ import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { UserStore } from 'libs/UserStore';
+import { UserGetColorMessage } from 'models/api/code/UserGetColorMessage';
+import { CodeColor } from 'models/enums/CodeColor';
+import { colorDict } from 'utils/codeColor';
 import * as baseStyle from 'utils/styles';
+import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
 
 export const PersonalCodePage: React.FC = () => {
-  const { userName } = UserStore();
+  const { userName, token, idCard } = UserStore();
+
+  const [codeColor, setCodeColor] = useState<CodeColor | null>(null);
+
+  useEffect(() => {
+    getCodeColor();
+  }, []);
+
+  async function getCodeColor() {
+    try {
+      const response = await send(new UserGetColorMessage(idCard, token));
+      setCodeColor(response);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   return (
     <NativeBaseProvider>
@@ -23,7 +42,7 @@ export const PersonalCodePage: React.FC = () => {
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
           <QRCode
-            color="black"
+            color={colorDict[codeColor ?? CodeColor.GREEN]}
             size={300}
             value={JSON.stringify({ userName })}
           />

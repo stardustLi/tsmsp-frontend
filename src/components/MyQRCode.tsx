@@ -15,12 +15,20 @@ interface MyQRCodeProps {
   readonly color?: string;
 }
 
+const images = {
+  '0': require('../assets/泷奈.png'),
+  '1': require('../assets/泷奈.png'),
+  '2': require('../assets/千束.png'),
+  '3': require('../assets/千束.png'),
+};
+
 export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
   const { token, idCard } = UserStore();
 
   const [now, setNow] = useState(new Date());
   const [minute, setMinute] = useState(new Date());
   const [codeColor, setCodeColor] = useState<CodeColor | null>(null);
+  const [wife, setWife] = useState('');
 
   useEffect(() => {
     setInterval(() => setNow(new Date()), 1000);
@@ -61,7 +69,7 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
         <QRCode
           color={props.color ? props.color : defaultColorString}
           backgroundColor="white"
-          logo={require('../assets/千束.png')}
+          logo={images[codeColor ? codeColor : 0]}
           logoMargin={5}
           logoSize={50}
           size={250}

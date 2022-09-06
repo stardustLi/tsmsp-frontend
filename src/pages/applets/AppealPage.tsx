@@ -68,6 +68,7 @@ export const AppealPage: React.FC = () => {
           width="300"
         />
         <Button text="提交" onPress={Appeal} style={baseStyle.button} />
+        <NavigableButton text="查看申诉记录" route="ShowAppeal" />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

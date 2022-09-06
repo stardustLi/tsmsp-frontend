@@ -39,7 +39,7 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
   async function getCodeColor() {
     if (props.color) return;
     try {
-      const response = await send(new UserGetColorMessage(token,idCard));
+      const response = await send(new UserGetColorMessage(token, idCard));
       setCodeColor(response);
     } catch (e) {
       console.error(e);

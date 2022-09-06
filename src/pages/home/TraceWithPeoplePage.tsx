@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 export const TraceWithPeoplePage: React.FC = () => {
   const navigation = globalNavigation()!;
-  
+
   const { userName, token, idCard } = UserStore();
 
   const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);

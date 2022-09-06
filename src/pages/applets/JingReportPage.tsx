@@ -36,7 +36,7 @@ export const JingReportPage: React.FC = () => {
     if (checkedFirst && checkedSecond) {
       try {
         await send(new JingReportMessage(token, idCard, reason));
-        Alert.alert("提交成功！");
+        Alert.alert('提交成功！');
         navigation.navigate('Applets');
       } catch (e) {
         console.error(e);

@@ -10,7 +10,6 @@ import { Select } from 'components/ui/Select';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
 import { UserAddVaccineMessage } from 'models/api/vaccine/UserAddVaccineMessage';
-import { globalNavigation } from 'utils/navigation';
 import { generateSelectItems } from 'utils/range';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -18,9 +17,8 @@ import { send } from 'utils/web';
 const styles = StyleSheet.create({
   container: baseStyle.container,
 });
-export const AddVaccinePage: React.FC = () => {
-  const navigation = globalNavigation()!;
 
+export const AddVaccinePage: React.FC = () => {
   const { idCard, token } = UserStore();
 
   const [manufacture, setManufacture] = useState('');
@@ -29,8 +27,8 @@ export const AddVaccinePage: React.FC = () => {
   const [day, setDay] = useState('');
 
   async function AddVaccine() {
-    if (manufacture){
-      if (year && month && day){
+    if (manufacture) {
+      if (year && month && day) {
         try {
           const time = new Date(Number(year), Number(month) - 1, Number(day));
           if (Number.isNaN(time.getTime())) {
@@ -38,23 +36,23 @@ export const AddVaccinePage: React.FC = () => {
           }
 
           await send(
-            new UserAddVaccineMessage(token, idCard, manufacture, time.getTime())
+            new UserAddVaccineMessage(
+              token,
+              idCard,
+              manufacture,
+              time.getTime()
+            )
           );
-          Alert.alert("提交成功！");
-          // navigation.navigate('Applets');
+          Alert.alert('提交成功！');
         } catch (e) {
           console.error(e);
-        }      
+        }
+      } else {
+        Alert.alert('请选择合法的日期！');
       }
-      else {
-        Alert.alert("请选择合法的日期！");
-      }      
+    } else {
+      Alert.alert('请输入机构名称！');
     }
-    else {
-      Alert.alert("请输入机构名称！");
-    }
-
-
   }
 
   return (

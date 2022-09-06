@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import {
@@ -12,12 +12,12 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select } from 'components/ui/Select';
-import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
 import { AppointNucleicAcidTestMessage } from 'models/api/nucleicAcidTest/AppointNucleicAcidTestMessage';
+import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
 import type { TraceID } from 'models/fields';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {UserStore} from "../../libs/UserStore";
+import { UserStore } from '../../libs/UserStore';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -29,11 +29,10 @@ export const AppointNucleicAcidTestPage: React.FC = () => {
   const [trace, setTrace] = useState<TraceID>(-1);
   const [pointName, setPointName] = useState('');
   const [pointNameList, setPointNameList] = useState<string[]>([]);
-  const [count, setCount] = useState<number | null>(null);
 
   async function AppointNucleicAcidTest() {
     try {
-      setCount(await send(new AppointNucleicAcidTestMessage(token, idCard, pointName)));
+      await send(new AppointNucleicAcidTestMessage(token, idCard, pointName));
       Alert.alert('预约成功！');
     } catch (e) {
       console.error(e);

@@ -25,7 +25,7 @@ export const HomePage: React.FC = () => {
       <Header content={`${userName} 的猫宽健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <MyQRCode  />
+          <MyQRCode />
         </View>
 
         <Button

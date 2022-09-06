@@ -3,12 +3,12 @@ import type { IDCard } from 'models/fields';
 
 export class UserGetTraceWithPeopleMessage extends TSMSPMessage {
   userToken: string;
-  idCard: string;
+  idCard: IDCard;
   startTime: number;
   endTime: number;
   constructor(
     userToken: string,
-    idCard: string,
+    idCard: IDCard,
     startTime: number,
     endTime: number
   ) {

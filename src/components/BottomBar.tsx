@@ -12,7 +12,6 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 
 import { globalNavigation } from 'utils/navigation';
-import type { TabNames } from '../../App';
 
 interface BottomBarProps {
   readonly tab: BottomTab;

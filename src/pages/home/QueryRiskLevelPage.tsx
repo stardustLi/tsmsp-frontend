@@ -8,7 +8,7 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { StatusBar } from 'expo-status-bar';
 import { DangerousPlaceMessage } from 'models/api/code/DangerousPlaceMessage';
-import {RiskLevelConverter} from 'models/enums/RiskLevel'
+import { RiskLevelConverter } from 'models/enums/RiskLevel';
 import type { TraceID } from 'models/fields';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';

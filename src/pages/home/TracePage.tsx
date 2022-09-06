@@ -33,10 +33,11 @@ export const TracePage: React.FC = () => {
           new Date().getTime()
         )
       );
+      console.log(traces);
       setTraceHistory(
-        traces.map(
-          ({ trace, time: timestamp }) => new UserTrace(trace, timestamp)
-        )
+        traces
+          .map(({ trace, time: timestamp }) => new UserTrace(trace, timestamp))
+          .reverse()
       );
     } catch (e) {
       console.error(e);

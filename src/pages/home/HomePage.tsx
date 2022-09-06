@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
 });
 
 export const HomePage: React.FC = () => {
-  const navigation = globalNavigation()!;const now =Number(date2datestr(new Date));
+  const navigation = globalNavigation()!;
+  const now = Number(date2datestr(new Date()));
   const { userName, idCard, token } = UserStore();
   const [acidHistory, setAcidHistory] = useState<UserAcid[]>([]);
   const [codeColor, setCodeColor] = useState('');
@@ -33,32 +34,36 @@ export const HomePage: React.FC = () => {
     try {
       const acids: RawUserAcid[] = await send(
         new GetNucleicAcidTestResultsMessage(token, idCard)
-      );        
-      const response = acids.map(
+      );
+      const response = acids
+        .map(
           ({ time: timestamp, testPlace, result }) =>
             new UserAcid(testPlace, timestamp, result)
-        ).reverse()
+        )
+        .reverse();
       setAcidHistory(response);
       // if (response[0] != null){
-        if (response[0].result) {
-          const now =Number(date2datestr(new Date));
-          setCodeColor('red');
-          setResult('阳性');
-          //setTimeLength((now - Number(date2datestr(acidHistory[0].time))).toString())
-          setTimeLength((differenceInDays(response[0].time!, new Date())).toString())
-        }
-        else {
-          setCodeColor('green');
-          setResult('阴性');
-          setTimeLength((differenceInDays(response[0].time!, new Date())).toString())
-        }       
+      if (response[0].result) {
+        const now = Number(date2datestr(new Date()));
+        setCodeColor('red');
+        setResult('阳性');
+        //setTimeLength((now - Number(date2datestr(acidHistory[0].time))).toString())
+        setTimeLength(
+          differenceInDays(response[0].time!, new Date()).toString()
+        );
+      } else {
+        setCodeColor('green');
+        setResult('阴性');
+        setTimeLength(
+          differenceInDays(response[0].time!, new Date()).toString()
+        );
+      }
       // }
       // else {
       //   setCodeColor('yellow');
       //   setResult('无结果');
       //   setTimeLength("NaN");
       // }
-
     } catch (e) {
       console.error(e);
     }
@@ -78,7 +83,7 @@ export const HomePage: React.FC = () => {
         <View style={{ marginBottom: 14 }}>
           <MyQRCode />
         </View>
- 
+
         {/* <Text> {acidHistory[0]? acidHistory[0].result.toString() : '112'}11</Text> */}
 
         {/* <Button
@@ -86,7 +91,10 @@ export const HomePage: React.FC = () => {
           style={baseStyle.button}
           onPress={() => navigation.navigate('ScanQRCode')}
         /> */}
-        <DisplayColumn text={`核酸 ${result}         时间 ${timeLength} 天`} color={codeColor}/>
+        <DisplayColumn
+          text={`核酸 ${result}         时间 ${timeLength} 天`}
+          color={codeColor}
+        />
         {/* <Text> {(acidHistory[0] ? acidHistory[0].time : 1).toString()}</Text> */}
         <NavigableButton text="手动提交新轨迹" route="AddTrace" />
         <NavigableButton text="轨迹查询" route="Trace" />

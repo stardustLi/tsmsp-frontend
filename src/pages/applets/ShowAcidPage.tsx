@@ -29,10 +29,12 @@ export const ShowAcidPage: React.FC = () => {
         new GetNucleicAcidTestResultsMessage(token, idCard)
       );
       setAcidHistory(
-        acids.map(
-          ({ time: timestamp, testPlace, result }) =>
-            new UserAcid(testPlace, timestamp, result)
-        ).reverse()
+        acids
+          .map(
+            ({ time: timestamp, testPlace, result }) =>
+              new UserAcid(testPlace, timestamp, result)
+          )
+          .reverse()
       );
     } catch (e) {
       console.error(e);

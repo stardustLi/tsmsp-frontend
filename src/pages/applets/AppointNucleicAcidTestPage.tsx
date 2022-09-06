@@ -41,7 +41,7 @@ export const AppointNucleicAcidTestPage: React.FC = () => {
 
   async function getAllNucleicAcidTestPoints(
     value: TraceID
-  ): Promise<{ place: TraceID, name: NucleicAcidTestPointName }[]> {
+  ): Promise<{ place: TraceID; name: NucleicAcidTestPointName }[]> {
     if (value < 0) return [];
     try {
       return await send(new GetAllNucleicAcidTestPointMessage(value));
@@ -52,8 +52,8 @@ export const AppointNucleicAcidTestPage: React.FC = () => {
   }
 
   useEffect(() => {
-    getAllNucleicAcidTestPoints(trace).then(pointNameList => {
-     setPointNameList(pointNameList.map(pointName => pointName.name))
+    getAllNucleicAcidTestPoints(trace).then((pointNameList) => {
+      setPointNameList(pointNameList.map((pointName) => pointName.name));
     });
   }, [trace]);
 

@@ -48,7 +48,7 @@ const applets: AppletCategory[] = [
       },
       {
         text: '预约\n检测',
-        route: 'Home',
+        route: 'AppointNucleicAcidTest',
       },
       {
         text: '排队人\n数查询',

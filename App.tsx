@@ -32,6 +32,7 @@ import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
 import { QueryRiskLevelPage} from 'pages/home/QueryRiskLevelPage';
+import { AppointNucleicAcidTestPage} from 'pages/applets/AppointNucleicAcidTestPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,7 @@ const Tabs = {
   OtherCode: OtherCodePage,
   FinishNucleicAcidTest: FinishNucleicAcidTestPage,
   QueryRiskLevel: QueryRiskLevelPage,
+  AppointNucleicAcidTest: AppointNucleicAcidTestPage,
 };
 
 export type TabNames = keyof typeof Tabs;

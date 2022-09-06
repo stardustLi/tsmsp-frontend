@@ -33,6 +33,7 @@ import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
 import { QueryRiskLevelPage } from 'pages/home/QueryRiskLevelPage';
 import { AppointNucleicAcidTestPage } from 'pages/applets/AppointNucleicAcidTestPage';
+import {AdminSetColorPage} from 'pages/home/AdminSetColorPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -66,6 +67,7 @@ const Tabs = {
   FinishNucleicAcidTest: FinishNucleicAcidTestPage,
   QueryRiskLevel: QueryRiskLevelPage,
   AppointNucleicAcidTest: AppointNucleicAcidTestPage,
+  AdminSetColor: AdminSetColorPage,
 };
 
 export type TabNames = keyof typeof Tabs;

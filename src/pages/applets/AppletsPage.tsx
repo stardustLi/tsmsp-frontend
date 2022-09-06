@@ -86,7 +86,7 @@ const applets: AppletCategory[] = [
       },
       {
         text: '与我贴\n贴的人',
-        route: 'Home',
+        route: 'TraceWithPeople',
       },
     ],
   },

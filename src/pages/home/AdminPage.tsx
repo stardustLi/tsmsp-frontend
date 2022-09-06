@@ -52,17 +52,17 @@ const applets: AppletCategory[] = [
         route: 'FinishNucleicAcidTest',
       },
       {
-        text: '返回',
-        route: 'Home',
+        text: '增加核\n酸点',
+        route: 'AddNucleicAcidTestPoint',
       },
     ],
   },
   {
-    category: '疫苗服务',
+    category: '其他',
     applets: [
       {
-        text: '疫苗\n查询',
-        route: 'ShowVaccine',
+        text: '健康码\n设置',
+        route: 'AdminSetColor',
       },
       {
         text: '疫苗\n预约',

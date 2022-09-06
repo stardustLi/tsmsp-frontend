@@ -4,10 +4,10 @@ import { StyleSheet, View } from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
-import { TraceTable } from 'components/TraceTable';
+import { TraceWithPeopleTable } from 'components/TraceWithPeopleTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceWithPeopleMessage } from 'models/api/trace/withPeople/UserGetTraceWithPeopleMessage';
-import type { UserTrace } from 'models/UserTrace';
+import { UserTraceWithPeople, RawUserTraceWithPeople } from 'models/UserTraceWithPeople';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -21,9 +21,9 @@ export const TraceWithPeoplePage: React.FC = () => {
 
   const { userName, token, idCard } = UserStore();
 
-  const [traceHistory, setTraceHistory] = useState<UserTrace[]>([]);
+  const [traceHistory, setTraceHistory] = useState<UserTraceWithPeople[]>([]);
 
-  async function fetchTrace() {
+  async function fetchUserTraceWithPeople() {
     try {
       const response = await send(
         new UserGetTraceWithPeopleMessage(
@@ -35,10 +35,8 @@ export const TraceWithPeoplePage: React.FC = () => {
       );
       setTraceHistory(
         response.map(
-          ({ trace, time: timestamp }: { trace: string; time: number }) => ({
-            trace,
-            time: new Date(timestamp),
-          })
+          ({ CCUserName, time: timestamp }: { CCUserName: string; time: number }) =>
+            new UserTraceWithPeople(CCUserName, timestamp)
         )
       );
     } catch (e) {
@@ -47,14 +45,14 @@ export const TraceWithPeoplePage: React.FC = () => {
   }
 
   useEffect(() => {
-    fetchTrace();
+    fetchUserTraceWithPeople();
   }, []);
 
   return (
     <>
       <Header content={`和 ${userName} 贴贴过的人`} />
       <View style={styles.container}>
-        <TraceTable data={traceHistory} />
+        <TraceWithPeopleTable data={traceHistory} />
         <Button text="返回" onPress={() => navigation.navigate('Home')} />
         <StatusBar style="auto" />
       </View>

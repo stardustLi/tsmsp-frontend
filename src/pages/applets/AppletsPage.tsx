@@ -85,7 +85,7 @@ const applets: AppletCategory[] = [
         route: 'QueryRiskLevel',
       },
       {
-        text: '返回',
+        text: '与我贴\n贴的人',
         route: 'Home',
       },
     ],

@@ -14,7 +14,7 @@ import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select } from 'components/ui/Select';
 import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
 import { AppointNucleicAcidTestMessage } from 'models/api/nucleicAcidTest/AppointNucleicAcidTestMessage';
-import type { TraceID } from 'models/fields';
+import type { NucleicAcidTestPointName, TraceID } from 'models/fields';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import {UserStore} from "../../libs/UserStore";
@@ -42,7 +42,7 @@ export const AppointNucleicAcidTestPage: React.FC = () => {
 
   async function getAllNucleicAcidTestPoints(
     value: TraceID
-  ): Promise<string[]> {
+  ): Promise<{ place: TraceID, name: NucleicAcidTestPointName }[]> {
     if (value < 0) return [];
     try {
       return await send(new GetAllNucleicAcidTestPointMessage(value));
@@ -53,7 +53,9 @@ export const AppointNucleicAcidTestPage: React.FC = () => {
   }
 
   useEffect(() => {
-    getAllNucleicAcidTestPoints(trace).then(setPointNameList);
+    getAllNucleicAcidTestPoints(trace).then(pointNameList => {
+     setPointNameList(pointNameList.map(pointName => pointName.name))
+    });
   }, [trace]);
 
   return (

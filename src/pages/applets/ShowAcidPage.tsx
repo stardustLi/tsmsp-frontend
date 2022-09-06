@@ -32,7 +32,7 @@ export const ShowAcidPage: React.FC = () => {
         acids.map(
           ({ time: timestamp, testPlace, result }) =>
             new UserAcid(testPlace, timestamp, result)
-        )
+        ).reverse()
       );
     } catch (e) {
       console.error(e);

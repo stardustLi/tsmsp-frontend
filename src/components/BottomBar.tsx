@@ -38,7 +38,7 @@ const tabs = {
     icon: 'menu' as const,
     activeIcon: 'menu' as const,
   },
-  Login: {
+  ScanQRCode: {
     tab: BottomTab.SCAN,
     text: 'Scan',
     icon: 'camera-outline' as const,

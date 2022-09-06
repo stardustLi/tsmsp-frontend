@@ -42,28 +42,28 @@ export const HomePage: React.FC = () => {
         )
         .reverse();
       setAcidHistory(response);
-      // if (response[0] != null){
-      if (response[0].result) {
-        const now = Number(date2datestr(new Date()));
-        setCodeColor('red');
-        setResult('阳性');
-        //setTimeLength((now - Number(date2datestr(acidHistory[0].time))).toString())
-        setTimeLength(
-          differenceInDays(response[0].time!, new Date()).toString()
-        );
-      } else {
-        setCodeColor('green');
-        setResult('阴性');
-        setTimeLength(
-          differenceInDays(response[0].time!, new Date()).toString()
-        );
+      if (response[0] != null){
+        if (response[0].result) {
+          const now = Number(date2datestr(new Date()));
+          setCodeColor('red');
+          setResult('阳性');
+          //setTimeLength((now - Number(date2datestr(acidHistory[0].time))).toString())
+          setTimeLength(
+            differenceInDays(response[0].time!, new Date()).toString()
+          );
+        } else {
+          setCodeColor('green');
+          setResult('阴性');
+          setTimeLength(
+            differenceInDays(response[0].time!, new Date()).toString()
+          );
+        }
       }
-      // }
-      // else {
-      //   setCodeColor('yellow');
-      //   setResult('无结果');
-      //   setTimeLength("NaN");
-      // }
+      else {
+        setCodeColor('yellow');
+        setResult('无结果');
+        setTimeLength("NaN");
+      }
     } catch (e) {
       console.error(e);
     }
@@ -92,7 +92,7 @@ export const HomePage: React.FC = () => {
           onPress={() => navigation.navigate('ScanQRCode')}
         /> */}
         <DisplayColumn
-          text={`核酸 ${result}         时间 ${timeLength} 天`}
+          text={`核酸 ${result}        时间 ${timeLength} 天`}
           color={codeColor}
         />
         {/* <Text> {(acidHistory[0] ? acidHistory[0].time : 1).toString()}</Text> */}

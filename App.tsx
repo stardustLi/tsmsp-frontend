@@ -31,8 +31,8 @@ import { TraceWithPeoplePage } from 'pages/home/TraceWithPeoplePage';
 import { QRCodePage } from 'pages/QRCodePage';
 import { ScanQRCodePage } from 'pages/ScanQRCodePage';
 import { PageWrapper } from 'utils/navigation';
-import { QueryRiskLevelPage} from 'pages/home/QueryRiskLevelPage';
-import { AppointNucleicAcidTestPage} from 'pages/applets/AppointNucleicAcidTestPage';
+import { QueryRiskLevelPage } from 'pages/home/QueryRiskLevelPage';
+import { AppointNucleicAcidTestPage } from 'pages/applets/AppointNucleicAcidTestPage';
 
 const Stack = createNativeStackNavigator();
 

@@ -76,7 +76,7 @@ export const HomePage: React.FC = () => {
       <Header content={`${userName} 的猫宽健康宝`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
-          <MyQRCode  />
+          <MyQRCode />
         </View>
  
         {/* <Text> {acidHistory[0]? acidHistory[0].result.toString() : '112'}11</Text> */}

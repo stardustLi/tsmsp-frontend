@@ -94,10 +94,10 @@ export const TraceSelect: React.FC<TraceSelectProps> = (props) => {
                 value: id.toString(),
               }))
               /*
-                  [{ label: '请选择', value: '-1' }].concat(
-                    items.map(({ id, name }) => ({ label: name, value: id.toString() }))
-                  )
-                */
+                [{ label: '请选择', value: '-1' }].concat(
+                  items.map(({ id, name }) => ({ label: name, value: id.toString() }))
+                )
+              */
             }
           />
         </Fragment>

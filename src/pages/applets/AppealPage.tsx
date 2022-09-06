@@ -29,7 +29,7 @@ export const AppealPage: React.FC = () => {
   async function Appeal() {
     try {
       await send(new UserAppealMessage(token, idCard, reason));
-      Alert.alert("提交成功！");
+      Alert.alert('提交成功！');
       navigation.navigate('Applets');
     } catch (e) {
       console.error(e);

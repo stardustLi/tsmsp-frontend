@@ -13,7 +13,7 @@ import { AdminSetColorMessage } from 'models/api/code/AdminSetColorMessage';
 import { CodeColor } from 'models/enums/CodeColor';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {TextInput} from "../../components/ui/TextInput";
+import { TextInput } from '../../components/ui/TextInput';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -40,13 +40,13 @@ export const AdminSetColorPage: React.FC = () => {
       <View style={styles.container}>
         <ScrollView>
           <Stack minHeight={120}></Stack>
-            <Text>用户身份证号</Text>
-            <TextInput
-                text={idCard}
-                setText={setIdCard}
-                label="用户身份证号"
-                type="text"
-            />
+          <Text>用户身份证号</Text>
+          <TextInput
+            text={idCard}
+            setText={setIdCard}
+            label="用户身份证号"
+            type="text"
+          />
           <Select
             value={CodeColor.toString()}
             setValue={(newValue) => setCodeColor(Number(newValue))}
@@ -64,10 +64,10 @@ export const AdminSetColorPage: React.FC = () => {
                 label: '黄码',
                 value: CodeColor.YELLOW.toString(),
               },
-                {
-                    label: '红码',
-                    value: CodeColor.RED.toString(),
-                },
+              {
+                label: '红码',
+                value: CodeColor.RED.toString(),
+              },
             ]}
           />
           <Button text="设置" onPress={AdminSetColor} />

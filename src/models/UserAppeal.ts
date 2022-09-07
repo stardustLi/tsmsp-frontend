@@ -1,9 +1,9 @@
 import type { IDCard } from 'models/fields';
 
 export class UserAppeal {
-  idCard: IDCard
+  idCard: IDCard;
   time: Date;
-  reason: string
+  reason: string;
   constructor(idCard: IDCard, time: number, reason: string) {
     this.idCard = idCard;
     this.time = new Date(time);

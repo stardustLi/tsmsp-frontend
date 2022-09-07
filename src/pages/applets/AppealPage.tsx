@@ -12,8 +12,7 @@ import { UserAppealMessage } from 'models/api/code/appeal/UserAppealMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import {PolicyQueryMessage} from "../../models/api/policy/PolicyQueryMessage";
-import {QueryAppealMessage} from "../../models/api/code/appeal/QueryAppealMessage";
+import { QueryAppealMessage } from '../../models/api/code/appeal/QueryAppealMessage';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -79,12 +78,16 @@ export const AppealPage: React.FC = () => {
           width="300"
         />
         {message ? (
-            <Text>申诉记录：{message}</Text>
+          <Text>申诉记录：{message}</Text>
         ) : (
-            <Text>暂无申诉记录。</Text>
+          <Text>暂无申诉记录。</Text>
         )}
         <Button text="提交" onPress={Appeal} style={baseStyle.button} />
-        <Button text="查询申诉记录" onPress={QueryAppeal} style={baseStyle.button} />
+        <Button
+          text="查询申诉记录"
+          onPress={QueryAppeal}
+          style={baseStyle.button}
+        />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

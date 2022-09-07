@@ -1,6 +1,6 @@
 export class UserAppeal {
   time: Date;
-  reason: string
+  reason: string;
   constructor(time: number, reason: string) {
     this.time = new Date(time);
     this.reason = reason;

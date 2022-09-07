@@ -1,17 +1,15 @@
+import { Box } from 'native-base';
 import React from 'react';
-import { Box, Center, NativeBaseProvider } from 'native-base';
 
 interface DisplayColumnProps {
   readonly text: string;
   readonly color?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   readonly [key: string]: any;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-
 export const DisplayColumn: React.FC<DisplayColumnProps> = (props) => {
   const myRef = React.useRef({});
-  React.useEffect(() => {}, [myRef]);
 
   return (
     <Box
@@ -33,11 +31,4 @@ export const DisplayColumn: React.FC<DisplayColumnProps> = (props) => {
       {props.text}
     </Box>
   );
-  // <Center h="50" left={-100}>
-  //   <ZStack alignItems="center" justifyContent="center">
-  //     <Text>{props.text}</Text>
-  //     <Box bg="indigo.700" size="10" rounded="lg" />
-  //     <Box bg="indigo.300" size="8" rounded="lg" shadow={8} />
-  //   </ZStack>
-  // </Center>
 };

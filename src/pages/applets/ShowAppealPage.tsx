@@ -29,12 +29,12 @@ export const ShowAppealPage: React.FC = () => {
         new QueryAppealsMessage(token)
       );
       setAppealHistory(
-          appeals
-              .map(
-                  ({ time: timestamp, idCard, reason }) =>
-                      new UserAppeal(idCard, timestamp, reason)
-              )
-              .reverse()
+        appeals
+          .map(
+            ({ time: timestamp, idCard, reason }) =>
+              new UserAppeal(idCard, timestamp, reason)
+          )
+          .reverse()
       );
     } catch (e) {
       console.error(e);

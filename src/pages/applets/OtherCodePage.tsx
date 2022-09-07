@@ -11,7 +11,6 @@ import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
 import { UserGetColorMessage } from 'models/api/code/UserGetColorMessage';
-import { UserWhetherGrantedMessage } from 'models/api/user/permission/UserWhetherGrantedMessage';
 import { CodeColor } from 'models/enums/CodeColor';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -23,33 +22,20 @@ const styles = StyleSheet.create({
 export const OtherCodePage: React.FC = () => {
   const { token } = UserStore();
   const [otherIdcard, setOtherIdcard] = useState('');
-  const [permission, setPermission] = useState(Boolean);
   const [quiry, setQuiry] = useState(Boolean);
   const [codeColor, setCodeColor] = useState<number | null>(null);
 
-  async function getOtherCodeColor() {
-    try {
-      const response = await send(new UserGetColorMessage(token, otherIdcard));
-      setCodeColor(response);
-    } catch (e) {
-      console.error(e);
-    }
-  }
   async function getOtherCode() {
     try {
-      const response = await send(
-        new UserWhetherGrantedMessage(token, otherIdcard)
-      );
-      setPermission(response);
-      if (response) {
-        setQuiry(true);
-        getOtherCodeColor();
-        //Alert.alert("您有权限访问该用户的健康码！")
-      } else {
-        Alert.alert('您没有权限访问该用户的健康码！');
-      }
+      const response = await send(new UserGetColorMessage(token, otherIdcard));
+      setQuiry(true);
+      setCodeColor(response);
     } catch (e) {
-      console.error(e);
+      if (e instanceof Error && e.message.includes('无权限访问 (或不存在)')) {
+        Alert.alert('您没有权限访问该用户的健康码！');
+      } else {
+        console.error(e);
+      }
     }
   }
 
@@ -66,7 +52,6 @@ export const OtherCodePage: React.FC = () => {
             <Stack minHeight={100}></Stack>
           )}
         </View>
-
         <TextInput
           text={otherIdcard}
           setText={setOtherIdcard}

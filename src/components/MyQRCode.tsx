@@ -28,7 +28,6 @@ export const MyQRCode: React.FC<MyQRCodeProps> = (props) => {
   const [now, setNow] = useState(new Date());
   const [minute, setMinute] = useState(new Date());
   const [codeColor, setCodeColor] = useState<CodeColor | null>(null);
-  const [wife, setWife] = useState('');
 
   useEffect(() => {
     setInterval(() => setNow(new Date()), 1000);

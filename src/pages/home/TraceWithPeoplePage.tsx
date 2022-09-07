@@ -2,12 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { TraceWithPeopleTable } from 'components/TraceWithPeopleTable';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
-import { TraceWithPeopleTable } from 'components/TraceWithPeopleTable';
 import { UserStore } from 'libs/UserStore';
 import { UserGetTraceWithPeopleMessage } from 'models/api/trace/withPeople/UserGetTraceWithPeopleMessage';
-import { UserTraceWithPeople, RawUserTraceWithPeople } from 'models/UserTraceWithPeople';
+import { UserTraceWithPeople } from 'models/UserTraceWithPeople';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
@@ -35,8 +35,13 @@ export const TraceWithPeoplePage: React.FC = () => {
       );
       setTraceHistory(
         response.map(
-          ({ CCUserName, time: timestamp }: { CCUserName: string; time: number }) =>
-            new UserTraceWithPeople(CCUserName, timestamp)
+          ({
+            CCUserName,
+            time: timestamp,
+          }: {
+            CCUserName: string;
+            time: number;
+          }) => new UserTraceWithPeople(CCUserName, timestamp)
         )
       );
     } catch (e) {

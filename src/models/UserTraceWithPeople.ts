@@ -7,6 +7,7 @@ export class UserTraceWithPeople {
   }
 }
 
-export interface RawUserTraceWithPeople extends Omit<UserTraceWithPeople, 'time'> {
+export interface RawUserTraceWithPeople
+  extends Omit<UserTraceWithPeople, 'time'> {
   time: number;
 }

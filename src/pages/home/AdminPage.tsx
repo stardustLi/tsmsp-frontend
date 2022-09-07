@@ -32,7 +32,7 @@ const applets: AppletCategory[] = [
       },
       {
         text: '处理\n申诉',
-        route: 'Appeal',
+        route: 'ShowAppeal',
       },
       {
         text: '进京\n报备',

@@ -32,6 +32,7 @@ export const AppealRow: React.FC<ListRenderItemInfo<UserAppeal>> = (props) => {
           ' ' +
           date2timestr(zonedDate(props.item.time))}
       </Text>
+      <Text style={styles.tableCellOther}>{props.item.idCard}</Text>
       <Text style={styles.tableCellOther}>{props.item.reason}</Text>
     </View>
   );
@@ -41,6 +42,7 @@ export const AppealTable: React.FC<AppealTableProps> = (props) => {
   const header = (
     <View style={styles.tableHeadRow}>
       <Text style={styles.tableHeadCellTime}>时间</Text>
+      <Text style={styles.tableHeadCellOther}>身份证号</Text>
       <Text style={styles.tableHeadCellOther}>申诉原因</Text>
     </View>
   );

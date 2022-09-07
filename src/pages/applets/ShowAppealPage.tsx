@@ -9,7 +9,7 @@ import { AppealTable } from 'components/AppealTable';
 import { UserStore } from 'libs/UserStore';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { QueryAppealMessage } from 'models/api/code/appeal/QueryAppealMessage';
+import { QueryAppealsMessage } from 'models/api/code/appeal/QueryAppealsMessage';
 import { RawUserAppeal, UserAppeal } from 'models/UserAppeal';
 
 const styles = StyleSheet.create({
@@ -19,22 +19,22 @@ const styles = StyleSheet.create({
 export const ShowAppealPage: React.FC = () => {
   const navigation = globalNavigation()!;
 
-  const { userName, idCard, token } = UserStore();
+  const { token } = UserStore();
 
   const [appealHistory, setAppealHistory] = useState<UserAppeal[]>([]);
 
   async function fetchAppeal() {
     try {
       const appeals: RawUserAppeal[] = await send(
-        new QueryAppealMessage(token, idCard)
+        new QueryAppealsMessage(token)
       );
       setAppealHistory(
-        appeals
-          .map(
-            ({ time: timestamp, reason }) =>
-              new UserAppeal(timestamp, reason)
-          )
-          .reverse()
+          appeals
+              .map(
+                  ({ time: timestamp, idCard, reason }) =>
+                      new UserAppeal(idCard, timestamp, reason)
+              )
+              .reverse()
       );
     } catch (e) {
       console.error(e);
@@ -47,10 +47,10 @@ export const ShowAppealPage: React.FC = () => {
 
   return (
     <>
-      <Header content={`${userName} 的申诉记录`} />
+      <Header content={`申诉记录`} />
       <View style={styles.container}>
         <AppealTable data={appealHistory} />
-        <Button text="返回" onPress={() => navigation.navigate('Applets')} />
+        <Button text="返回" onPress={() => navigation.navigate('Admin')} />
         <StatusBar style="auto" />
       </View>
     </>

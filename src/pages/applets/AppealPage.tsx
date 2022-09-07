@@ -12,6 +12,8 @@ import { UserAppealMessage } from 'models/api/code/appeal/UserAppealMessage';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
+import {PolicyQueryMessage} from "../../models/api/policy/PolicyQueryMessage";
+import {QueryAppealMessage} from "../../models/api/code/appeal/QueryAppealMessage";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -20,17 +22,26 @@ const styles = StyleSheet.create({
 export const AppealPage: React.FC = () => {
   const navigation = globalNavigation()!;
 
-  const { token } = UserStore();
+  const { token, idCard } = UserStore();
 
-  const [idCard, setIdCard] = useState('');
+  const [IDCard, setIDCard] = useState('');
   const [reason, setReason] = useState('');
   const [userName, setUserName] = useState('');
+  const [message, setMessage] = useState(''); //still a bug unfixed
 
   async function Appeal() {
     try {
       await send(new UserAppealMessage(token, idCard, reason));
       Alert.alert('提交成功！');
       navigation.navigate('Applets');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function QueryAppeal() {
+    try {
+      setMessage(await send(new QueryAppealMessage(token, idCard)));
     } catch (e) {
       console.error(e);
     }
@@ -55,8 +66,8 @@ export const AppealPage: React.FC = () => {
           type="text"
         />
         <TextInput
-          text={idCard}
-          setText={setIdCard}
+          text={IDCard}
+          setText={setIDCard}
           label="身份证号"
           type="text"
         />
@@ -67,8 +78,13 @@ export const AppealPage: React.FC = () => {
           type="text"
           width="300"
         />
+        {message ? (
+            <Text>申诉记录：{message}</Text>
+        ) : (
+            <Text>暂无申诉记录。</Text>
+        )}
         <Button text="提交" onPress={Appeal} style={baseStyle.button} />
-        <NavigableButton text="查看申诉记录" route="ShowAppeal" />
+        <Button text="查询申诉记录" onPress={QueryAppeal} style={baseStyle.button} />
         <NavigableButton text="返回" route="Applets" />
         <StatusBar style="auto" />
       </View>

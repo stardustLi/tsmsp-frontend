@@ -35,6 +35,7 @@ import { QueryRiskLevelPage } from 'pages/home/QueryRiskLevelPage';
 import { AppointNucleicAcidTestPage } from 'pages/applets/AppointNucleicAcidTestPage';
 import { AdminSetColorPage } from 'pages/home/AdminSetColorPage';
 import { ShowAppealPage } from 'pages/applets/ShowAppealPage';
+import { ShowJingReportPage } from 'pages/applets/ShowJingReportPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +71,7 @@ const Tabs = {
   AppointNucleicAcidTest: AppointNucleicAcidTestPage,
   AdminSetColor: AdminSetColorPage,
   ShowAppeal: ShowAppealPage,
+  ShowJingReport: ShowJingReportPage,
 };
 
 export type TabNames = keyof typeof Tabs;

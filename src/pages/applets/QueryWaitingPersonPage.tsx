@@ -86,7 +86,7 @@ export const QueryWaitingPersonPage: React.FC = () => {
         {count ? (
           <Text>该核酸检测点目前排队人数：{count}</Text>
         ) : (
-          <Text>查询失败，请检查输入的地址是否有误</Text>
+          <Text>该核酸检测点目前排队人数：0</Text>
         )}
         <Button
           text="查询"

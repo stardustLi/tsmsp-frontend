@@ -35,8 +35,8 @@ const applets: AppletCategory[] = [
         route: 'ShowAppeal',
       },
       {
-        text: '进京\n报备',
-        route: 'JingReport',
+        text: '查看\n报备',
+        route: 'ShowJingReport',
       },
     ],
   },

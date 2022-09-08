@@ -8,8 +8,8 @@ export class UserAppeal {
 
   constructor(idCard: IDCard, reason: string, time: number) {
     this.idCard = idCard;
-    this.time = new Date(time);
     this.reason = reason;
+    this.time = new Date(time);
   }
 }
 

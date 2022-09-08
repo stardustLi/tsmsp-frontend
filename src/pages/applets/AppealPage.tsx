@@ -14,7 +14,6 @@ import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { QueryAppealMessage } from '../../models/api/code/appeal/QueryAppealMessage';
 import { UserAppeal, serializeAppeal } from '../../models/UserAppeal';
-import {date2datestr, zonedDate} from "../../utils/date";
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -28,7 +27,7 @@ export const AppealPage: React.FC = () => {
   const [IDCard, setIDCard] = useState('');
   const [reason, setReason] = useState('');
   const [userName, setUserName] = useState('');
-  const [message, setMessage] = useState<UserAppeal>(); //still a bug unfixed
+  const [message, setMessage] = useState<UserAppeal>();
 
   async function Appeal() {
     try {
@@ -43,11 +42,6 @@ export const AppealPage: React.FC = () => {
   async function QueryAppeal() {
     try {
       setMessage(await send(new QueryAppealMessage(token, idCard)));
-      {message ? (
-          Alert.alert(`时间：${date2datestr(zonedDate(message.time))}\n原因：${message.reason}`)
-      ) : (
-          Alert.alert('暂无申诉记录')
-      )}
     } catch (e) {
       console.error(e);
     }
@@ -85,9 +79,9 @@ export const AppealPage: React.FC = () => {
           width="300"
         />
         {message ? (
-          <Text>申诉记录：{serializeAppeal(message)}</Text>
+            <Text>申诉记录： {serializeAppeal(message)}</Text>//此处存在bug，serializeappeal函数报错
         ) : (
-          <Text>暂无申诉记录。</Text>
+            <Text>暂无申诉记录。</Text>
         )}
         <Button text="提交" onPress={Appeal} style={baseStyle.button} />
         <Button

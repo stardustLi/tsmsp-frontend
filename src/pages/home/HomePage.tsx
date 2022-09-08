@@ -2,7 +2,7 @@ import { differenceInDays } from 'date-fns';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { MyQRCode } from 'components/MyQRCode';
@@ -42,13 +42,13 @@ export const HomePage: React.FC = () => {
           setCodeColor('red');
           setResult('阳性');
           setTimeLength(
-            differenceInDays(response[0].time!, new Date()).toString()
+            differenceInDays(new Date(),response[0].time! ).toString()
           );
         } else {
           setCodeColor('green');
           setResult('阴性');
           setTimeLength(
-            differenceInDays(response[0].time!, new Date()).toString()
+            differenceInDays(new Date(),response[0].time!).toString()
           );
         }
       } else {
@@ -70,22 +70,28 @@ export const HomePage: React.FC = () => {
   console.log(codeColor);
   return (
     <NativeBaseProvider>
-      <Header content={`${userName} 的猫宽健康宝`} />
-      <View style={styles.container}>
-        <View style={{ marginBottom: 14 }}>
-          <MyQRCode />
+      <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
+        <Header content={`${userName} 的猫宽健康宝`} />
+
+        <View style={styles.container}>
+          <View style={{ marginBottom: 14 }}>
+            <MyQRCode />
+          </View>
+          <DisplayColumn
+            text={`核酸 ${result}        时间 ${timeLength} 天`}
+            color={codeColor}
+          />
+          <NavigableButton text="手动提交新轨迹" route="AddTrace" />
+          <NavigableButton text="轨迹查询" route="Trace" />
+          <NavigableButton text="我的贴贴码" route="PersonalCode" />
+          <NavigableButton text="自定义功能" route="Applets" />
+          <StatusBar style="auto" />
+
         </View>
-        <DisplayColumn
-          text={`核酸 ${result}        时间 ${timeLength} 天`}
-          color={codeColor}
-        />
-        <NavigableButton text="手动提交新轨迹" route="AddTrace" />
-        <NavigableButton text="轨迹查询" route="Trace" />
-        <NavigableButton text="我的贴贴码" route="PersonalCode" />
-        <NavigableButton text="自定义功能" route="Applets" />
-        <StatusBar style="auto" />
-      </View>
-      <BottomBar tab={BottomTab.HOME} />
+
+
+
+        <BottomBar tab={BottomTab.HOME} /></ImageBackground>
     </NativeBaseProvider>
   );
 };

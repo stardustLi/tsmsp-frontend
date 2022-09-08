@@ -29,7 +29,6 @@ export const baseBorder = <const>{
   },
   container = <const>{
     alignItems: 'center',
-    backgroundColor: '#fff',
     ...baseBorder,
     borderTopStyle: 'none',
     borderTopWidth: 0,

@@ -24,7 +24,7 @@ interface AppletCategory {
 
 const applets: AppletCategory[] = [
   {
-    category: '',
+    category: '政府职能',
     applets: [
       {
         text: '政策\n设置',
@@ -41,7 +41,7 @@ const applets: AppletCategory[] = [
     ],
   },
   {
-    category: '',
+    category: '核酸业务',
     applets: [
       {
         text: '风险地\n区设置',
@@ -65,13 +65,10 @@ const applets: AppletCategory[] = [
         route: 'AdminSetColor',
       },
       {
-        text: '疫苗\n预约',
+        text: '地点码\n生成',
         route: 'Home',
       },
-      {
-        text: '记录\n疫苗',
-        route: 'AddVaccine',
-      },
+
     ],
   },
 ];

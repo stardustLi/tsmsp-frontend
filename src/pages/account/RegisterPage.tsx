@@ -1,6 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
@@ -52,45 +58,49 @@ export const RegisterPage: React.FC = () => {
 
   return (
     <>
-                <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
-      <Header content="注册" />
-      <View style={styles.container}>
-        <Text style={styles.label}>用户名</Text>
-        <TextInput
-          placeholder="用户名"
-          style={styles.input}
-          value={userName}
-          onChangeText={setUserName}
-        />
-        <Text style={styles.label}>密码</Text>
-        <TextInput
-          placeholder="密码"
-          style={styles.input}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-        />
-        <Text style={styles.label}>真实姓名</Text>
-        <TextInput
-          placeholder="真实姓名"
-          style={styles.input}
-          value={realName}
-          onChangeText={setRealName}
-        />
-        <Text style={styles.label}>身份证号</Text>
-        <TextInput
-          placeholder="身份证号"
-          style={styles.input}
-          value={idCard}
-          onChangeText={setIdCard}
-        />
-        <Button text="注册" onPress={register} />
-        <Button
-          text="切换至登录界面"
-          onPress={() => navigation.navigate('Login')}
-        />
-        <StatusBar style="auto" />
-      </View></ImageBackground>
+      <ImageBackground
+        source={require('../../assets/lsz.png')}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <Header content="注册" />
+        <View style={styles.container}>
+          <Text style={styles.label}>用户名</Text>
+          <TextInput
+            placeholder="用户名"
+            style={styles.input}
+            value={userName}
+            onChangeText={setUserName}
+          />
+          <Text style={styles.label}>密码</Text>
+          <TextInput
+            placeholder="密码"
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={true}
+          />
+          <Text style={styles.label}>真实姓名</Text>
+          <TextInput
+            placeholder="真实姓名"
+            style={styles.input}
+            value={realName}
+            onChangeText={setRealName}
+          />
+          <Text style={styles.label}>身份证号</Text>
+          <TextInput
+            placeholder="身份证号"
+            style={styles.input}
+            value={idCard}
+            onChangeText={setIdCard}
+          />
+          <Button text="注册" onPress={register} />
+          <Button
+            text="切换至登录界面"
+            onPress={() => navigation.navigate('Login')}
+          />
+          <StatusBar style="auto" />
+        </View>
+      </ImageBackground>
     </>
   );
 };

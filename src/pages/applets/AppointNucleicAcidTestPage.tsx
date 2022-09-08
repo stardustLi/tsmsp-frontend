@@ -12,12 +12,12 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select } from 'components/ui/Select';
-import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
+import { UserStore } from 'libs/UserStore';
 import { AppointNucleicAcidTestMessage } from 'models/api/nucleicAcidTest/AppointNucleicAcidTestMessage';
+import { GetAllNucleicAcidTestPointMessage } from 'models/api/nucleicAcidTest/GetAllNucleicAcidTestPointMessage';
 import type { NucleicAcidTestPointName, TraceID } from 'models/fields';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { UserStore } from '../../libs/UserStore';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

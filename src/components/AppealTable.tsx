@@ -1,16 +1,20 @@
 import React from 'react';
-import {FlatList, ListRenderItemInfo, StyleSheet, Text, View,} from 'react-native';
+import {
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
-import type {UserAppeal} from 'models/UserAppeal';
-import {date2datestr, date2timestr, zonedDate} from 'utils/date';
+import { Button } from 'components/ui/Button';
+import { AdminSetColorMessage } from 'models/api/code/AdminSetColorMessage';
+import { ResolveAppealMessage } from 'models/api/code/appeal/ResolveAppealMessage';
+import { CodeColor } from 'models/enums/CodeColor';
+import type { UserAppeal } from 'models/UserAppeal';
+import { date2datestr, date2timestr, zonedDate } from 'utils/date';
 import * as baseStyle from 'utils/styles';
-import {UserStore} from 'libs/UserStore';
-import {Button} from 'components/ui/Button';
-import {send} from 'utils/web';
-import {ResolveAppealMessage} from 'models/api/code/appeal/ResolveAppealMessage';
-import {AdminSetColorMessage} from 'models/api/code/AdminSetColorMessage';
-import {CodeColor} from 'models/enums/CodeColor';
-import {baseButton} from "utils/styles";
+import { send } from 'utils/web';
 
 const styles = StyleSheet.create({
   tableRow: baseStyle.tableRow,
@@ -26,39 +30,48 @@ interface AppealTableProps {
   readonly token: string;
 }
 
-const buttonWithoutWidth = ({ pressed }: { pressed: boolean }) => (
-    {
-        ...baseStyle.baseButton,
-        backgroundColor: '#0ea5e9',
-        opacity: pressed ? 0.5 : 1,
-        width: null,
-        paddingHorizontal: 15,
-    } as const
-);
+const buttonWithoutWidth = ({ pressed }: { pressed: boolean }) =>
+  ({
+    ...baseStyle.baseButton,
+    backgroundColor: '#0ea5e9',
+    opacity: pressed ? 0.5 : 1,
+    width: null,
+    paddingHorizontal: 15,
+  } as const);
 
-function AppealRowWrapper(token: string): React.FC<ListRenderItemInfo<UserAppeal>> {
-    const AppealRow: React.FC<ListRenderItemInfo<UserAppeal>> = (props) => {
-        return (
-            <View style={styles.tableRow}>
-                <Text style={styles.tableCellTime}>
-                    {date2datestr(zonedDate(props.item.time)) +
-                        ' ' +
-                        date2timestr(zonedDate(props.item.time))}
-                </Text>
-                <Text style={styles.tableCellOther}>{props.item.idCard}</Text>
-                <Text style={styles.tableCellOther}>{props.item.reason}</Text>
-                <View style={styles.tableCellOther}>
-                    <Button text="接受" textColor="white" onPress={() => AcceptAppeal(props.item.idCard, token)}
-                            style={buttonWithoutWidth}/>
-                </View>
-                <View style={styles.tableCellOther}>
-                    <Button text="拒绝" textColor="white" onPress={() => RefuseAppeal(props.item.idCard, token)}
-                            style={buttonWithoutWidth}/>
-                </View>
-            </View>
-        );//按钮的大小和位置需要调整，且按钮所调用的函数目前无法正常发出message请求
-    }
-    return AppealRow;
+function AppealRowWrapper(
+  token: string
+): React.FC<ListRenderItemInfo<UserAppeal>> {
+  const AppealRow: React.FC<ListRenderItemInfo<UserAppeal>> = (props) => {
+    return (
+      <View style={styles.tableRow}>
+        <Text style={styles.tableCellTime}>
+          {date2datestr(zonedDate(props.item.time)) +
+            ' ' +
+            date2timestr(zonedDate(props.item.time))}
+        </Text>
+        <Text style={styles.tableCellOther}>{props.item.idCard}</Text>
+        <Text style={styles.tableCellOther}>{props.item.reason}</Text>
+        <View style={styles.tableCellOther}>
+          <Button
+            text="接受"
+            textColor="white"
+            onPress={() => AcceptAppeal(props.item.idCard, token)}
+            style={buttonWithoutWidth}
+          />
+        </View>
+        <View style={styles.tableCellOther}>
+          <Button
+            text="拒绝"
+            textColor="white"
+            onPress={() => RefuseAppeal(props.item.idCard, token)}
+            style={buttonWithoutWidth}
+          />
+        </View>
+      </View>
+    ); //按钮的大小和位置需要调整，且按钮所调用的函数目前无法正常发出message请求
+  };
+  return AppealRow;
 }
 
 export const AppealTable: React.FC<AppealTableProps> = (props) => {
@@ -85,18 +98,18 @@ export const AppealTable: React.FC<AppealTableProps> = (props) => {
 };
 
 async function AcceptAppeal(idCard: string, token: string) {
-    try{
-      await send (new ResolveAppealMessage(token, idCard));
-      await send (new AdminSetColorMessage(token, idCard, CodeColor.GREEN));
-    } catch (e) {
-        console.error(e);
-    }
+  try {
+    await send(new ResolveAppealMessage(token, idCard));
+    await send(new AdminSetColorMessage(token, idCard, CodeColor.GREEN));
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 async function RefuseAppeal(idCard: string, token: string) {
-    try {
-      await send (new ResolveAppealMessage(token, idCard));
-    } catch (e) {
-        console.error(e);
-    }
+  try {
+    await send(new ResolveAppealMessage(token, idCard));
+  } catch (e) {
+    console.error(e);
+  }
 }

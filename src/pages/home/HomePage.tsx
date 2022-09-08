@@ -42,13 +42,13 @@ export const HomePage: React.FC = () => {
           setCodeColor('red');
           setResult('阳性');
           setTimeLength(
-            differenceInDays(new Date(),response[0].time! ).toString()
+            differenceInDays(new Date(), response[0].time!).toString()
           );
         } else {
           setCodeColor('green');
           setResult('阴性');
           setTimeLength(
-            differenceInDays(new Date(),response[0].time!).toString()
+            differenceInDays(new Date(), response[0].time!).toString()
           );
         }
       } else {
@@ -70,7 +70,10 @@ export const HomePage: React.FC = () => {
   console.log(codeColor);
   return (
     <NativeBaseProvider>
-      <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
+      <ImageBackground
+        source={require('../../assets/lsz.png')}
+        style={{ width: '100%', height: '100%' }}
+      >
         <Header content={`${userName} 的猫宽健康宝`} />
 
         <View style={styles.container}>
@@ -86,12 +89,10 @@ export const HomePage: React.FC = () => {
           <NavigableButton text="我的贴贴码" route="PersonalCode" />
           <NavigableButton text="自定义功能" route="Applets" />
           <StatusBar style="auto" />
-
         </View>
 
-
-
-        <BottomBar tab={BottomTab.HOME} /></ImageBackground>
+        <BottomBar tab={BottomTab.HOME} />
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };

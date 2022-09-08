@@ -55,34 +55,37 @@ export const LoginPage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
-            <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
-      <Header content="登录" />
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.alignCenter}>
-          <Stack minHeight={100}></Stack>
-          <TextInput
-            text={idcard}
-            setText={setIdcard}
-            label="身份证号"
-            type={undefined}
-          />
-          <TextInput
-            text={userName}
-            setText={setUserName}
-            label="用户名"
-            type={undefined}
-          />
-          <TextInput
-            text={password}
-            setText={setPassword}
-            label="密码"
-            type="password"
-          />
-          <Button text="登录" onPress={login} />
-          <NavigableButton text="切换至注册界面" route="Register" />
-          <StatusBar style="auto" />
-        </ScrollView>
-      </View>
+      <ImageBackground
+        source={require('../../assets/lsz.png')}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <Header content="登录" />
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.alignCenter}>
+            <Stack minHeight={100}></Stack>
+            <TextInput
+              text={idcard}
+              setText={setIdcard}
+              label="身份证号"
+              type={undefined}
+            />
+            <TextInput
+              text={userName}
+              setText={setUserName}
+              label="用户名"
+              type={undefined}
+            />
+            <TextInput
+              text={password}
+              setText={setPassword}
+              label="密码"
+              type="password"
+            />
+            <Button text="登录" onPress={login} />
+            <NavigableButton text="切换至注册界面" route="Register" />
+            <StatusBar style="auto" />
+          </ScrollView>
+        </View>
       </ImageBackground>
     </NativeBaseProvider>
   );

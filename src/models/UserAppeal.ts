@@ -18,5 +18,7 @@ export interface RawUserAppeal extends Omit<UserAppeal, 'time'> {
 }
 
 export function serializeAppeal(appeal: UserAppeal) {
-  return `时间：${date2datestr(zonedDate(appeal.time))}\n原因：${appeal.reason}`
+  return `时间：${date2datestr(zonedDate(appeal.time))}\n原因：${
+    appeal.reason
+  }`;
 }

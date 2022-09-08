@@ -8,12 +8,12 @@ import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
+import { QueryAppealMessage } from 'models/api/code/appeal/QueryAppealMessage';
 import { UserAppealMessage } from 'models/api/code/appeal/UserAppealMessage';
+import { RawUserAppeal, serializeAppeal, UserAppeal } from 'models/UserAppeal';
 import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { QueryAppealMessage } from '../../models/api/code/appeal/QueryAppealMessage';
-import { UserAppeal, serializeAppeal, RawUserAppeal } from '../../models/UserAppeal';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -41,7 +41,9 @@ export const AppealPage: React.FC = () => {
 
   async function QueryAppeal() {
     try {
-      const result: RawUserAppeal = await send(new QueryAppealMessage(token, idCard));
+      const result: RawUserAppeal = await send(
+        new QueryAppealMessage(token, idCard)
+      );
       setMessage(new UserAppeal(result.idCard, result.reason, result.time));
     } catch (e) {
       console.error(e);
@@ -80,9 +82,9 @@ export const AppealPage: React.FC = () => {
           width="300"
         />
         {message ? (
-            <Text>申诉记录： {serializeAppeal(message)}</Text>//此处存在bug，serializeappeal函数报错
+          <Text>申诉记录： {serializeAppeal(message)}</Text> //此处存在bug，serializeappeal函数报错
         ) : (
-            <Text>暂无申诉记录。</Text>
+          <Text>暂无申诉记录。</Text>
         )}
         <Button text="提交" onPress={Appeal} style={baseStyle.button} />
         <Button

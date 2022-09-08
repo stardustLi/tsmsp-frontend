@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { globalNavigation } from 'utils/navigation';
 
+import { JingReportTable } from 'components/JingReportTable';
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
-import { JingReportTable } from 'components/JingReportTable';
 import { UserStore } from 'libs/UserStore';
+import { QueryJingReportsMessage } from 'models/api/code/QueryJingReportsMessage';
+import { RawUserJingReport, UserJingReport } from 'models/UserJingReport';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { QueryJingReportsMessage } from 'models/api/code/QueryJingReportsMessage';
-import { RawUserJingReport, UserJingReport} from 'models/UserJingReport';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -21,7 +21,9 @@ export const ShowJingReportPage: React.FC = () => {
 
   const { token } = UserStore();
 
-  const [jingReportHistory, setJingReportHistory] = useState<UserJingReport[]>([]);
+  const [jingReportHistory, setJingReportHistory] = useState<UserJingReport[]>(
+    []
+  );
 
   async function fetchJingReport() {
     try {
@@ -29,7 +31,7 @@ export const ShowJingReportPage: React.FC = () => {
         new QueryJingReportsMessage(token)
       );
       setJingReportHistory(
-          jingReports
+        jingReports
           .map(
             ({ time: timestamp, idCard, reason }) =>
               new UserJingReport(idCard, reason, timestamp)

@@ -68,7 +68,6 @@ const applets: AppletCategory[] = [
         text: '地点码\n生成',
         route: 'Home',
       },
-
     ],
   },
 ];

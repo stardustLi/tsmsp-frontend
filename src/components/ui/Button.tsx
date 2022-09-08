@@ -1,5 +1,5 @@
-import { Pressable, Text } from 'react-native';
 import React from 'react';
+import { Pressable, Text } from 'react-native';
 
 import * as baseStyle from 'utils/styles';
 
@@ -22,7 +22,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
       style={colorMapping?.[props.color!] ?? baseStyle.button}
       {...props}
     >
-      <Text style={props.textColor ? {color: props.textColor} : null}>{props.text}</Text>
+      <Text style={props.textColor ? { color: props.textColor } : null}>
+        {props.text}
+      </Text>
     </Pressable>
   );
 };

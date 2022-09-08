@@ -24,7 +24,9 @@ interface JingReportTableProps {
   readonly data: UserJingReport[];
 }
 
-export const JingReportRow: React.FC<ListRenderItemInfo<UserJingReport>> = (props) => {
+export const JingReportRow: React.FC<ListRenderItemInfo<UserJingReport>> = (
+  props
+) => {
   return (
     <View style={styles.tableRow}>
       <Text style={styles.tableCellTime}>

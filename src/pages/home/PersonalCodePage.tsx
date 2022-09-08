@@ -38,20 +38,24 @@ export const PersonalCodePage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
-                  <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
-      <Header content={`${userName} 的个人地点码`} />
-      <View style={styles.container}>
-        <View style={{ marginBottom: 14 }}>
-          <QRCode
-            color={colorDict[codeColor ?? CodeColor.GREEN]}
-            size={300}
-            value={JSON.stringify({ userName })}
-          />
+      <ImageBackground
+        source={require('../../assets/lsz.png')}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <Header content={`${userName} 的个人地点码`} />
+        <View style={styles.container}>
+          <View style={{ marginBottom: 14 }}>
+            <QRCode
+              color={colorDict[codeColor ?? CodeColor.GREEN]}
+              size={300}
+              value={JSON.stringify({ userName })}
+            />
+          </View>
+          <NavigableButton text="返回" route="Home" />
+          <StatusBar style="auto" />
         </View>
-        <NavigableButton text="返回" route="Home" />
-        <StatusBar style="auto" />
-      </View>
-      <BottomBar tab={BottomTab.HOME} /></ImageBackground>
+        <BottomBar tab={BottomTab.HOME} />
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };

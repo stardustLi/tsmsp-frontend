@@ -8,12 +8,12 @@ import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
 import { NavigableButton } from 'components/ui/NavigableButton';
 import { Select } from 'components/ui/Select';
+import { TextInput } from 'components/ui/TextInput';
 import { UserStore } from 'libs/UserStore';
 import { AdminSetColorMessage } from 'models/api/code/AdminSetColorMessage';
 import { CodeColor } from 'models/enums/CodeColor';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
-import { TextInput } from '../../components/ui/TextInput';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,

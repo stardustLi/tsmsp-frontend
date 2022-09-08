@@ -13,7 +13,7 @@ import { globalNavigation } from 'utils/navigation';
 import * as baseStyle from 'utils/styles';
 import { send } from 'utils/web';
 import { QueryAppealMessage } from '../../models/api/code/appeal/QueryAppealMessage';
-import { UserAppeal, serializeAppeal } from '../../models/UserAppeal';
+import { UserAppeal, serializeAppeal, RawUserAppeal } from '../../models/UserAppeal';
 
 const styles = StyleSheet.create({
   container: baseStyle.container,
@@ -41,7 +41,8 @@ export const AppealPage: React.FC = () => {
 
   async function QueryAppeal() {
     try {
-      setMessage(await send(new QueryAppealMessage(token, idCard)));
+      const result: RawUserAppeal = await send(new QueryAppealMessage(token, idCard));
+      setMessage(new UserAppeal(result.idCard, result.reason, result.time));
     } catch (e) {
       console.error(e);
     }

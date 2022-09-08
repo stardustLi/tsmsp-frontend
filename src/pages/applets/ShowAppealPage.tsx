@@ -49,7 +49,7 @@ export const ShowAppealPage: React.FC = () => {
     <>
       <Header content={`申诉记录`} />
       <View style={styles.container}>
-        <AppealTable data={appealHistory} />
+        <AppealTable data={appealHistory} token={token} />
         <Button text="返回" onPress={() => navigation.navigate('Admin')} />
         <StatusBar style="auto" />
       </View>

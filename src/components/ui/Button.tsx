@@ -6,6 +6,7 @@ import * as baseStyle from 'utils/styles';
 interface ButtonProps {
   readonly text: string;
   readonly color?: string;
+  readonly textColor?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   readonly [key: string]: any;
 }
@@ -21,7 +22,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       style={colorMapping?.[props.color!] ?? baseStyle.button}
       {...props}
     >
-      <Text>{props.text}</Text>
+      <Text style={props.textColor ? {color: props.textColor} : null}>{props.text}</Text>
     </Pressable>
   );
 };

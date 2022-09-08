@@ -56,10 +56,10 @@ export const AppealPage: React.FC = () => {
       <View style={styles.container}>
         <VStack space={1} alignItems="center">
           <Text bold italic underline highlight>
-            申诉前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规,在河南村镇银行没有存款,没有上访记录和上访意图。
+            申诉前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区，本人及密切接触者无发烧、咳嗽、感冒等症状，符合疫情防控相关法律法规，没有上访记录和上访意图。
           </Text>
           <Text bold italic underline highlight>
-            请注意,在申诉通过或被拒绝前,无法再次申诉。
+            请注意，在申诉通过或被拒绝前，无法再次申诉。
           </Text>
         </VStack>
         <TextInput

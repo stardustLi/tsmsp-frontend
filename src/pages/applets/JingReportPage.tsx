@@ -51,7 +51,7 @@ export const JingReportPage: React.FC = () => {
       <Header content="进京报备" />
       <View style={styles.container}>
         <Text bold italic underline highlight>
-          报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区,本人及密切接触者无发烧、咳嗽、感冒等症状,符合疫情防控相关法律法规。
+          报备前请确认您十四日内未经过至少一例阳性病例所在市/(直辖市)区，本人及密切接触者无发烧、咳嗽、感冒等症状，符合疫情防控相关法律法规。
         </Text>
         <TextInput
           text={userName}

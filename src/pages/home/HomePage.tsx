@@ -67,7 +67,7 @@ export const HomePage: React.FC = () => {
       fetchAcid();
     }, 1000);
   }, []);
-  console.log(codeColor);
+
   return (
     <NativeBaseProvider>
       <ImageBackground

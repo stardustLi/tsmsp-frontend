@@ -83,15 +83,7 @@ export const AuthorityPage: React.FC = () => {
       <Header content="权限管理" />
       <View style={styles.container}>
         <VStack space={1} alignItems="center">
-          <Text
-            bold
-            italic
-            underline
-            highlight
-            _dark={{
-              color: 'coolgray.800',
-            }}
-          >
+          <Text bold italic underline highlight>
             警告：获得授权的账号可以访问您的健康码状态信息，请勿随意授权！
           </Text>
         </VStack>
@@ -110,7 +102,6 @@ export const AuthorityPage: React.FC = () => {
             type="text"
           />
           <Center>
-            <Text>{userName}</Text>
             <Button text="刷新" onPress={FetchPermission} />
             <Button text="添加为授权账号" onPress={GrantPermission} />
             <Button text="移除该授权账号" onPress={RevokePermission} />

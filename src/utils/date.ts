@@ -21,5 +21,5 @@ export function date2str(date: Date, UTC?: boolean) {
 }
 
 export function zonedDate(date: Date) {
-  return new Date(date.getTime() + 288e5);
+  return new Date(date.getTime() + 0);
 }

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import { BottomBar, BottomTab } from 'components/BottomBar';
@@ -38,6 +38,7 @@ export const PersonalCodePage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
+                  <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
       <Header content={`${userName} 的个人地点码`} />
       <View style={styles.container}>
         <View style={{ marginBottom: 14 }}>
@@ -50,7 +51,7 @@ export const PersonalCodePage: React.FC = () => {
         <NavigableButton text="返回" route="Home" />
         <StatusBar style="auto" />
       </View>
-      <BottomBar tab={BottomTab.HOME} />
+      <BottomBar tab={BottomTab.HOME} /></ImageBackground>
     </NativeBaseProvider>
   );
 };

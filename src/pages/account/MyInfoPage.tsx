@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, Text, VStack } from 'native-base';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 
 import { BottomBar, BottomTab } from 'components/BottomBar';
 import { Header } from 'components/ui/Header';
@@ -19,6 +19,7 @@ export const MyInfoPage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
+                  <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
       <Header content={`${userName} 的账号信息`} />
       <View style={styles.container}>
         <Label text="用户名" />
@@ -38,7 +39,7 @@ export const MyInfoPage: React.FC = () => {
         <NavigableButton text="返回" route="Account" />
         <StatusBar style="auto" />
       </View>
-      <BottomBar tab={BottomTab.ACCOUNT} />
+      <BottomBar tab={BottomTab.ACCOUNT} /></ImageBackground>
     </NativeBaseProvider>
   );
 };

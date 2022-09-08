@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
@@ -52,6 +52,7 @@ export const RegisterPage: React.FC = () => {
 
   return (
     <>
+                <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
       <Header content="注册" />
       <View style={styles.container}>
         <Text style={styles.label}>用户名</Text>
@@ -89,7 +90,7 @@ export const RegisterPage: React.FC = () => {
           onPress={() => navigation.navigate('Login')}
         />
         <StatusBar style="auto" />
-      </View>
+      </View></ImageBackground>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, Stack } from 'native-base';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 
 import { Button } from 'components/ui/Button';
 import { Header } from 'components/ui/Header';
@@ -55,6 +55,7 @@ export const LoginPage: React.FC = () => {
 
   return (
     <NativeBaseProvider>
+            <ImageBackground source={require('../../assets/lsz.png')} style={{ width: '100%', height: '100%' }}>
       <Header content="登录" />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.alignCenter}>
@@ -82,6 +83,7 @@ export const LoginPage: React.FC = () => {
           <StatusBar style="auto" />
         </ScrollView>
       </View>
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };
